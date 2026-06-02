@@ -1,0 +1,156 @@
+---
+name: gameplus-category-content
+description: Generate SEO and GEO optimized category page content for gameplus.com.tr (GeForce NOW Turkey, powered by GAME+). Produces ~2000-word Turkish HTML category content with inline Gemini-pattern styling, TLDR block, info-card badges, dark-mode dynamic and fixed CTAs, FAQ accordion, editor notes, and DataForSEO-driven keyword research. Use whenever the user requests content for a Gameplus GFN category page (any URL like gameplus.com.tr/gfn/oyunlar/*), or says things like "gameplus kategori içeriği yaz", "gfn kategori sayfası", "gameplus category content", "gameplus için içerik", "geforce now kategori yazısı", "gfn oyunlar sayfası içeriği". Trigger even when the user only pastes a Gameplus category URL with an implicit content request, or mentions revising a category page they already have. Do NOT use this for Gameplus blog posts (those have a different tone, structure, and HTML enrichment pattern).
+---
+
+# Gameplus Category Content Generator
+
+This skill produces SEO and GEO optimized HTML category page content for **gameplus.com.tr** (NVIDIA GeForce NOW powered by GAME+ Türkiye). Category pages live under `/gfn/oyunlar/*` and accompany the game grid with a long-form article below it.
+
+The skill bakes in the visual + structural pattern established with the Gameplus team through multiple revision rounds. **Görsel dil v9 koyu temadır** (`references/design-system-v9.md`): saf siyah `#000` zemin, V9 Layered Frame çerçeveler, yeşil ✓ TLDR, premium info-card, zebra tablolar, nabız atan FAQ `+`, V9 layered CTA'lar. Blog skill'iyle aynı premium dil; tek fark kategoride **rotating conic glow ve floating ToC kullanılmaz**. It also bakes in content rules: no Steam Workshop claims, no PEGI/age recommendations, no specific TV model years, no prescriptive package recommendations.
+
+## When to invoke
+
+Trigger immediately when the user:
+- Pastes any URL under `gameplus.com.tr/gfn/oyunlar/*` and asks for content
+- Says "kategori içeriği", "kategori sayfası", "category content" in a Gameplus context
+- Asks to write or revise content for a GFN game type (e.g., "MMO için içerik yaz", "yarış oyunları sayfasına metin lazım")
+- Says "gameplus için içerik", "gfn için içerik", "gameplus geforce now içerik"
+
+Do not trigger for blog posts. Blog content uses a different methodology with image enrichment, YouTube embeds, and a longer narrative format.
+
+## High-level workflow
+
+Always go through these 6 phases.
+
+### Phase 1: Research the target category
+
+1. Identify the target URL and primary keyword(s) from `references/category-pages.md`.
+2. **Verify the live game count via Playwright** — navigate to the URL, scroll to bottom, count "OYNAT" buttons. This is the badge value for "Kütüphane Boyutu" and the count referenced in TLDR/body/FAQ.
+3. Note the top 12-15 games currently in the grid — these inform the popular games table later.
+
+### Phase 2: DataForSEO keyword and SERP research
+
+Follow `references/dataforseo-workflow.md`. The 8-step flow in short:
+
+1. `kw_data_google_ads_search_volume` for 10-15 candidate keywords (volume + competition).
+2. `dataforseo_labs_bulk_keyword_difficulty` for the same set (KD scores).
+3. `dataforseo_labs_search_intent` to confirm intent classification.
+4. `dataforseo_labs_google_keyword_suggestions` for long-tail expansion.
+5. After steps 1-4, **lock in 2-4 target keywords** that fit the category.
+6. `serp_organic_live_advanced` on those keywords (top 20, PAA, AI Overviews).
+7. **Competitor keyword mining:** For each target keyword, take top 5 ranking URLs; for each URL, `dataforseo_labs_google_ranked_keywords`; aggregate keywords appearing on 2+ competitors with vol ≥ 100 and contestable KD.
+8. `ai_optimization_chat_gpt_scraper` on the most relevant query to see which entities ChatGPT cites.
+
+Location is always `2792` (Türkiye), language `tr`. The DataForSEO MCP namespace is `mcp__dfs-mcp__*` or `mcp__dataforseo__*`.
+
+### Phase 3: Plan the content
+
+Use `references/structure-template.md` for the section skeleton. Confirm:
+
+- **H2 main heading**: includes primary keyword + "GeForce NOW" + "Bulutta Oyna" + current year. Lead with the keyword.
+- **Verified game count** from Phase 1 — used in TLDR, info-card badge, intro paragraph, and FAQ answer.
+- **Popular games table**: 8-12 games drawn from the live grid, prioritizing ones AI Overview / ChatGPT cite.
+- **Internal link plan**: list URLs you'll link to. Always include `/gfn`, `/gfn/oyunlar`. Add 3-4 contextually relevant category URLs from `references/category-pages.md`. Pick anchors from `references/url-anchor-mapping.md`. **`/gfn/paketler` only appears in CTAs** (Fix + Dynamic), not in body inline links.
+- **Info-card 4 badges** — Kütüphane Boyutu, Öne Çıkan Yapım, plus 2 category-specific (Alt Tür Sayısı, Çok Oyunculu, RTX Desteği, vb.). Never use Türkiye Sunucusu, PEGI/yaş, Mod Desteği, or prescriptive paket badges.
+- **Dynamic CTA type** — pick C3 (badge + headline), C4 (stat banner), or D2 (dual button). See `references/cta-templates.md`.
+- **2 editor notes** — one after popular games table, one in/before sub-genre rehberi section. Notes add factual depth (GOTY status, dev studio context, surprising mechanic), never age/PEGI/year claims.
+
+### Phase 4: Write the content
+
+Apply `references/style-guide.md` and `references/cta-templates.md` rigorously. Key rules:
+
+- Turkish "sen" hitabı, informal but not chatty.
+- ~2000 words target (1800-2400 acceptable).
+- Avoid **başlık** in body text — use **oyun** or **yapım**.
+- Never use the em dash (—). Use semicolons, commas, or restructure.
+- **No YouTube links** in category content.
+- **No Steam Workshop claims** — mod support varies per game.
+- **No PEGI references, no age recommendations** (e.g., "10+", "PEGI 7"). Aile-dostu kategorisi bile yaş etiketi kullanmaz; oyunları co-op, sanat tarzı, tema üzerinden tanımlar.
+- **No specific TV model years** ("2021/2022 LG ve Samsung" → "LG ve Samsung").
+- **No prescriptive package recommendations** — Performance/Ultimate karşılaştırması özellikleri nötr şekilde gösterir, "Performance yeterli" / "Ultimate öneririz" gibi cümleler kullanmaz.
+- License disclaimer must appear at least once via the yellow callout component.
+
+### Phase 5: Apply structure components
+
+> **GÖRSEL STİL — v9 KOYU TEMA (güncel):** Tüm bileşenlerin görünümü için **`references/design-system-v9.md`** kullan. Saf siyah `#000` zemin, **V9 Layered Frame** (soluk renkli dış + çok soluk iç çerçeve), yeşil ✓ TLDR maddeleri, premium info-card, zebra + yumuşak çerçeveli tablolar, nabız atan FAQ `+`, V9 layered CTA'lar. `structure-template.md`'deki açık tema snippet'leri SADECE bölüm sırası ve içerik içindir; görünümü design-system-v9.md belirler. **Rotating conic glow KULLANMA, floating ToC EKLEME.** design-system-v9.md'deki paylaşılan `<style>` bloğunu body'nin en başına bir kez ekle.
+
+Section order (sabit):
+
+1. **H2 main heading + intro paragraph** (with `/gfn` link)
+2. **TLDR block** — yeşil sol kenarlı, 4 list item
+3. **Türkiye sunucu paragrafı** — somut oyun örnekleri + gecikme stat'ı
+4. **Info-card** — 4 badge grid
+5. **H3 Popüler Oyunlar** + intro + styled table (table-wrap) + closing paragraph
+6. **Editor Note #1** — mavi sol kenarlı, factual depth
+7. **H3 Bulutta Oynamanın Avantajları** + intro + 5-7 bullet items
+8. **Dynamic CTA** — dark mode (C3 / C4 / D2)
+9. **License callout** — sarı, mandatory once
+10. **H3 Nasıl Oynanır?** + 4-step ordered list
+11. **H3 Hangi Tür Sana Uygun?** + 4-7 sub-genre H4 sections
+12. **Editor Note #2** — placed in or before sub-genre section
+13. **H3 Teknik Ayarlar** + styled table (5 rows, no mod desteği row)
+14. **H3 Performance ve Ultimate Karşılaştırması** (neutral) + styled table + factual closing
+15. **H3 [Kategori] Hakkında Sık Sorulan Sorular** + FAQ accordion (4-6 `<details>` items, summary direct text, no nested H4)
+16. **Fix CTA** — dark mode card with GeForce NOW + Performance/Ultimate badges
+17. **H3 Final CTA paragraph heading** + closing paragraph
+
+### Phase 6: QA against the checklist
+
+Walk through `references/checklist.md` before finalizing. Critical:
+- 0 em dash
+- 0 "başlık" in body text
+- 0 "Steam Workshop" / "mod desteği" claims
+- 0 "PEGI" references
+- 0 explicit age recommendations
+- 0 specific TV model years
+- 0 paket recommendation sentences
+- Game count matches Playwright verification
+- All required components present (TLDR, info-card, 2 CTAs, license callout, FAQ accordion)
+- 1800-2400 word range
+- 8-12 popular games table rows
+- 4-6 FAQ accordion items
+
+## Output
+
+Save the content in **two formats**:
+
+1. **HTML** in the current working directory as `<category-slug>-icerik.html` (e.g., `mmo-icerik.html`). Article body HTML only — for CMS paste.
+
+2. **DOCX** in the project archive at `/Users/Erdo/Desktop/Claude Projects/Game+ /İçerikler/` named after the URL with `/` replaced by `-`:
+   - URL: `https://gameplus.com.tr/gfn/oyunlar/<slug>`
+   - Filename: `gameplus.com.tr-gfn-oyunlar-<slug>.docx`
+
+   Use the bundled script:
+   ```bash
+   python3 /Users/Erdo/.claude/skills/gameplus-category-content/scripts/html_to_docx.py
+   ```
+
+3. **(Optional) Excel rollup** — eğer birden fazla kategori üretiyorsan tek Excel dosyasında: URL, HTML (Part 1), HTML (Part 2 — sadece > 32700 chars için), Kategori, Toplam Karakter sütunlarıyla. See `references/excel-export.md`.
+
+## Reference files
+
+- `references/methodology.md` — Yapının arkasındaki SEO + GEO mantığı. Bir kez oku.
+- `references/design-system-v9.md` — **GÜNCEL görsel dil (v9 koyu tema).** Tüm bileşen HTML/CSS'i buradan. Conic yok, ToC yok.
+- `references/structure-template.md` — Bölüm sırası + içerik kuralları (görünüm için design-system-v9.md).
+- `references/style-guide.md` — Voice, yasak kelimeler, formatting. Her piece için tekrar oku.
+- `references/url-anchor-mapping.md` — URL bazlı anchor text. Link yazmadan önce bak.
+- `references/category-pages.md` — Tüm 27 kategori URL ve primary keyword.
+- `references/dataforseo-workflow.md` — DataForSEO 8-step sequence.
+- `references/checklist.md` — Final QA pass items.
+- `references/cta-templates.md` — Fix CTA + Dinamik CTA (C3/C4/D2) şablonları, placeholder'larla.
+- `references/excel-export.md` — Bulk Excel rollup formatı.
+
+## Examples
+
+`examples/` 3 eski örnek içerik dosyası barındırır. **Bunlar OLD pattern** (Gemini-styled refactor öncesi). Yeni pattern için Dispatch projesindeki `*-icerik-deneme-2.html` dosyalarına bak.
+
+## What NOT to do
+
+- Blog yazısı tonu kullanma. "Hazır mısın?" gibi rhetorical opener'lar, YouTube embed'ler kategori sayfalarına ait değil.
+- Word count'u filler ile şişirme. 2000 hedef floor; her paragraf değerini ödemeli.
+- `gameplus.com.tr` dışına link verme. Sadece internal.
+- GeForce NOW kütüphanesinde olmayan oyun uydurma. Playwright ile doğrula.
+- "buraya tıkla" / "linke tıklayarak" yazma. Anchor'lar keyword-rich phrase.
+- Steam Workshop, PEGI yaş etiketleri, spesifik TV model yılları veya Performance vs Ultimate önerisi yazma.
+- `/gfn/paketler` body inline link olarak koyma. CTA'lar bunu zaten halleder.
