@@ -26,7 +26,7 @@ Always go through these 6 phases.
 ### Phase 1: Research the target category
 
 1. Identify the target URL and primary keyword(s) from `references/category-pages.md`.
-2. **Verify the live game count via Playwright** — navigate to the URL, scroll to bottom, count "OYNAT" buttons. This is the badge value for "Kütüphane Boyutu" and the count referenced in TLDR/body/FAQ.
+2. **Verify the live game count via Playwright** — navigate to the URL, scroll to bottom, count "OYNAT" buttons. This is the value behind "Kütüphane Boyutu" and the count referenced in TLDR/body/FAQ/CTA stat. **Sayıyı her zaman AŞAĞI yuvarlanmış "X+" biçiminde yaz, asla exact tam sayı kullanma** (434 → 400+, 69 → 60+, 14 → 10+; ≥100 için en yakın 100 aşağı, <100 için en yakın 10 aşağı). Exact sayı hem yapay görünür hem de kütüphane büyüdükçe bayatlar. Aynı yuvarlanmış değeri badge, TLDR, gövde, FAQ ve C4 stat'ında tutarlı kullan.
 3. Note the top 12-15 games currently in the grid — these inform the popular games table later.
 
 ### Phase 2: DataForSEO keyword and SERP research
@@ -51,8 +51,8 @@ Use `references/structure-template.md` for the section skeleton. Confirm:
 - **H2 main heading**: includes primary keyword + "GeForce NOW" + "Bulutta Oyna" + current year. Lead with the keyword.
 - **Verified game count** from Phase 1 — used in TLDR, info-card badge, intro paragraph, and FAQ answer.
 - **Popular games table**: 8-12 games drawn from the live grid, prioritizing ones AI Overview / ChatGPT cite.
-- **Internal link plan**: list URLs you'll link to. Always include `/gfn`, `/gfn/oyunlar`. Add 3-4 contextually relevant category URLs from `references/category-pages.md`. Pick anchors from `references/url-anchor-mapping.md`. **`/gfn/paketler` only appears in CTAs** (Fix + Dynamic), not in body inline links.
-- **Info-card 4 badges** — Kütüphane Boyutu, Öne Çıkan Yapım, plus 2 category-specific (Alt Tür Sayısı, Çok Oyunculu, RTX Desteği, vb.). Never use Türkiye Sunucusu, PEGI/yaş, Mod Desteği, or prescriptive paket badges.
+- **Internal link plan**: list URLs you'll link to. Always include `/gfn`, `/gfn/oyunlar`. Add 3-4 contextually relevant category URLs from `references/category-pages.md`. Pick anchors from `references/url-anchor-mapping.md`. **CTA link kuralı:** Sadece **Fix CTA** `/gfn/paketler`'e gider. **Dynamic (sayfa-ortası) CTA paketlere DEĞİL**, şu 3 sayfadan birine gider (kategoriler arasında rotasyon): `/gfn`, `/geforce-now-nedir`, `/firsatlar`. **Hiçbir CTA, içinde bulunduğu kategori sayfasına self-link VERMEZ.** Body içinde `/gfn/paketler` inline link kullanma.
+- **Info-card 4 badges** — Kütüphane Boyutu (yuvarlanmış "X+", asla exact), Öne Çıkan Yapım, plus 2 category-specific (Alt Tür Sayısı, Çok Oyunculu, RTX Desteği, vb.). Never use Türkiye Sunucusu, PEGI/yaş, Mod Desteği, or prescriptive paket badges.
 - **Dynamic CTA type** — pick C3 (badge + headline), C4 (stat banner), or D2 (dual button). See `references/cta-templates.md`.
 - **2 editor notes** — one after popular games table, one in/before sub-genre rehberi section. Notes add factual depth (GOTY status, dev studio context, surprising mechanic), never age/PEGI/year claims.
 
@@ -105,7 +105,11 @@ Walk through `references/checklist.md` before finalizing. Critical:
 - 0 explicit age recommendations
 - 0 specific TV model years
 - 0 paket recommendation sentences
-- Game count matches Playwright verification
+- **0 exact kütüphane sayısı** — badge/TLDR/gövde/FAQ/C4 stat hepsi yuvarlanmış "X+" (örn. 400+, 60+); ham tam sayı (434, 69) YOK
+- **0 CTA self-link** — hiçbir CTA içinde bulunduğu kategori sayfasına link vermiyor
+- **Dynamic CTA paketlere gitmiyor** — sadece Fix CTA `/gfn/paketler`; sayfa-ortası CTA `/gfn` | `/geforce-now-nedir` | `/firsatlar`
+- **0 yapışık cümle** — cümle sonu noktadan sonra boşluk var (`kelime.Kelime` gibi birleşme YOK)
+- Game count (rounded) matches Playwright verification
 - All required components present (TLDR, info-card, 2 CTAs, license callout, FAQ accordion)
 - 1800-2400 word range
 - 8-12 popular games table rows
@@ -153,4 +157,7 @@ Save the content in **two formats**:
 - GeForce NOW kütüphanesinde olmayan oyun uydurma. Playwright ile doğrula.
 - "buraya tıkla" / "linke tıklayarak" yazma. Anchor'lar keyword-rich phrase.
 - Steam Workshop, PEGI yaş etiketleri, spesifik TV model yılları veya Performance vs Ultimate önerisi yazma.
-- `/gfn/paketler` body inline link olarak koyma. CTA'lar bunu zaten halleder.
+- `/gfn/paketler` body inline link olarak koyma; sadece Fix CTA paketlere gider.
+- Dynamic (sayfa-ortası) CTA'yı paketlere yönlendirme — `/gfn`, `/geforce-now-nedir` veya `/firsatlar` kullan.
+- Hiçbir CTA'da içinde bulunduğun kategori sayfasına self-link verme (xbox içeriğinde `/gfn/oyunlar/xbox`'a link gibi).
+- Kütüphane oyun sayısını exact tam sayı yazma (434 değil 400+); her zaman aşağı yuvarlanmış "X+".

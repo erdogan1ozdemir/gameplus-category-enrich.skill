@@ -23,7 +23,7 @@ Section order **fixed** — don't reorder. The CMS pastes this body HTML as-is.
 <div class="tldr-block" style="background-color:#f8f9fa;padding:18px 20px;border-left:5px solid #76b900;margin:24px 0;border-radius:4px;">
   <h3 style="margin:0 0 10px 0;font-size:1.15em;color:#333;">Hızlı Özet</h3>
   <ul style="margin:0;padding-left:20px;color:#444;">
-    <li><strong>Kütüphane:</strong> [N] [kategori] oyunu; [kısa tür açıklaması].</li>
+    <li><strong>Kütüphane:</strong> [N+] [kategori] oyunu (yuvarlanmış, exact değil); [kısa tür açıklaması].</li>
     <li><strong>Öne Çıkan Yapımlar:</strong> <em>[Game1]</em>, <em>[Game2]</em>, <em>[Game3]</em>, <em>[Game4]</em>.</li>
     <li><strong>Alt Türler:</strong> [Sub1], [Sub2], [Sub3], [Sub4].</li>
     <li><strong>[4. Spesifik Özellik]:</strong> [Çok oyunculu, ücretsiz erişim, RTX desteği, kooperatif, vb. — kategoriye özel].</li>
@@ -45,7 +45,7 @@ Section order **fixed** — don't reorder. The CMS pastes this body HTML as-is.
 <div class="info-card" role="complementary" style="background-color:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin:24px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;">
   <div>
     <span style="display:block;font-size:0.78em;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Kütüphane Boyutu</span>
-    <span style="font-size:1.1em;font-weight:600;color:#111827;">[N] Oyun</span>
+    <span style="font-size:1.1em;font-weight:600;color:#111827;">[N+] Oyun (yuvarlanmış, exact değil)</span>
   </div>
   <div>
     <span style="display:block;font-size:0.78em;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Öne Çıkan Yapım</span>
@@ -291,8 +291,9 @@ Template `cta-templates.md` içinde. Kısaca:
 
 ## Internal Link Limitleri
 
-- `/gfn` → 1 kere (intro)
+- `/gfn` → intro (1 kere) + ayrıca bir Dynamic CTA hedefi olabilir
 - `/gfn/oyunlar` → 1 kere (Nasıl Oynanır step 3)
-- `/gfn/paketler` → SADECE CTA'larda (2 kere, Dynamic + Fix). Body inline'da YOK.
+- `/gfn/paketler` → SADECE **Fix CTA** (1 kere). Body inline'da YOK, Dynamic CTA'da YOK.
+- **Dynamic (sayfa-ortası) CTA** → `/gfn` | `/geforce-now-nedir` | `/firsatlar` (paketler DEĞİL, kategori self-link DEĞİL)
 - 3-4 ilgili kategori URL'i → her biri 1 kere
 - Toplam unique internal link: 6-8

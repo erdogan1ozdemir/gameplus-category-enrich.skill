@@ -13,6 +13,14 @@ When writing a category content piece:
 |---|---|---|---|
 | `/gfn/oyunlar` | Nvidia GeForce Now Oyunlar & Kütüphane \| Gameplus | geforce now oyunları | All sub-categories (this is the hub) |
 
+## Curated / showcase pages
+
+Tek türe bağlı olmayan, çapraz-tür "öne çıkan" seçki sayfaları. Popüler oyun tablosu canlı vitrindeki yapımlardan kurulur; link partnerleri vitrindeki oyunların türlerine göre seçilir.
+
+| URL | Page Title | Primary KW | Suggested Secondaries | Natural Link Partners |
+|---|---|---|---|---|
+| `/gfn/oyunlar/populer-oyunlar` | Popüler Oyunlar - GeForce Now En Çok Oynanan Oyunlar \| Gameplus | popüler oyunlar | en çok oynanan oyunlar, geforce now popüler oyunlar | canlandirma, fps, oynamasi-ucretsiz, strateji, simulasyon |
+
 ## Genre categories
 
 | URL | Page Title | Primary KW | Suggested Secondaries | Natural Link Partners |

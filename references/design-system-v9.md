@@ -62,7 +62,7 @@ Dış kapsayıcı çerçevesizdir (şeffaf grid); **her badge kendi soluk `gp-ce
 <div class="info-card" role="complementary" style="margin:20px 0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;">
   <div class="gp-cell">
     <span style="display:block;font-size:0.62em;color:#76b900;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;font-weight:800;">Kütüphane Boyutu</span>
-    <span style="font-size:1.05em;font-weight:700;color:#fff;">[N] Oyun</span>
+    <span style="font-size:1.05em;font-weight:700;color:#fff;">[N+] Oyun</span>
   </div>
   <div class="gp-cell">
     <span style="display:block;font-size:0.62em;color:#76b900;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:5px;font-weight:800;">Öne Çıkan Yapım</span>
@@ -79,6 +79,19 @@ Dış kapsayıcı çerçevesizdir (şeffaf grid); **her badge kendi soluk `gp-ce
 </div>
 ```
 Badge 3/4 önerileri ve yasaklar `structure-template.md`'deki ile aynı (Türkiye Sunucusu / PEGI / Önerilen Paket / Mod YASAK).
+
+### Sayı yuvarlama (ZORUNLU)
+
+Kütüphane oyun sayısı **her zaman aşağı yuvarlanmış "X+" biçiminde** yazılır; asla exact tam sayı (Gameplus revizyonu). Aynı değeri badge + TLDR + gövde + FAQ + C4 stat'ında tutarlı kullan.
+
+| Canlı sayı | Yaz | Kural |
+|---|---|---|
+| 434 | **400+** | ≥100 → en yakın 100 aşağı |
+| 921 | **900+** | ≥100 → en yakın 100 aşağı |
+| 69 | **60+** | <100 → en yakın 10 aşağı |
+| 14 | **10+** | <100 → en yakın 10 aşağı |
+
+Neden: exact sayı yapay görünür ve kütüphane büyüdükçe bayatlar; "X+" hem doğal hem kalıcıdır.
 
 ## 3. Tablolar (V9 layered, zebra, yumuşak çerçeve)
 
@@ -144,7 +157,9 @@ Zebra: çift sıralı satırlarda `background:rgba(255,255,255,0.015)`, tek sır
 ```
 
 ## 7. CTA'lar
-Tüm CTA snippet'leri (Fix + Dynamic C3/C4/D2) için `cta-templates.md`'nin **v9 koyu sürümlerini** kullan. Hepsi V9 layered frame (`gp-layer`), `#000` zemin, **conic YOK**.
+Tüm CTA snippet'leri (Fix + Dynamic C3/C4/D2) için `cta-templates.md`'nin **v9 koyu sürümlerini** kullan. Hepsi V9 layered frame (`gp-layer`), şeffaf zemin, **conic YOK**.
+
+**Link kuralı:** Fix CTA → `/gfn/paketler`. Dynamic (sayfa-ortası) CTA → `/gfn` | `/geforce-now-nedir` | `/firsatlar` (paketler DEĞİL, kategori self-link DEĞİL). Detay: `cta-templates.md`.
 
 ## Eşleme özeti (eski açık → yeni v9 koyu)
 | Bileşen | Eski | v9 |
