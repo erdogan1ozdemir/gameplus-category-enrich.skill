@@ -41,7 +41,7 @@ Always the same. Update only the button text or headline if Gameplus team revise
   </div>
   <div style="font-size:1.32em;font-weight:800;margin-bottom:6px;line-height:1.3;letter-spacing:-0.015em;">Tek üyelik, hazır kütüphane.</div>
   <p style="color:#cbd5e1;margin:0 0 18px 0;line-height:1.55;font-size:0.95em;">Performance ve Ultimate paketleri kütüphanendeki oyunları çalıştırır. Steam, Epic Games, EA App, Xbox ve Ubisoft Connect hesapları bağlanabilir.</p>
-  <a href="https://gameplus.com.tr/gfn/paketler" style="display:inline-flex;align-items:center;background:#76b900;color:#fff;padding:13px 28px;border-radius:6px;font-weight:700;text-decoration:none;font-size:0.96em;box-shadow:0 2px 8px rgba(118,185,0,0.35);">GeForce NOW Paketlerini İncele &rarr;</a>
+  <a class="gp-cta-btn" href="https://gameplus.com.tr/gfn/paketler" style="display:inline-flex;align-items:center;background:#76b900;color:#fff;padding:13px 28px;border-radius:6px;font-weight:700;text-decoration:none;font-size:0.96em;box-shadow:0 2px 8px rgba(118,185,0,0.35);">GeForce NOW Paketlerini İncele &rarr;</a>
 </div>
 ```
 
@@ -71,7 +71,7 @@ Karakteristikler:
   <div style="display:inline-block;background:#76b900;color:#fff;padding:4px 12px;border-radius:999px;font-size:0.62em;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.18);">{{BADGE}}</div>
   <div style="font-weight:800;font-size:1.18em;margin-bottom:6px;letter-spacing:-0.01em;">{{HEADLINE}}</div>
   <div style="color:#cbd5e1;font-size:0.93em;margin-bottom:16px;line-height:1.55;">{{DESC}}</div>
-  <a href="{{MID_CTA_URL}}" style="display:inline-flex;align-items:center;background:#76b900;color:#fff;padding:11px 24px;border-radius:6px;font-weight:700;text-decoration:none;box-shadow:0 2px 8px rgba(118,185,0,0.35);">{{MID_CTA_LABEL}} &rarr;</a>
+  <a class="gp-cta-btn" href="{{MID_CTA_URL}}" style="display:inline-flex;align-items:center;background:#76b900;color:#fff;padding:11px 24px;border-radius:6px;font-weight:700;text-decoration:none;box-shadow:0 2px 8px rgba(118,185,0,0.35);">{{MID_CTA_LABEL}} &rarr;</a>
 </div>
 ```
 
@@ -100,7 +100,7 @@ Placeholders:
       <div style="font-size:0.7em;color:#8b95a7;text-transform:uppercase;letter-spacing:0.12em;margin-top:5px;font-weight:700;">{{LABEL2}}</div>
     </div>
   </div>
-  <a href="{{MID_CTA_URL}}" style="background:#76b900;color:#fff;padding:11px 24px;border-radius:6px;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 2px 8px rgba(118,185,0,0.35);">{{MID_CTA_LABEL}} &rarr;</a>
+  <a class="gp-cta-btn" href="{{MID_CTA_URL}}" style="background:#76b900;color:#fff;padding:11px 24px;border-radius:6px;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 2px 8px rgba(118,185,0,0.35);">{{MID_CTA_LABEL}} &rarr;</a>
 </div>
 ```
 
@@ -118,8 +118,8 @@ Placeholders (2 stat):
   <div style="font-weight:800;font-size:1.12em;margin-bottom:6px;letter-spacing:-0.01em;">{{HEADLINE}}</div>
   <div style="color:#cbd5e1;font-size:0.93em;margin-bottom:14px;line-height:1.55;">{{DESC}}</div>
   <div style="display:flex;flex-wrap:wrap;gap:10px;">
-    <a href="{{BTN1_URL}}" style="background:#76b900;color:#fff;padding:10px 22px;border-radius:6px;font-weight:700;text-decoration:none;font-size:0.95em;box-shadow:0 2px 8px rgba(118,185,0,0.35);">{{BTN1_LABEL}}</a>
-    <a href="{{BTN2_URL}}" style="background:transparent;color:#fff;padding:9px 21px;border-radius:6px;font-weight:700;text-decoration:none;font-size:0.95em;border:1px solid rgba(255,255,255,0.25);">{{BTN2_LABEL}}</a>
+    <a class="gp-cta-btn" href="{{BTN1_URL}}" style="background:#76b900;color:#fff;padding:10px 22px;border-radius:6px;font-weight:700;text-decoration:none;font-size:0.95em;box-shadow:0 2px 8px rgba(118,185,0,0.35);">{{BTN1_LABEL}}</a>
+    <a class="gp-cta-btn" href="{{BTN2_URL}}" style="background:transparent;color:#fff;padding:9px 21px;border-radius:6px;font-weight:700;text-decoration:none;font-size:0.95em;border:1px solid rgba(255,255,255,0.25);">{{BTN2_LABEL}}</a>
   </div>
 </div>
 ```

@@ -19,16 +19,32 @@ Kategori içeriği CMS'e body HTML olarak yapıştırılır. `gp-layer`'ın iç 
 .gp-layer > * { position:relative; z-index:1; }
 /* info-card mini hücre çerçevesi (her badge'in etrafı) */
 .gp-cell { position:relative; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px 16px; }
-/* Tablo: son satır alt çizgisini kapat, köşeleri yuvarla */
+/* Tablo: tek temiz çerçeve + son satır ayracı (alt açık kalmasın), köşeleri yuvarla */
+.gp-table-wrap { border:1px solid rgba(118,185,0,0.38); }
+.gp-table-wrap.gp-layer::before { display:none; }
 .gp-table-wrap table { border-radius:12px; }
-.gp-table-wrap tbody tr:last-child td { border-bottom:none !important; }
+.gp-table-wrap tbody tr:last-child td { border-bottom:1px solid rgba(255,255,255,0.06) !important; }
 /* FAQ + nabız */
 .faq-item .faq-icon { animation: gp-pulse-plus 2.2s ease-in-out infinite; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; flex-shrink:0; color:#fbbf24; font-size:1.5em; font-weight:300; line-height:1; }
 .faq-item[open] .faq-icon { transform:rotate(45deg); color:#76b900; }
 .faq-item summary::-webkit-details-marker { display:none; }
 .faq-item summary::marker { display:none; }
+/* ===== Mobil responsive (v10) ===== */
 @media (max-width:700px) {
-  .gp-table-wrap { overflow-x:auto; }
+  /* Tablolar: yatay kaydırma yok, tüm sütunlar sığar, okunur punto */
+  .gp-table-wrap > div { overflow-x:visible !important; }
+  .gp-table-wrap table { font-size:0.76em !important; table-layout:fixed; width:100% !important; }
+  .gp-table-wrap th, .gp-table-wrap td { padding:8px 7px !important; white-space:normal !important; word-break:break-word; overflow-wrap:anywhere; vertical-align:top; line-height:1.4 !important; }
+  .gp-table-wrap th { letter-spacing:0.04em !important; }
+  /* Info-card: 2 sütun */
+  .info-card { grid-template-columns:repeat(2,1fr) !important; gap:10px !important; }
+  /* FAQ: soru + cevap sola dayalı */
+  .faq-item summary { padding:13px 13px !important; gap:9px !important; }
+  .faq-item .faq-a { padding:12px 14px 15px 14px !important; }
+  /* TLDR: kompakt */
+  .tldr-block { padding:15px 16px !important; }
+  /* CTA: butonlar tam genişlik */
+  .gp-cta-btn { width:100% !important; justify-content:center !important; box-sizing:border-box; text-align:center; }
 }
 </style>
 ```
@@ -102,10 +118,10 @@ Tüm tablolar (popüler oyunlar, teknik, paket) bu sarmalı kullanır:
   <div style="overflow-x:auto;">
     <table style="width:100%;border-collapse:collapse;background:transparent;font-size:0.93em;">
       <thead><tr>
-        <th style="padding:12px 18px;text-align:left;border-bottom:1px solid rgba(118,185,0,0.18);font-weight:800;color:#76b900;font-size:0.65em;letter-spacing:0.16em;text-transform:uppercase;">Oyun</th>
-        <th style="padding:12px 18px;text-align:left;border-bottom:1px solid rgba(118,185,0,0.18);font-weight:800;color:#76b900;font-size:0.65em;letter-spacing:0.16em;text-transform:uppercase;">Alt Tür</th>
-        <th style="padding:12px 18px;text-align:left;border-bottom:1px solid rgba(118,185,0,0.18);font-weight:800;color:#76b900;font-size:0.65em;letter-spacing:0.16em;text-transform:uppercase;">Platform</th>
-        <th style="padding:12px 18px;text-align:left;border-bottom:1px solid rgba(118,185,0,0.18);font-weight:800;color:#76b900;font-size:0.65em;letter-spacing:0.16em;text-transform:uppercase;">Öne Çıkan Özellik</th>
+        <th style="padding:14px 18px;text-align:left;border-bottom:1px solid rgba(118,185,0,0.18);font-weight:800;color:#76b900;font-size:0.98em;letter-spacing:0.06em;text-transform:uppercase;">Oyun</th>
+        <th style="padding:14px 18px;text-align:left;border-bottom:1px solid rgba(118,185,0,0.18);font-weight:800;color:#76b900;font-size:0.98em;letter-spacing:0.06em;text-transform:uppercase;">Alt Tür</th>
+        <th style="padding:14px 18px;text-align:left;border-bottom:1px solid rgba(118,185,0,0.18);font-weight:800;color:#76b900;font-size:0.98em;letter-spacing:0.06em;text-transform:uppercase;">Platform</th>
+        <th style="padding:14px 18px;text-align:left;border-bottom:1px solid rgba(118,185,0,0.18);font-weight:800;color:#76b900;font-size:0.98em;letter-spacing:0.06em;text-transform:uppercase;">Öne Çıkan Özellik</th>
       </tr></thead>
       <tbody>
         <tr><td style="padding:11px 18px;vertical-align:top;border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.015);color:#cbd5e1;line-height:1.5;"><strong style="color:#f3f4f6;">[Game]</strong></td><td style="padding:11px 18px;vertical-align:top;border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.015);color:#cbd5e1;">[Alt Tür]</td><td style="padding:11px 18px;vertical-align:top;border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.015);color:#cbd5e1;">[Platform]</td><td style="padding:11px 18px;vertical-align:top;border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.015);color:#cbd5e1;line-height:1.5;">[Özellik]</td></tr>
