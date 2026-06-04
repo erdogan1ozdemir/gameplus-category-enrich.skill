@@ -78,7 +78,7 @@ Apply `references/style-guide.md` and `references/cta-templates.md` rigorously. 
 Section order (sabit):
 
 1. **H2 main heading + intro paragraph** (with `/gfn` link)
-2. **TLDR block** — yeşil sol kenarlı, 4 list item
+2. **TLDR block** — yeşil sol kenarlı, **3-6 list item** (duruma göre; her zaman 4 şart değil)
 3. **Türkiye sunucu paragrafı** — somut oyun örnekleri + gecikme stat'ı
 4. **Info-card** — 4 badge grid
 5. **H3 Popüler Oyunlar** + intro + styled table (table-wrap) + closing paragraph

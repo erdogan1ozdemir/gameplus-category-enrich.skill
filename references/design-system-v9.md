@@ -50,8 +50,8 @@ Kategori içeriği CMS'e body HTML olarak yapıştırılır. `gp-layer`'ın iç 
 ```
 
 ## Renk paleti
-Saf siyah `#000` zemin · metin `#cbd5e1` · başlık `#fff` · soluk `#8b95a7`/`#9ca3af` · GFN yeşili `#76b900` · açık yeşil `#a3e635` · amber `#f59e0b` · sarı `#fbbf24` · editör mavi `#3b82f6`/`#93c5fd` · çerçeve `#1f1f1f`.
-Tür etiketi gerekiyorsa Türkçe yaz (KORKU, GİZLİLİK, YARIŞ, STRATEJİ); JRPG/FPS/SOULSLIKE/ROGUELIKE/INDIE terim olarak kalır.
+Zemin **transparent** (site zaten `#000`; bloklara ekstra siyah arka plan BASMA) · metin `#cbd5e1` · **doküman başlığına renk ATAMA** (CMS verir; aşağıdaki `#fff` yalnız simülasyon) · soluk metin `#a8b2c0` (eski #8b95a7'ten bir tık beyaza yakın) · GFN yeşili `#76b900` · açık yeşil `#a3e635` · amber `#f59e0b` · sarı `#fbbf24` · editör mavi `#3b82f6`/`#93c5fd` · çerçeve `#1f1f1f`.
+Tür etiketi gerekiyorsa mümkünse GFN kategorisini yaz (Aksiyon, Macera, Strateji, Canlandırma/RPG, FPS, Platform vb.; birden fazla türe uyuyorsa Aksiyon-Macera gibi). Türkçesi yaygınsa Türkçe (KORKU, GİZLİLİK, YARIŞ); JRPG/FPS/SOULSLIKE/ROGUELIKE/INDIE/MOBA terim olarak kalır.
 
 ## 1. TLDR — Hızlı Özet (V9 layered, yeşil ✓ maddeler)
 

@@ -93,11 +93,11 @@ Placeholders:
   <div style="display:flex;gap:28px;flex-wrap:wrap;">
     <div>
       <div style="font-size:1.8em;font-weight:800;color:#76b900;line-height:1;">{{NUM1}}</div>
-      <div style="font-size:0.7em;color:#8b95a7;text-transform:uppercase;letter-spacing:0.12em;margin-top:5px;font-weight:700;">{{LABEL1}}</div>
+      <div style="font-size:0.7em;color:#a8b2c0;text-transform:uppercase;letter-spacing:0.12em;margin-top:5px;font-weight:700;">{{LABEL1}}</div>
     </div>
     <div>
       <div style="font-size:1.8em;font-weight:800;color:#76b900;line-height:1;">{{NUM2}}</div>
-      <div style="font-size:0.7em;color:#8b95a7;text-transform:uppercase;letter-spacing:0.12em;margin-top:5px;font-weight:700;">{{LABEL2}}</div>
+      <div style="font-size:0.7em;color:#a8b2c0;text-transform:uppercase;letter-spacing:0.12em;margin-top:5px;font-weight:700;">{{LABEL2}}</div>
     </div>
   </div>
   <a class="gp-cta-btn" href="{{MID_CTA_URL}}" style="background:#76b900;color:#fff;padding:11px 24px;border-radius:6px;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 2px 8px rgba(118,185,0,0.35);">{{MID_CTA_LABEL}} &rarr;</a>

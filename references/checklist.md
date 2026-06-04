@@ -4,7 +4,7 @@ Run before delivering. Items grouped by *why these checks exist* — çoğu past
 
 ## A. Yapısal Bileşenler (Yeni Model)
 
-- [ ] **TLDR block** intro'dan sonra var (yeşil sol kenar `#76b900`, 4 list item, 4. madde yaş/PEGI değil)
+- [ ] **TLDR block** intro'dan sonra var (yeşil sol kenar `#76b900`, **3-6 list item** duruma göre, son madde yaş/PEGI değil)
 - [ ] **Info-card** Türkiye sunucu paragrafından sonra var (4 badge: Kütüphane Boyutu + Öne Çıkan + 2 kategori-spesifik)
 - [ ] **Tablolar** `<div class="table-wrap">` ile sarılı ve inline style'lı (border, padding, vertical-align)
 - [ ] **Editor Note #1** popüler oyunlar tablosundan sonra (mavi sol kenar `#2563eb`)

@@ -31,7 +31,7 @@ Section order **fixed** — don't reorder. The CMS pastes this body HTML as-is.
 </div>
 ```
 
-**4. madde olarak yaş/PEGI yazma.** İlgili kategori için en güçlü ek özelliği seç.
+**Madde sayısı 3-6 (duruma göre); her zaman 4 şart değil.** Son madde olarak yaş/PEGI yazma; ilgili kategori için en güçlü ek özelliği seç.
 
 ## 3. Türkiye Sunucu Paragrafı
 
