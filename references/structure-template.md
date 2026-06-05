@@ -21,7 +21,7 @@ Section order **fixed** — don't reorder. The CMS pastes this body HTML as-is.
 
 ```html
 <div class="tldr-block" style="background-color:#f8f9fa;padding:18px 20px;border-left:5px solid #76b900;margin:24px 0;border-radius:4px;">
-  <h3 style="margin:0 0 10px 0;font-size:1.15em;color:#333;">Hızlı Özet</h3>
+  <h2 style="margin:0 0 10px 0;font-size:1.15em;color:#333;">Hızlı Özet</h2>
   <ul style="margin:0;padding-left:20px;color:#444;">
     <li><strong>Kütüphane:</strong> [N+] [kategori] oyunu (yuvarlanmış, exact değil); [kısa tür açıklaması].</li>
     <li><strong>Öne Çıkan Yapımlar:</strong> <em>[Game1]</em>, <em>[Game2]</em>, <em>[Game3]</em>, <em>[Game4]</em>.</li>

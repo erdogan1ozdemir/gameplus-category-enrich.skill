@@ -57,10 +57,10 @@ Tür etiketi gerekiyorsa mümkünse GFN kategorisini yaz (Aksiyon, Macera, Strat
 
 ```html
 <div class="tldr-block gp-layer" style="--gp-frame:rgba(118,185,0,0.30);padding:18px 22px;margin:24px 0;box-shadow:0 2px 12px rgba(0,0,0,0.4);">
-  <h3 style="margin:0 0 12px 0;font-size:1.05em;font-weight:800;display:flex;align-items:center;gap:8px;color:#76b900;">
+  <h2 style="margin:0 0 12px 0;font-size:1.05em;font-weight:800;display:flex;align-items:center;gap:8px;color:#76b900;">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#76b900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
     <span style="color:#fff;">Hızlı Özet</span>
-  </h3>
+  </h2>
   <ul style="margin:0;padding:0;list-style:none;color:#cbd5e1;">
     <li style="display:flex;gap:11px;margin:8px 0;align-items:flex-start;line-height:1.5;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#76b900" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg><span><strong style="color:#f3f4f6;">Kütüphane:</strong> [N] [kategori] oyunu; [kısa tür açıklaması].</span></li>
     <li style="display:flex;gap:11px;margin:8px 0;align-items:flex-start;line-height:1.5;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#76b900" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg><span><strong style="color:#f3f4f6;">Öne Çıkan Yapımlar:</strong> <em>[Game1]</em>, <em>[Game2]</em>, <em>[Game3]</em>.</span></li>
