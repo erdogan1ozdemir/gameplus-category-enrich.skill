@@ -114,3 +114,13 @@ Herhangi biri "hayır" ise yapı kullanıcıyı yetersiz hizmet ediyor.
 7. **"Spesifik TV yıl bilgisi verme."** (yeni) Fix: "LG ve Samsung" formuna döndür.
 8. **"Paket önerme."** (yeni) Fix: karşılaştırma nötr, recommendation cümleleri çıkar.
 9. **"FAQ accordion'da 'Details' görünüyor."** (yeni) Fix: `<summary>` içine direkt soru metni, h4 nested yapma.
+
+## v10.2 görsel kontrolleri (Game+ UI)
+- [ ] **0 yeşil kalıntı** — `#76b900` / `rgba(118,185,0,*)` yok; tek vurgu `#FFC900`.
+- [ ] **0 `gp-conic` ve 0 `floating-toc`** — kategori kuralı.
+- [ ] **Callout barı `border-left` DEĞİL** — flex + ayrı 4px yuvarlak uçlu bar div'i (blog `render_editor_note`/`render_highlight` ile birebir).
+- [ ] **TLDR maddeleri sarı `•`** (✓ tik yok); gövde `<ul>` nokta rengi de `#FFC900` (`ul li::marker`).
+- [ ] **Stat kartlarında DEĞER üstte**, sarı New Science, kart içinde ortalı.
+- [ ] **Tablo sütun başlıkları sarı ve ORTALI** (mobilde de).
+- [ ] **CTA GA4 id'leri var:** `category-dynamic-cta` + `category-packages-button`.
+- [ ] Çıktıda `{{` / `}}` yok (f-string kaçış hatası CSS'i geçersiz kılar).

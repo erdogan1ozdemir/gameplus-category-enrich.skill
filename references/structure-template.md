@@ -1,9 +1,11 @@
 # HTML Structure Template (Bölüm Sırası + İçerik)
 
+> **Not:** Bu dosya SADECE bölüm sırası ve içerik kuralları içindir. **Görünümü `design-system-v10.md` belirler** (v10.2 "Game+ UI", sarı). Buradaki snippet renkleri bağlayıcı değildir.
+
 Section order **fixed** — don't reorder. The CMS pastes this body HTML as-is.
 
 > ## ⚠ GÖRSEL STİL: v9 KOYU TEMA KULLAN
-> Aşağıdaki snippet'ler **eski açık tema** (`#fff`, `#f8f9fa`, `#eef6ff` vb.) referans amaçlıdır. **Görsel stil için `references/design-system-v9.md`'deki KOYU v9 sürümlerini kullan** (saf siyah `#000` zemin, V9 Layered Frame, yeşil ✓ TLDR, premium info-card, zebra tablolar, nabız atan FAQ `+`). Bu dosyadan sadece **bölüm sırasını, içerik kurallarını ve placeholder'ları** al; HTML/CSS görünümünü design-system-v9.md belirler.
+> Aşağıdaki snippet'ler **eski açık tema** (`#fff`, `#161616`, `#eef6ff` vb.) referans amaçlıdır. **Görsel stil için `references/design-system-v9.md`'deki KOYU v9 sürümlerini kullan** (saf siyah `#000` zemin, V9 Layered Frame, yeşil ✓ TLDR, premium info-card, zebra tablolar, nabız atan FAQ `+`). Bu dosyadan sadece **bölüm sırasını, içerik kurallarını ve placeholder'ları** al; HTML/CSS görünümünü design-system-v9.md belirler.
 > - **Conic glow KULLANMA** (blog skill'inde var, kategoride yok).
 > - **Floating ToC / İçindekiler EKLEME.**
 > - `design-system-v9.md`'deki paylaşılan `<style>` bloğunu body'nin **en başına bir kez** ekle (gp-layer + FAQ nabzı için gerekli).
@@ -20,7 +22,7 @@ Section order **fixed** — don't reorder. The CMS pastes this body HTML as-is.
 ## 2. TLDR Block (Yeşil Sol Kenarlı)
 
 ```html
-<div class="tldr-block" style="background-color:#f8f9fa;padding:18px 20px;border-left:5px solid #76b900;margin:24px 0;border-radius:4px;">
+<div class="tldr-block" style="background-color:#161616;padding:18px 20px;border-left:5px solid #FFC900;margin:24px 0;border-radius:4px;">
   <h2 style="margin:0 0 10px 0;font-size:1.15em;color:#333;">Hızlı Özet</h2>
   <ul style="margin:0;padding-left:20px;color:#444;">
     <li><strong>Kütüphane:</strong> [N+] [kategori] oyunu (yuvarlanmış, exact değil); [kısa tür açıklaması].</li>

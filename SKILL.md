@@ -7,7 +7,7 @@ description: Generate SEO and GEO optimized category page content for gameplus.c
 
 This skill produces SEO and GEO optimized HTML category page content for **gameplus.com.tr** (NVIDIA GeForce NOW powered by GAME+ Türkiye). Category pages live under `/gfn/oyunlar/*` and accompany the game grid with a long-form article below it.
 
-The skill bakes in the visual + structural pattern established with the Gameplus team through multiple revision rounds. **Görsel dil v9 koyu temadır** (`references/design-system-v9.md`): saf siyah `#000` zemin, V9 Layered Frame çerçeveler, yeşil ✓ TLDR, premium info-card, zebra tablolar, nabız atan FAQ `+`, V9 layered CTA'lar. Blog skill'iyle aynı premium dil; tek fark kategoride **rotating conic glow ve floating ToC kullanılmaz**. It also bakes in content rules: no Steam Workshop claims, no PEGI/age recommendations, no specific TV model years, no prescriptive package recommendations.
+The skill bakes in the visual + structural pattern established with the Gameplus team through multiple revision rounds. **Görsel dil v10.2 "Game+ UI"dır** (`references/design-system-v10.md`): tek vurgu sarı `#FFC900` (yeşil #76b900 KALKTI), `#161616` kartlar, `#0D0D0D` stat kartları, New Science SemiBold Extended başlıklar, sarı `•` TLDR, `#1E1E18` tablo başlığı. Blog skill'iyle (`gameplus-blog-enrich-v2`) aynı görsel dil; tek fark kategoride **conic glow ve floating ToC kullanılmaz**. It also bakes in content rules: no Steam Workshop claims, no PEGI/age recommendations, no specific TV model years, no prescriptive package recommendations.
 
 ## When to invoke
 
@@ -73,7 +73,7 @@ Apply `references/style-guide.md` and `references/cta-templates.md` rigorously. 
 
 ### Phase 5: Apply structure components
 
-> **GÖRSEL STİL — v9 KOYU TEMA (güncel):** Tüm bileşenlerin görünümü için **`references/design-system-v9.md`** kullan. Saf siyah `#000` zemin, **V9 Layered Frame** (soluk renkli dış + çok soluk iç çerçeve), yeşil ✓ TLDR maddeleri, premium info-card, zebra + yumuşak çerçeveli tablolar, nabız atan FAQ `+`, V9 layered CTA'lar. `structure-template.md`'deki açık tema snippet'leri SADECE bölüm sırası ve içerik içindir; görünümü design-system-v9.md belirler. **Rotating conic glow KULLANMA, floating ToC EKLEME.** design-system-v9.md'deki paylaşılan `<style>` bloğunu body'nin en başına bir kez ekle.
+> **GÖRSEL STİL — v10.2 "Game+ UI" (güncel):** Tüm bileşenlerin görünümü için **`references/design-system-v10.md`** kullan. Sarı `#FFC900` vurgu, `#161616` kartlar, `#0D0D0D` stat kartları (DEĞER üstte), New Science başlıklar, sarı `•` TLDR, `#1E1E18` tablo başlığı (sarı ORTALI sütun başlıkları). Editör Notu / lisans callout **blog ile birebir** (flex + ayrı 4px yuvarlak uçlu bar; `border-left` KULLANMA). `structure-template.md`'deki snippet'ler SADECE bölüm sırası ve içerik içindir; görünümü design-system-v10.md belirler. **Conic glow KULLANMA, floating ToC EKLEME.** Paylaşılan `<style>` bloğunu body'nin en başına bir kez ekle. **CTA'lara GA4 id'leri zorunlu** (`ga4-tracking.md`).
 
 Section order (sabit):
 
@@ -135,8 +135,9 @@ Save the content in **two formats**:
 ## Reference files
 
 - `references/methodology.md` — Yapının arkasındaki SEO + GEO mantığı. Bir kez oku.
-- `references/design-system-v9.md` — **GÜNCEL görsel dil (v9 koyu tema).** Tüm bileşen HTML/CSS'i buradan. Conic yok, ToC yok.
-- `references/structure-template.md` — Bölüm sırası + içerik kuralları (görünüm için design-system-v9.md).
+- `references/design-system-v10.md` — **GÜNCEL görsel dil (v10.2 "Game+ UI", sarı).** Tüm bileşen HTML/CSS'i buradan. Conic yok, ToC yok.
+- `references/ga4-tracking.md` — kategori CTA id'leri (`category-dynamic-cta`, `category-packages-button`) + GTM/GA4 kurulumu.
+- `references/structure-template.md` — Bölüm sırası + içerik kuralları (görünüm için design-system-v10.md).
 - `references/style-guide.md` — Voice, yasak kelimeler, formatting. Her piece için tekrar oku.
 - `references/url-anchor-mapping.md` — URL bazlı anchor text. Link yazmadan önce bak.
 - `references/category-pages.md` — Tüm 27 kategori URL ve primary keyword.
@@ -147,7 +148,9 @@ Save the content in **two formats**:
 
 ## Examples
 
-`examples/` 3 eski örnek içerik dosyası barındırır. **Bunlar OLD pattern** (Gemini-styled refactor öncesi). Yeni pattern için Dispatch projesindeki `*-icerik-deneme-2.html` dosyalarına bak.
+`examples/fps-icerik-v10.html` — **v10.2 referans çıktısı** (FPS kategorisi, v9'dan port edilmiş). Yeni içerik yazarken bunu şablon al.
+
+**Mevcut v9 içeriklerini taşımak için:** `python3 scripts/port_category_v10.py <v9-dosya.html>` — metne DOKUNMAZ, yalnız görsel katman + GA4 id'leri ekler; metnin birebir korunduğunu assert'lerle doğrular.
 
 ## What NOT to do
 
@@ -161,3 +164,6 @@ Save the content in **two formats**:
 - Dynamic (sayfa-ortası) CTA'yı paketlere yönlendirme — `/gfn`, `/geforce-now-nedir` veya `/firsatlar` kullan.
 - Hiçbir CTA'da içinde bulunduğun kategori sayfasına self-link verme (xbox içeriğinde `/gfn/oyunlar/xbox`'a link gibi).
 - Kütüphane oyun sayısını exact tam sayı yazma (434 değil 400+); her zaman aşağı yuvarlanmış "X+".
+- Yeşil `#76b900` veya türevlerini kullanma (v9 kalıntısı); tek vurgu sarı `#FFC900`.
+- Callout barını `border-left` ile yapma; ayrı 4px yuvarlak uçlu bar div'i kullan (blog ile birebir).
+- `gp-conic` (dönen glow) veya `floating-toc` ekleme.

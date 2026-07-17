@@ -1,0 +1,431 @@
+<style>
+/* Game+ UI v10.2 — kategori (conic glow ve floating ToC KULLANILMAZ) */
+@keyframes gp-pulse-plus { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.18);opacity:0.85;} }
+.gp-card { border:1px solid #29292B; border-radius:16px; background:#161616; }
+.gp-cell { background:#0D0D0D; border:1px solid #29292B; border-radius:12px; padding:20px; text-align:center; }
+.tldr-block strong { color:#fff; }
+.editor-note p { color:#fff !important; margin:0; line-height:1.5; }
+.callout p { color:#fff !important; margin:0; line-height:1.5; }
+.gp-table-wrap { background:#161616; border:1px solid #29292B; border-radius:16px; overflow:hidden; margin:24px 0; }
+.gp-table-wrap table { width:100%; border-collapse:collapse; background:transparent; }
+.gp-table-wrap tbody tr { transition:background 0.15s ease; }
+.gp-table-wrap tbody tr:hover > td { background:rgba(255,201,0,0.07) !important; }
+.gp-table-wrap tbody tr:hover > td:first-child { color:#FFC900 !important; }
+.gp-table-wrap tbody tr:last-child td { border-bottom:none !important; }
+.gp-table-wrap td strong { color:#fff; }
+.faq-a p { color:#B2B2B2 !important; line-height:1.6; }
+.faq-item .faq-icon { animation: gp-pulse-plus 2.2s ease-in-out infinite; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; flex-shrink:0; color:#FFC900; font-size:1.5em; font-weight:300; line-height:1; }
+.faq-item[open] .faq-icon { transform:rotate(45deg); color:#FFC900; }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary::marker { display:none; }
+.gp-btn:hover { filter:brightness(1.08); }
+/* Gövde madde listeleri: nokta rengi Hızlı Özet bullet'ı ile aynı (#FFC900) */
+ul li::marker { color:#FFC900; }
+ul li { padding-left:4px; }
+@media (max-width:700px){
+  .gp-table-wrap > div { overflow-x:visible !important; }
+  .gp-table-wrap table { font-size:0.76em !important; table-layout:fixed; width:100% !important; }
+  .gp-table-wrap th, .gp-table-wrap td { padding:10px 7px !important; white-space:normal !important; overflow-wrap:break-word; vertical-align:middle !important; line-height:1.4 !important; }
+  .gp-table-wrap th { text-align:center !important; letter-spacing:0.04em !important; }
+  .gp-table-wrap td { text-align:left; }
+}
+h2,h3,h4 { font-family:'New Science',GreycliffCF,-apple-system,sans-serif; font-weight:600; color:#fff; }
+</style>
+<h2>En İyi FPS Oyunları: GeForce NOW ile Bulutta Oyna (2026)</h2>
+
+<p>FPS oyunları, oyuncuya karakterin gözünden bir bakış açısı sunan, refleks ve nişan alma becerisini ön plana çıkaran bir oyun türüdür. Açılımı "First Person Shooter" yani "birinci şahıs nişancı" olan bu tür; rekabetçi taktiksel çatışmalardan hikâye odaklı tek oyunculu maceralara, hızlı tempolu klasik boomer shooter'lardan modern battle royale arenalarına kadar çok geniş bir alt tür yelpazesi barındırır. <a href="https://gameplus.com.tr/gfn">NVIDIA RTX destekli bulut sunucuları</a> üzerinde çalışan GeForce NOW GAME+ kütüphanesinde iki yüzden fazla FPS oyunu yer alıyor.</p>
+
+<div class="tldr-block gp-card" style="padding:24px;margin:24px 0;">
+  <h3 style="margin:0 0 14px 0;font-family:'New Science',GreycliffCF,-apple-system,sans-serif;font-size:24px;line-height:32px;font-weight:600;color:#fff;display:flex;align-items:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFC900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:8px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Hızlı Özet</h3>
+  <ul style="margin:0;padding:0;list-style:none;color:#B2B2B2;">
+    <li style="display:flex;gap:10px;margin:0 0 14px;align-items:flex-start;list-style:none;"><span style="color:#FFC900;font-weight:700;font-size:16px;line-height:24px;flex-shrink:0;">&bull;</span><span><strong>Kütüphane:</strong> 200+ FPS oyunu; rekabetçi, kampanya odaklı, battle royale dahil.</span></li>
+    <li style="display:flex;gap:10px;margin:0 0 14px;align-items:flex-start;list-style:none;"><span style="color:#FFC900;font-weight:700;font-size:16px;line-height:24px;flex-shrink:0;">&bull;</span><span><strong>Öne Çıkan Yapımlar:</strong> <em>Counter-Strike 2</em>, <em>Apex Legends</em>, <em>Battlefield 2042</em>, <em>Rainbow Six Siege X</em>.</span></li>
+    <li style="display:flex;gap:10px;margin:0 0 14px;align-items:flex-start;list-style:none;"><span style="color:#FFC900;font-weight:700;font-size:16px;line-height:24px;flex-shrink:0;">&bull;</span><span><strong>Alt Türler:</strong> Taktiksel, Battle Royale, Açık Dünya FPS, Kampanya.</span></li>
+    <li style="display:flex;gap:10px;margin:0 0 14px;align-items:flex-start;list-style:none;"><span style="color:#FFC900;font-weight:700;font-size:16px;line-height:24px;flex-shrink:0;">&bull;</span><span><strong>Gecikme:</strong> Türkiye sunucularıyla 40 ms civarı; rekabetçi maçlar için kritik.</span></li>
+  </ul>
+</div>
+
+<p>Türkiye'deki GAME+ sunucuları, FPS türünün en kritik teknik gereksinimi olan düşük girdi gecikmesini coğrafi yakınlık sayesinde minimumda tutar. Counter-Strike 2 ve Apex Legends gibi rekabetçi yapımlarda milisaniye düzeyindeki gecikme farkı doğrudan karşılaşma sonucunu belirler; bulut altyapısı bu farkı kapatır ve seni güçlü bir bilgisayara sahip olmadan üst düzey deneyime taşır.</p>
+
+<div class="info-card" role="complementary" style="margin:20px 0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;">
+  <div class="gp-cell">
+    <div style="font-family:'New Science',GreycliffCF,-apple-system,sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#FFC900;margin-bottom:6px;overflow-wrap:break-word;">200+ Oyun</div>
+    <div style="color:#B2B2B2;font-size:16px;line-height:24px;font-weight:500;">Kütüphane Boyutu</div>
+  </div>
+  <div class="gp-cell">
+    <div style="font-family:'New Science',GreycliffCF,-apple-system,sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#FFC900;margin-bottom:6px;overflow-wrap:break-word;">Counter-Strike 2</div>
+    <div style="color:#B2B2B2;font-size:16px;line-height:24px;font-weight:500;">Öne Çıkan Yapım</div>
+  </div>
+  <div class="gp-cell">
+    <div style="font-family:'New Science',GreycliffCF,-apple-system,sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#FFC900;margin-bottom:6px;overflow-wrap:break-word;">4 Tip</div>
+    <div style="color:#B2B2B2;font-size:16px;line-height:24px;font-weight:500;">Alt Tür Sayısı</div>
+  </div>
+  <div class="gp-cell">
+    <div style="font-family:'New Science',GreycliffCF,-apple-system,sans-serif;font-weight:600;font-size:24px;line-height:32px;color:#FFC900;margin-bottom:6px;overflow-wrap:break-word;">40 ms</div>
+    <div style="color:#B2B2B2;font-size:16px;line-height:24px;font-weight:500;">Düşük Gecikme</div>
+  </div>
+</div>
+
+<h3>GeForce NOW Türkiye'deki En Popüler FPS Oyunları</h3>
+
+<p>Aşağıdaki tablo, GAME+ kütüphanesindeki en çok tercih edilen FPS oyunlarını alt türlerine göre listeliyor. Tablodaki oyunların tamamı Steam, Epic Games Store, EA App veya Xbox kütüphanendeki mevcut lisanslarla doğrudan oynanabilir; GeForce NOW oyunları sağlamaz, yalnızca bulut sunucularında çalıştırır.</p>
+
+<div class="table-wrap gp-table-wrap gp-card" style="margin:22px 0;box-shadow:0 4px 18px rgba(0,0,0,0.5);overflow:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.93em;background:transparent;">
+  <thead>
+    <tr>
+      <th style="background:#1E1E18;padding:19px 24px;text-align:center;border-bottom:1px solid rgba(255,201,0,0.3);font-weight:700;color:#FFC900;font-size:16px;line-height:20px;">Oyun</th>
+      <th style="background:#1E1E18;padding:19px 24px;text-align:center;border-bottom:1px solid rgba(255,201,0,0.3);font-weight:700;color:#FFC900;font-size:16px;line-height:20px;">Alt Tür</th>
+      <th style="background:#1E1E18;padding:19px 24px;text-align:center;border-bottom:1px solid rgba(255,201,0,0.3);font-weight:700;color:#FFC900;font-size:16px;line-height:20px;">Erişim Modeli</th>
+      <th style="background:#1E1E18;padding:19px 24px;text-align:center;border-bottom:1px solid rgba(255,201,0,0.3);font-weight:700;color:#FFC900;font-size:16px;line-height:20px;">Öne Çıkan Özellik</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Counter-Strike 2</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Taktiksel FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Oynaması ücretsiz</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Source 2 motoru, sis bulutu fiziği ve aktif e-spor sahnesi</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Call of Duty: Modern Warfare III</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Aksiyon FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Ücretli kütüphane</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Yüksek tempolu kampanya ve modüler çok oyunculu sistem</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Battlefield 6</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Büyük Ölçekli Savaş FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Ücretli kütüphane</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">128 oyuncuya kadar muharebeler, yıkılabilir harita unsurları</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Apex Legends</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Battle Royale FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Oynaması ücretsiz</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Karakter yetenekleri, hızlı hareket sistemi ve sezonluk meta güncellemeleri</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Tom Clancy's Rainbow Six Siege X</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Taktiksel FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Ücretli kütüphane</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Yıkılabilir çevre, operatör yetenek sistemi ve yüksek koordinasyon talebi</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>DOOM Eternal</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Klasik Hızlı FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Ücretli kütüphane</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Saldırgan oynanış mekaniği ve "Glory Kill" ödül sistemi</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>DOOM: The Dark Ages</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Klasik Hızlı FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Ücretli kütüphane</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Serinin orta çağ atmosferli yeni bölümü, kalkan mekaniği</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Destiny 2</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">FPS / MMO</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Oynaması ücretsiz (temel)</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">PvE ve PvP modları, sezonluk içerik ve uzay temalı evren</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>THE FINALS</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">FPS / Takım Savaşı</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Oynaması ücretsiz</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Tamamen yıkılabilir harita, gösteri programı formatı</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Halo Infinite</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Hikâye + Çok Oyunculu FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Ücretli kampanya, ücretsiz multiplayer</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Klasik Halo formülü ve açık dünya kampanya</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Hunt: Showdown 1896</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Extraction FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Ücretli kütüphane</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Gotik atmosfer, PvE+PvP karışımı ve dönem silahları</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>S.T.A.L.K.E.R. 2: Heart of Chornobyl</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Hikâye Odaklı FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Ücretli kütüphane</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Çernobil sonrası açık dünya, hayatta kalma mekaniği</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>Listedeki oyunlara ek olarak Far Cry 6, Borderlands 4, Wolfenstein: The New Order, Atomic Heart, Alan Wake 2, Half-Life 2, ULTRAKILL, ARC Raiders ve Sniper Elite 5 gibi türün önde gelen yapımları da kütüphanede yer alıyor. Liste düzenli güncelleniyor.</p>
+
+<div class="editor-note" style="background:rgba(255,201,0,0.06);border-radius:12px;padding:18px 24px 18px 20px;margin:24px 0;display:flex;gap:16px;align-items:stretch;">
+  <div style="width:4px;border-radius:2px;background:#FFC900;flex-shrink:0;"></div>
+  <div>
+    <div style="color:#FFC900;font-size:12px;line-height:16px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:8px;flex-shrink:0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>GAME+ EDİTÖR NOTU</div>
+    <p style="margin:0;color:#fff;font-size:1em;line-height:1.5;">Counter-Strike 2 ranked maçlarında her milisaniye önemli. Türkiye sunucusu olduğu için yurt dışı sunucularla oynayan rakiplere göre net bir avantaj sağlar.</p>
+  </div>
+</div>
+
+
+<h3>FPS Oyunlarını Bulutta Oynamanın Avantajları</h3>
+
+<p>FPS türü, oyun dünyasının teknik açıdan en talepkar kategorisidir. Kare hızı, girdi gecikmesi ve görsel netlik bu türde doğrudan oyuncu performansını etkiler. Counter-Strike 2'de bir saniyede 240 kare, Apex Legends'ta düşük gecikme, DOOM Eternal'da yüksek çözünürlüklü hızlı sahne geçişleri talep edilir. GeForce NOW GAME+ bu gereksinimlerin tamamını bulut tarafında karşılar:</p>
+
+<ul>
+  <li><strong>Donanım sınırı yok.</strong> Battlefield 6'yı en yüksek ayarlarla, S.T.A.L.K.E.R. 2'yi ray tracing açıkken 60 FPS'te oynamak normalde üst segment bir ekran kartı gerektirir. Ultimate paketteki GeForce RTX 4080 seviyesi donanım, DLSS 3 ve NVIDIA Reflex teknolojileriyle birlikte tüm bu performansı bulut üzerinden sağlar.</li>
+  <li><strong>Düşük girdi gecikmesi.</strong> Rekabetçi FPS oyunlarında milisaniye düzeyindeki girdi gecikmesi atış sonucunu doğrudan değiştirir. GAME+ Türkiye sunucuları coğrafi yakınlık sayesinde gecikmeyi minimumda tutar; Ultimate paketin NVIDIA Reflex desteği bu avantajı daha da artırır.</li>
+  <li><strong>240 FPS'e kadar destek.</strong> Counter-Strike 2 ve Apex Legends gibi rekabetçi yapımlarda yüksek kare hızı görüş netliği ve tepki süresi açısından doğrudan avantaj sağlar. Ultimate paketin 240 FPS'e kadar destek sunması, kendi 60 Hz ekranınla bile bulut tarafında daha akıcı bir oyun deneyimi anlamına gelir.</li>
+  <li><strong>Türkiye sunucularıyla coğrafi avantaj.</strong> GAME+ Türkiye sunucuları, Avrupa veya Amerika sunucularına bağlı uluslararası GeForce NOW kullanıcılarına göre yerel oyuncular için çok daha düşük ping sağlar.</li>
+  <li><strong>Anında oynama, indirme beklentisi yok.</strong> Battlefield 6 yaklaşık 80 GB, Call of Duty: Modern Warfare III 100 GB üzeri yer kaplar. GeForce NOW'da oyun sunucuda zaten yüklü olduğu için saatlerce indirme beklemen gerekmez.</li>
+  <li><strong>Kütüphane senkronizasyonu.</strong> Steam, Epic Games Store, EA App ve Xbox kütüphanelerindeki FPS oyunlarını yeniden satın almana gerek yok. Hesabını GeForce NOW'a bağladığında uyumlu oyunların tamamına anında erişebilirsin.</li>
+</ul>
+
+<div class="gp-card" style="box-shadow:0 4px 18px rgba(0,0,0,0.5);color:#fff;padding:22px 24px;border-radius:8px;margin:24px 0;">
+  <div style="display:inline-block;background:#FFC900;color:#fff;padding:3px 12px;border-radius:999px;font-size:0.72em;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">FPS</div>
+  <div style="font-weight:700;font-size:1.15em;margin-bottom:6px;">Counter-Strike 2 ranked maçlarında zamanı yakala.</div>
+  <div style="color:#B2B2B2;font-size:0.92em;margin-bottom:16px;">Battlefield 2042, Apex Legends, R6 Siege X; Türkiye sunucularıyla 40 ms gecikme rekabetçi maçlarda fark yaratır.</div>
+  <a id="category-dynamic-cta" class="gp-btn" href="https://gameplus.com.tr/geforce-now-nedir" style="display:inline-flex;align-items:center;justify-content:center;background:#FFC900;color:#131313;padding:12px 16px;border-radius:8px;font-weight:700;font-size:16px;line-height:20px;text-decoration:none;">GeForce NOW Nasıl Çalışır? &rarr;</a>
+</div>
+
+<div class="highlight-box" style="background:rgba(255,255,255,0.04);border-radius:12px;padding:18px 24px 18px 20px;margin:24px 0;display:flex;gap:16px;align-items:stretch;">
+  <div style="width:4px;border-radius:2px;background:#FFC900;flex-shrink:0;"></div>
+  <div>
+    <div style="color:#FFC900;font-size:12px;line-height:16px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:8px;flex-shrink:0;"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14a5 5 0 1 0-6.18 0c.66.49 1.09 1.27 1.09 2.1V17h4v-.9c0-.83.43-1.61 1.09-2.1z"/></svg>Hatırlatma</div>
+    <p style="margin:0;color:#fff;font-size:1em;line-height:1.5;">GeForce NOW oyun satmaz; mevcut Steam, Epic Games Store, Xbox, EA App veya Ubisoft Connect kütüphanendeki lisansları bulut üzerinden çalıştırır. Bu kategoride yer alan bir yapımı oynamak için ilgili platformda oyuna sahip olman gerekir.</p>
+  </div>
+</div>
+
+
+<h3>GeForce NOW'da FPS Oyunları Nasıl Oynanır?</h3>
+
+<p>FPS türüne GeForce NOW üzerinden başlamak birkaç basit adımdan oluşur:</p>
+
+<ol>
+  <li><strong>Uygulamayı indir.</strong> GeForce NOW uygulamasını bilgisayarına, telefonuna, tabletine veya akıllı TV'ne yükle.</li>
+  <li><strong>Oyun platformunu bağla.</strong> Steam, Epic Games Store, EA App veya Xbox hesabını GeForce NOW hesabına bağla.</li>
+  <li><strong><a href="https://gameplus.com.tr/gfn/oyunlar">GeForce NOW oyunlar</a> listesinden seçim yap.</strong> İki yüzden fazla FPS oyunu arasından istediğini bul ve "Oyna" düğmesine tıkla.</li>
+  <li><strong>Oynamaya başla.</strong> Oyun NVIDIA'nın bulut sunucularında başlatılır ve cihazına gerçek zamanlı aktarılır. Bilgisayarına hiçbir şey indirmene gerek yok.</li>
+</ol>
+
+<p>Bulut kayıt senkronizasyonu sayesinde bir cihazda bıraktığın yerden başka bir cihazda devam edebilirsin. Sezon güncellemeleri ve yamaları sunucuda otomatik uygulanır; oyun her zaman güncel sürümde başlatılır.</p>
+
+<h3>Hangi FPS Alt Türü Sana Uygun?</h3>
+
+<p>FPS oyunları altı temel alt tür altında toplanır. Her biri farklı bir beceri seti ve farklı bir tempo gerektirir.</p>
+
+<h4>Rekabetçi ve Taktiksel FPS Oyunları</h4>
+
+<p>Bu alt tür hassas nişan, takım koordinasyonu ve harita bilgisini ön plana çıkarır. Genellikle 5v5 formatında oynanır; her tur kısa ama yüksek yoğunlukludur. Yetenek bazlı eşleştirme sistemleri ve aktif e-spor sahnesi bu türün belirleyici özellikleri arasında yer alır.</p>
+
+<p>Counter-Strike 2, Valve'ın Source 2 motoruyla yenilediği serinin son halkasıdır ve dünyanın en geniş rekabetçi FPS topluluğuna sahiptir. Tom Clancy's Rainbow Six Siege X, yıkılabilir çevre ve operatör yetenekleriyle taktiksel derinliği zirveye taşır. Insurgency: Sandstorm ise gerçekçi silah mekaniği ve düşük TTK (time to kill) değeriyle hardcore oyunculara hitap eder.</p>
+
+<p><strong>Öne çıkan rekabetçi ve taktiksel FPS oyunları:</strong></p>
+<ul>
+  <li>Counter-Strike 2 (5v5 taktiksel, oynaması ücretsiz)</li>
+  <li>Tom Clancy's Rainbow Six Siege X (yıkılabilir çevre, operatör yetenekleri)</li>
+  <li>Insurgency: Sandstorm (gerçekçi silah mekaniği)</li>
+  <li>Squad (askeri simülasyon temelli takım oynanışı)</li>
+</ul>
+
+<h4>Battle Royale FPS Oyunları</h4>
+
+<p>Battle royale alt türünde büyük bir haritada onlarca veya yüzlerce oyuncuyla son kalan kişi ya da takım olmaya çalışırsın. Harita zamanla daralır ve karşılaşmalar yoğunlaşır. Refleksin yanı sıra pozisyon alma, kaynak yönetimi ve harita bilgisi belirleyici rol oynar. Aksiyon ağırlıklı oyun türlerine ilgi duyuyorsan <a href="https://gameplus.com.tr/gfn/oyunlar/aksiyon">aksiyon oyunları</a> kategorisinde benzer tempoda yapımlar da bulabilirsin.</p>
+
+<p>Apex Legends karakter yetenekleri ve hızlı hareket sistemiyle battle royale formülüne taktiksel bir derinlik katar. Call of Duty Warzone serinin hızlı silah mekaniğini büyük ölçekli haritalarla birleştirir. THE FINALS ise yıkılabilir harita unsurlarıyla türün sınırlarını yeniden çizer.</p>
+
+<p><strong>Öne çıkan battle royale FPS oyunları:</strong></p>
+<ul>
+  <li>Apex Legends (karakter odaklı battle royale, oynaması ücretsiz)</li>
+  <li>THE FINALS (yıkılabilir harita, takım savaşı)</li>
+  <li>ARC Raiders (extraction shooter / battle royale hibrit)</li>
+</ul>
+
+<h4>Hikâye Odaklı Tek Oyunculu FPS</h4>
+
+<p>Hikâye odaklı FPS oyunları sinematik anlatımı yüksek tempolu çatışmayla birleştirir. Bu alt türde oyun süresi 15-40 saat aralığında değişir ve karakter gelişimi, dünya inşası ile bulmaca çözme aksiyon mekanikleri kadar önemlidir.</p>
+
+<p>S.T.A.L.K.E.R. 2: Heart of Chornobyl, Çernobil sonrası açık dünya temasıyla hayatta kalma ve nişancılığı birleştirir. Far Cry 6 geniş açık dünyada gerilla mücadelesini ön plana çıkarır. Wolfenstein: The New Order ve devam yapımları alternatif tarih anlatımıyla klasik tek oyunculu deneyimi sürdürür. Atomic Heart Sovyet ütopyası temasında benzersiz bir atmosfer sunar.</p>
+
+<p><strong>Öne çıkan hikâye odaklı FPS oyunları:</strong></p>
+<ul>
+  <li>S.T.A.L.K.E.R. 2: Heart of Chornobyl (açık dünya hayatta kalma)</li>
+  <li>Far Cry 6 (gerilla teması, geniş açık dünya)</li>
+  <li>Wolfenstein: The New Order (alternatif tarih anlatımı)</li>
+  <li>Atomic Heart (Sovyet ütopyası, alternatif atmosfer)</li>
+  <li>Metro Exodus (post-apokaliptik metro hikâyesi)</li>
+  <li>Half-Life 2 (türün modern temelini atan klasik)</li>
+</ul>
+
+<h4>Klasik Hızlı ve Eski FPS Oyunları</h4>
+
+<p>"Boomer shooter" olarak da bilinen bu alt tür, 1990'ların hızlı tempolu FPS formülünü modern grafiklerle yeniden yorumlar. Yüksek hareket hızı, agresif düşman tasarımı ve sürekli silah değişimi türün temelini oluşturur. Eski FPS oyunları arayanlar için bu kategori, hem nostaljik klasikleri hem de onlara saygı duruşunda bulunan modern yapımları bir araya getirir.</p>
+
+<p>DOOM Eternal ve DOOM: The Dark Ages, id Software'in saldırgan oynanış formülünün en yeni temsilcileridir. ULTRAKILL bağımsız bir yapım olarak boomer shooter ruhunu modern bir motorla yeniden inşa eder. Half-Life ve Quake serileri ise türün kurucu yapımlarıdır ve hâlâ aktif olarak oynanır.</p>
+
+<p><strong>Öne çıkan klasik ve hızlı tempolu FPS oyunları:</strong></p>
+<ul>
+  <li>DOOM Eternal (modern hızlı FPS referansı)</li>
+  <li>DOOM: The Dark Ages (orta çağ atmosferi)</li>
+  <li>ULTRAKILL (bağımsız boomer shooter)</li>
+  <li>Quake / Quake II (türün kurucu yapımları)</li>
+  <li>Half-Life / Half-Life 2 (modern FPS'in atası)</li>
+  <li>AMID EVIL / SPRAWL / Selaco (yeni nesil boomer shooter)</li>
+</ul>
+
+<h4>Co-op ve PvE FPS Oyunları</h4>
+
+<p>Bu alt tür çevrimiçi takım arkadaşlarınla bir araya gelip yapay zekâ kontrolündeki düşmanlara karşı görev yapmaya odaklanır. Looter shooter mekaniklerini, sezonluk içerikleri ve uzun vadeli karakter gelişimini bir araya getirir.</p>
+
+<p>Destiny 2, Bungie'nin PvE ve PvP modlarını bir arada sunan melez FPS/MMO deneyimidir; temel sürüm oynaması ücretsizdir. Borderlands 4 looter shooter formülünü mizahi anlatımla birleştirir. Hunt: Showdown 1896 ise extraction shooter alt türüyle PvE ve PvP'yi gergin bir gotik atmosferde harmanlar.</p>
+
+<p>Bu tür çok oyunculu çevrimiçi dünyalarla da kesişir. <a href="https://gameplus.com.tr/gfn/oyunlar/mmo">MMO oyunlar</a> kategorisinde benzer kalıcı evrenler içeren yapımları da bulabilirsin.</p>
+
+<h4>Çok Oyunculu Online FPS Oyunları</h4>
+
+<p>Online FPS oyunları kısa karşılaşmaları, hızlı eşleştirmeyi ve sezonluk meta değişiklikleri ön plana çıkarır. Hero shooter ve sınıf tabanlı FPS yapımları bu kategoride yoğunlaşır. Birden fazla genre'ye uyum sağlayan rekabetçi takım oyunlarına ilgi duyuyorsan <a href="https://gameplus.com.tr/gfn/oyunlar/moba">MOBA oyunları</a> kategorisi de benzer takım dinamiklerini farklı bir perspektifle sunar.</p>
+
+<p>Overwatch rol bazlı 5v5 oynanışıyla hero shooter alt türünün referansıdır. Splitgate portal mekaniklerini klasik FPS oynanışıyla birleştirir. Team Fortress 2 ise dokuz farklı sınıfıyla yıllardır aktif kalan klasik bir çok oyunculu yapımdır.</p>
+
+<h3>Ücretsiz FPS Oyunları</h3>
+
+<p>FPS türüne maliyet ayırmadan başlamak istiyorsan GeForce NOW kütüphanesindeki oynaması ücretsiz seçenekler güçlü bir başlangıç noktası sunar:</p>
+
+<ul>
+  <li><strong>Counter-Strike 2</strong> (Steam) - Türün taktiksel referansı, ücretsiz tam erişim</li>
+  <li><strong>Apex Legends</strong> (Steam, EA App) - Battle royale klasiği</li>
+  <li><strong>Destiny 2</strong> temel sürüm (Steam) - PvE ve PvP içerik</li>
+  <li><strong>THE FINALS</strong> (Steam) - Yıkılabilir harita çok oyunculu</li>
+  <li><strong>Overwatch</strong> (Battle.net üzerinden Xbox) - Hero shooter</li>
+  <li><strong>Team Fortress 2</strong> (Steam) - Sınıf tabanlı klasik</li>
+  <li><strong>Splitgate</strong> (Steam) - Portal mekaniği</li>
+  <li><strong>Warframe</strong> (Steam) - Co-op TPS</li>
+</ul>
+
+<p>Bu oyunları oynamak için ilgili platformda ücretsiz lisansı edinmen ve GeForce NOW hesabını o platforma bağlaman yeterlidir. Farklı türlerde ücretsiz seçenekler için <a href="https://gameplus.com.tr/gfn/oyunlar/oynamasi-ucretsiz">oynaması ücretsiz oyunlar</a> kategorisini de inceleyebilirsin.</p>
+
+<h3>Teknik Ayarlar ve Sistem Önerileri</h3>
+
+<p>FPS oyunlarında teknik ayarlar doğrudan oyuncu performansını etkiler. Doğru yapılandırma rekabetçi modlarda belirgin bir avantaj sağlar:</p>
+
+<div class="table-wrap gp-table-wrap gp-card" style="margin:22px 0;box-shadow:0 4px 18px rgba(0,0,0,0.5);overflow:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.93em;background:transparent;">
+  <thead>
+    <tr>
+      <th style="background:#1E1E18;padding:19px 24px;text-align:center;border-bottom:1px solid rgba(255,201,0,0.3);font-weight:700;color:#FFC900;font-size:16px;line-height:20px;">Konu</th>
+      <th style="background:#1E1E18;padding:19px 24px;text-align:center;border-bottom:1px solid rgba(255,201,0,0.3);font-weight:700;color:#FFC900;font-size:16px;line-height:20px;">Öneri</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>İnternet hızı</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">720p/60 FPS için en az 15 Mbps, 1080p/60 FPS için en az 25 Mbps. Rekabetçi FPS için 40 Mbps üzeri önerilir. Gecikme 80 ms'nin altında olmalı, 40 ms altı idealdir.</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Bağlantı türü</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Rekabetçi FPS oyunlarında kablolu Ethernet tercih edilmeli. Tek oyunculu hikâye odaklı yapımlarda 5 GHz Wi-Fi yeterlidir.</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Kontrol seçenekleri</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Rekabetçi FPS oyunlarında fare ve klavye hassas nişan avantajı sağlar. Konsol bazlı veya hikâye odaklı yapımlarda gamepad konforlu bir alternatiftir. Xbox, PlayStation DualSense, Logitech, SteelSeries ve Razer gamepad'leri desteklenir.</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Görüntü ayarları</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">GeForce NOW ayarlarından "Rekabetçi mod" seçeneği aktifleştirilebilir. Bu mod girdi gecikmesini düşürür ve kare hızını önceliklendirir; Counter-Strike 2 ve Apex Legends gibi yapımlarda belirgin fark yaratır.</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Ses ayarları</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">FPS oyunlarında stereo kulaklık kullanımı düşman ayak seslerinin yönünü belirlemeye yardımcı olur. Ultimate pakette 7.1 surround ses desteği mevcuttur.</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>NVIDIA Reflex</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Ultimate paketin NVIDIA Reflex desteği, rekabetçi FPS oyunlarında milisaniye düzeyinde gecikme azaltması sağlar. Counter-Strike 2, Apex Legends ve Overwatch bu teknolojiden doğrudan faydalanır.</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h3>Performance ve Ultimate Karşılaştırması</h3>
+
+<p>FPS türünde paket seçimi oynadığın alt türe ve hedefine göre değişir. <a href="https://gameplus.com.tr/gfn/paketler">GeForce NOW fiyat</a> seçeneklerini aşağıdaki karşılaştırmayla inceleyebilirsin:</p>
+
+<div class="table-wrap gp-table-wrap gp-card" style="margin:22px 0;box-shadow:0 4px 18px rgba(0,0,0,0.5);overflow:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.93em;background:transparent;">
+  <thead>
+    <tr>
+      <th style="background:#1E1E18;padding:19px 24px;text-align:center;border-bottom:1px solid rgba(255,201,0,0.3);font-weight:700;color:#FFC900;font-size:16px;line-height:20px;">Özellik</th>
+      <th style="background:#1E1E18;padding:19px 24px;text-align:center;border-bottom:1px solid rgba(255,201,0,0.3);font-weight:700;color:#FFC900;font-size:16px;line-height:20px;">Performance</th>
+      <th style="background:#1E1E18;padding:19px 24px;text-align:center;border-bottom:1px solid rgba(255,201,0,0.3);font-weight:700;color:#FFC900;font-size:16px;line-height:20px;">Ultimate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Oyun sistemi</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">GeForce RTX / 8 vCPU</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">GeForce RTX 4080 / 16 vCPU</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Maksimum çözünürlük</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">1440p QHD</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">5K'ye kadar (4K HDR dahil)</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Maksimum FPS</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">60 FPS</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">240 FPS'e kadar</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Oturum süresi</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">6 saat</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">8 saat</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>NVIDIA Reflex (düşük gecikme)</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Kapalı</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Açık</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Cloud G-Sync</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Kapalı</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Açık</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;"><strong>Ses</strong></td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Surround 5.1</td>
+      <td style="padding:11px 18px;vertical-align:top;color:#B2B2B2;line-height:1.5;">Surround 5.1 / 7.1</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>Hikâye odaklı tek oyunculu FPS oyunları (S.T.A.L.K.E.R. 2, Far Cry 6, Wolfenstein) için Performance paketi 1440p ve 60 FPS ile tatmin edici bir deneyim sunar. Rekabetçi çok oyunculu FPS oyunları (Counter-Strike 2, Apex Legends, Overwatch, THE FINALS) için Ultimate paketin sunduğu 240 FPS, NVIDIA Reflex ve Cloud G-Sync teknolojileri girdi gecikmesini düşürerek belirgin bir performans avantajı sağlar.</p>
+
+<h3>FPS Oyunları Hakkında Sık Sorulan Sorular</h3>
+
+<div class="faq-block">
+
+  <details class="faq-item" style="margin-bottom:10px;border:1px solid #29292B;border-radius:10px;overflow:hidden;background:transparent;box-shadow:0 2px 8px rgba(0,0,0,0.4);">
+    <summary class="faq-q" style="display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;background:transparent;font-weight:700;color:#ffffff;list-style:none;letter-spacing:-0.005em;"><span class="faq-icon">+</span><span style="flex:1;">FPS oyunları nedir?</span></summary>
+    <div class="faq-a" style="padding:14px 20px 18px 56px;border-top:1px solid #29292B;background:transparent;">
+      <p style="margin:0;">FPS, "First Person Shooter" yani "birinci şahıs nişancı" ifadesinin kısaltmasıdır. Bu türdeki oyunlarda dünyayı karakterin gözünden görür, silahla nişan alırsın. Counter-Strike 2, Call of Duty, Battlefield 6, DOOM Eternal ve Apex Legends türün önde gelen örneklerindendir. FPS oyunları rekabetçi taktiksel çatışma, hikâye odaklı macera, battle royale ve hızlı tempolu klasik shooter gibi birçok alt türe ayrılır.</p>
+    </div>
+  </details>
+
+  <details class="faq-item" style="margin-bottom:10px;border:1px solid #29292B;border-radius:10px;overflow:hidden;background:transparent;box-shadow:0 2px 8px rgba(0,0,0,0.4);">
+    <summary class="faq-q" style="display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;background:transparent;font-weight:700;color:#ffffff;list-style:none;letter-spacing:-0.005em;"><span class="faq-icon">+</span><span style="flex:1;">En iyi FPS oyunları hangileridir?</span></summary>
+    <div class="faq-a" style="padding:14px 20px 18px 56px;border-top:1px solid #29292B;background:transparent;">
+      <p style="margin:0;">GeForce NOW kütüphanesindeki en popüler FPS oyunları arasında Counter-Strike 2, Call of Duty: Modern Warfare III, Battlefield 6, Apex Legends, Tom Clancy's Rainbow Six Siege X, DOOM Eternal, Halo Infinite, Destiny 2 ve THE FINALS yer alır. Tek oyunculu deneyim arıyorsan S.T.A.L.K.E.R. 2 ve Far Cry 6 öne çıkar; rekabetçi oyun istiyorsan Counter-Strike 2 ve Apex Legends ideal başlangıç noktalarıdır.</p>
+    </div>
+  </details>
+
+  <details class="faq-item" style="margin-bottom:10px;border:1px solid #29292B;border-radius:10px;overflow:hidden;background:transparent;box-shadow:0 2px 8px rgba(0,0,0,0.4);">
+    <summary class="faq-q" style="display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;background:transparent;font-weight:700;color:#ffffff;list-style:none;letter-spacing:-0.005em;"><span class="faq-icon">+</span><span style="flex:1;">GeForce NOW'da kaç tane FPS oyunu var?</span></summary>
+    <div class="faq-a" style="padding:14px 20px 18px 56px;border-top:1px solid #29292B;background:transparent;">
+      <p style="margin:0;">GAME+ kütüphanesinde iki yüzden fazla FPS oyunu bulunuyor. Counter-Strike, Call of Duty, Battlefield, Far Cry, Wolfenstein, DOOM, Borderlands, Halo, Destiny ve Rainbow Six gibi türün önde gelen serilerinin güncel ve klasik tüm yapımları kütüphanede yer alır. Liste düzenli olarak güncelleniyor.</p>
+    </div>
+  </details>
+
+  <details class="faq-item" style="margin-bottom:10px;border:1px solid #29292B;border-radius:10px;overflow:hidden;background:transparent;box-shadow:0 2px 8px rgba(0,0,0,0.4);">
+    <summary class="faq-q" style="display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;background:transparent;font-weight:700;color:#ffffff;list-style:none;letter-spacing:-0.005em;"><span class="faq-icon">+</span><span style="flex:1;">Rekabetçi FPS oyunları için internet hızım ne olmalı?</span></summary>
+    <div class="faq-a" style="padding:14px 20px 18px 56px;border-top:1px solid #29292B;background:transparent;">
+      <p style="margin:0;">Counter-Strike 2, Apex Legends gibi rekabetçi FPS oyunları için en az 25 Mbps internet hızı ve 40 ms altında gecikme önerilir. Daha yüksek kare hızlarında (120 veya 240 FPS) oynamak istiyorsan 40 Mbps üzeri bir bağlantı ve mümkünse kablolu Ethernet kullanmalısın. GAME+ Türkiye sunucularına bağlanmak, uluslararası GeForce NOW kullanıcılarına göre belirgin bir gecikme avantajı sağlar.</p>
+    </div>
+  </details>
+
+  <details class="faq-item" style="margin-bottom:10px;border:1px solid #29292B;border-radius:10px;overflow:hidden;background:transparent;box-shadow:0 2px 8px rgba(0,0,0,0.4);">
+    <summary class="faq-q" style="display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;background:transparent;font-weight:700;color:#ffffff;list-style:none;letter-spacing:-0.005em;"><span class="faq-icon">+</span><span style="flex:1;">Klavye-fare mı, gamepad mi tercih edilmeli?</span></summary>
+    <div class="faq-a" style="padding:14px 20px 18px 56px;border-top:1px solid #29292B;background:transparent;">
+      <p style="margin:0;">Counter-Strike 2, Valorant tarzı taktiksel FPS ve Apex Legends gibi hızlı tempolu battle royale yapımlarında klavye ve fare hassas nişan açısından belirgin avantaj sağlar. Halo Infinite, Far Cry 6 veya DOOM Eternal gibi konsol kökenli ve hikâye odaklı yapımlarda gamepad rahat bir alternatif olabilir. GeForce NOW her iki kontrol yöntemini de tam destekler; oyun içinde istediğin zaman geçiş yapabilirsin.</p>
+    </div>
+  </details>
+
+</div>
+
+<div class="gp-card" style="color:#fff;padding:24px 28px;margin:32px 0;box-shadow:0 6px 24px rgba(0,0,0,0.55);">
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;">
+    <div style="font-size:1.15em;font-weight:800;color:#fff;letter-spacing:-0.01em;">
+      GeForce <span style="color:#FFC900;">NOW</span>
+    </div>
+    <div style="height:18px;width:1px;background:#2a2a2a;"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="color:#FFC900;font-weight:600;font-size:0.8em;padding:4px 10px;border:1px solid #FFC900;border-radius:4px;letter-spacing:0.03em;">PERFORMANCE</span>
+      <span style="color:#FFC900;font-weight:600;font-size:0.8em;padding:4px 10px;border:1px solid #FFC900;border-radius:4px;letter-spacing:0.03em;">ULTIMATE</span>
+    </div>
+  </div>
+  <div style="font-size:1.3em;font-weight:700;margin-bottom:6px;line-height:1.3;">Tek üyelik, hazır kütüphane.</div>
+  <p style="color:#B2B2B2;margin:0 0 18px 0;line-height:1.5;font-size:0.95em;">Performance ve Ultimate paketleri kütüphanendeki tüm oyunları çalıştırır. Steam, Epic Games, EA App, Xbox ve Ubisoft Connect hesapları bağlanabilir.</p>
+  <a id="category-packages-button" class="gp-btn" href="https://gameplus.com.tr/gfn/paketler" style="display:inline-flex;align-items:center;justify-content:center;background:#FFC900;color:#131313;padding:12px 16px;border-radius:8px;font-weight:700;font-size:16px;line-height:20px;text-decoration:none;">GeForce NOW Paketlerini İncele &rarr;</a>
+</div>
+
+<h3>FPS Dünyasına Hemen Adım At</h3>
+
+<p>Counter-Strike 2'de taktiksel rekabetin merkezinde yer almak, Apex Legends'ta battle royale heyecanını yaşamak, DOOM Eternal'da hızlı tempolu klasik aksiyona dönmek veya S.T.A.L.K.E.R. 2'nin açık dünyasında hayatta kalmaya çalışmak için güçlü bir bilgisayara ihtiyacın yok. GeForce NOW GAME+ ile Türkiye sunucuları üzerinden düşük gecikmeyle, 240 FPS'e kadar akıcılıkta FPS oyunlarının tadını çıkar. Kütüphaneni bağla, sana uygun paketi seç ve hemen oynamaya başla.</p>
