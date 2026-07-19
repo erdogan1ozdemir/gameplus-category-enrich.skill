@@ -52,6 +52,47 @@ ul li { padding-left:4px; }
   .gp-table-wrap th { text-align:center !important; letter-spacing:0.04em !important; }
   .gp-table-wrap td { text-align:left; }
 }
+/* ===== v10.3: tipografi + responsive (blog ile hizalı) ===== */
+html { scroll-behavior: smooth; }
+h2, h3, h4 { scroll-margin-top: 28px; }
+h2 { font-size: 22px !important; line-height: 28px !important; }
+h3 { font-size: 18.5px !important; line-height: 25px !important; }
+h4 { font-size: 15.5px !important; line-height: 21px !important; }
+p { font-size: 16px; line-height: 24px; }
+@media (max-width: 700px) {
+  h2 { font-size: 17px !important; line-height: 23px !important; }
+  h3 { font-size: 15px !important; line-height: 20px !important; }
+  h4 { font-size: 14px !important; line-height: 19px !important; }
+  p  { font-size: 15px; line-height: 22px; }
+}
+.tldr-block > div:first-of-type { margin: 0 0 8px !important; }
+@media (max-width: 700px) { .tldr-block > div:first-of-type { font-size: 16px !important; line-height: 22px !important; } }
+@media (max-width: 700px) {
+  .info-card { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 10px !important; }
+  .gp-cell { padding: 14px 10px !important; }
+  .gp-cell > div:first-child, .gp-cell span:last-child { font-size: 13px !important; }
+}
+@media (max-width: 700px) {
+  .gp-table-wrap > div { overflow-x: visible !important; }
+  .gp-table-wrap table { font-size: 12px !important; table-layout: fixed !important; width: 100% !important; }
+  .gp-table-wrap thead { display: table-header-group !important; }
+  .gp-table-wrap th, .gp-table-wrap td { padding: 10px 6px !important; vertical-align: middle !important; line-height: 1.35 !important; overflow-wrap: normal !important; word-break: normal !important; hyphens: none !important; }
+  .gp-table-wrap th { font-size: 13px !important; text-align: center !important; letter-spacing: 0.02em !important; padding: 12px 6px !important; }
+  .gp-table-wrap td { text-align: left !important; }
+  .gp-table-wrap td:first-child { color: #fff !important; }
+  .gp-table-wrap td [style*="border-radius:6px"] { font-size: 10.5px !important; padding: 3px 7px !important; }
+  .gp-table-wrap td svg { width: 11px !important; height: 11px !important; }
+  .gp-table-wrap tr > :first-child:nth-last-child(3) { width: 40% !important; font-size: 14px !important; }
+  .gp-table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(2) { width: 26% !important; text-align: center !important; }
+  .gp-table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3) { width: 34% !important; overflow-wrap: anywhere !important; font-size: 11px !important; }
+  .gp-table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3) a { white-space: nowrap !important; }
+  .gp-btn { padding: 11px 18px !important; font-size: 15px !important; }
+}
+@media (max-width: 400px) {
+  .gp-table-wrap th { font-size: 12px !important; }
+  .gp-table-wrap tr > :first-child:nth-last-child(3) { font-size: 13px !important; }
+  .gp-table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3) { font-size: 10px !important; }
+}
 </style>"""
 
 SVG_DOC = ('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFC900" stroke-width="2.2" '
@@ -88,8 +129,8 @@ def port(src: str) -> str:
 
     # 2) TLDR başlığı (yeşil -> New Science beyaz + sarı doküman ikonu)
     sub(r'<h3 style="margin:0 0 12px 0;font-size:1\.05em;font-weight:800;display:flex;align-items:center;gap:8px;color:#76b900;">.*?<span style="color:#fff;">Hızlı Özet</span></h3>',
-        lambda m: (f'<h3 style="margin:0 0 14px 0;{NS}font-size:24px;line-height:32px;font-weight:600;'
-                   f'color:#fff;display:flex;align-items:center;">{SVG_DOC}Hızlı Özet</h3>'),
+        lambda m: (f'<div style="margin:0 0 8px 0;{NS}font-size:19px;line-height:26px;font-weight:600;'
+                   f'color:#fff;display:flex;align-items:center;">{SVG_DOC}Hızlı Özet</div>'),
         'TLDR başlığı', re.S, 1)
 
     # 2b) TLDR maddeleri: ✓ SVG -> Figma'daki sarı • (bullet)

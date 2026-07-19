@@ -60,3 +60,10 @@ Dolu sarı zemin + `#131313` metin, r8. GA4 id'leri zorunlu (bkz. `ga4-tracking.
 - `gp-conic` (dönen glow) ve `floating-toc` — kategori sayfasında kullanılmaz.
 - `border-left` ile callout barı.
 - Yeşil `#76b900` ve türevleri (`rgba(118,185,0,*)`).
+
+## v10.3 (blog ile hizalandı)
+- **Başlık ölçekleri:** H2 22/28 (mobil 17), H3 18.5/25 (mobil 15), H4 15.5/21 (mobil 14). Gövde 16/24 (mobil 15/22).
+- **"Hızlı Özet" başlığı `<div>`** (heading değil — SEO); boyut 19 (mobil 16).
+- **Tablolar mobilde:** başlık satırı KALIR (thead görünür), hücreler dikey ortalı, içerik responsive; 3 sütunlu tablo düzeni (oyun adı 14/13, platform 11/10 + ok nowrap, tür ortalı) `:first-child:nth-last-child(3)` ile scoped.
+- **gp-cell / info-card** mobilde 2 kolon `minmax(0,1fr)`, yazılar küçülür; **CTA butonu (`gp-btn`) mobilde 15px**.
+- **Yumuşak kaydırma** (`scroll-behavior:smooth`); scroll-reveal JS yok (kategori kuralı: conic/ToC de yok).
