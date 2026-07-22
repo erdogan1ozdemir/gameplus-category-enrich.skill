@@ -66,7 +66,12 @@ p { font-size: 16px; line-height: 24px; }
   p  { font-size: 15px; line-height: 22px; }
 }
 .tldr-block > div:first-of-type { margin: 0 0 8px !important; }
-@media (max-width: 700px) { .tldr-block > div:first-of-type { font-size: 16px !important; line-height: 22px !important; } }
+/* Hızlı Özet bullet metni gövde paragrafıyla aynı punto (fazla büyük kalmıştı) */
+.tldr-block ul li, .tldr-block ul li span { font-size: 16px !important; line-height: 24px !important; }
+@media (max-width: 700px) {
+  .tldr-block > div:first-of-type { font-size: 16px !important; line-height: 22px !important; }
+  .tldr-block ul li, .tldr-block ul li span { font-size: 15px !important; line-height: 22px !important; }
+}
 @media (max-width: 700px) {
   .info-card { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 10px !important; }
   .gp-cell { padding: 14px 10px !important; }
@@ -123,6 +128,15 @@ def port(src: str) -> str:
             assert n > 0, f"{label}: eşleşme yok"
         s = s2
         rep.append(f"{label}: {n}")
+
+    # 0) Hızlı Özet (TLDR) bloğunu ana başlığın (ilk H2) HEMEN ALTINA taşı — tüm kategorilerde standart.
+    #    (v9 kaynağında TLDR intro paragraflarından sonra gelir; kural gereği başlık altına alınır.)
+    m_tldr = re.search(r'\s*<div class="tldr-block gp-layer"[^>]*>.*?</ul>\s*</div>', s, re.S)
+    if m_tldr and re.search(r'</h2>', s):
+        tldr_html = m_tldr.group(0).strip()
+        s = s[:m_tldr.start()] + s[m_tldr.end():]                       # eski yerinden kaldır
+        s = re.sub(r'</h2>', lambda m: '</h2>\n\n' + tldr_html, s, count=1)  # ilk H2'nin altına ekle
+        rep.append("TLDR -> H2 altına taşındı")
 
     # 1) style bloğu
     sub(r'<style>.*?</style>', lambda m: STYLE_V10, 'style bloğu', re.S, 1)
