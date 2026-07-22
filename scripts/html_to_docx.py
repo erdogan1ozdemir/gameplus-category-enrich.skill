@@ -282,5 +282,25 @@ def add_table(doc, table_elem):
             add_inline_with_format(p, cell, bold=is_header)
 
 
+def append_html_version(docx_path, html_path):
+    """Render'lı doc'un sonuna, CMS'e olduğu gibi yapıştırılabilecek STİLLİ HTML kodunu ekler
+    (blog docx'lerindeki 'HTML Versiyon' mantığı). Kod, stil bloğu dahil kendi kendine yeten gövdedir."""
+    from docx import Document as _Doc
+    from docx.shared import Pt as _Pt, RGBColor as _RGB
+    doc = _Doc(docx_path)
+    doc.add_page_break()
+    doc.add_heading("HTML Versiyon — CMS'e Gömmek İçin", level=1)
+    ip = doc.add_paragraph()
+    r = ip.add_run("Aşağıdaki stilli HTML kodunu olduğu gibi kopyalayın ve CMS içerik alanına HTML / kaynak (source) modunda yapıştırın. Kod, stil bloğu dahil kendi kendine yeten gövdedir; ayrıca CSS eklemeye gerek yoktur.")
+    r.font.size = _Pt(10); r.italic = True
+    for line in open(html_path, encoding="utf-8").read().split("\n"):
+        p = doc.add_paragraph()
+        run = p.add_run(line if line else " ")
+        run.font.name = "Courier New"; run.font.size = _Pt(7); run.font.color.rgb = _RGB(0x22,0x22,0x22)
+        pf = p.paragraph_format; pf.space_before = _Pt(0); pf.space_after = _Pt(0); pf.line_spacing = 1.0
+    doc.save(docx_path)
+
+
 if __name__ == "__main__":
     html_to_docx(INPUT_HTML, OUTPUT_DOCX)
+    append_html_version(OUTPUT_DOCX, INPUT_HTML)   # her docx: render + CMS'e hazır HTML kodu

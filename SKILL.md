@@ -125,6 +125,8 @@ Save the content in **two formats**:
    - URL: `https://gameplus.com.tr/gfn/oyunlar/<slug>`
    - Filename: `gameplus.com.tr-gfn-oyunlar-<slug>.docx`
 
+   **Not:** `html_to_docx.py` artık docx sonuna otomatik olarak "HTML Versiyon — CMS'e Gömmek İçin" bölümü ekler; render'lı içeriğin ardından stilli HTML kodu Courier ile gelir, marka doğrudan kopyalayıp CMS'e (HTML/kaynak modunda) yapıştırabilir.
+
    Use the bundled script:
    ```bash
    python3 /Users/Erdo/.claude/skills/gameplus-category-content/scripts/html_to_docx.py
