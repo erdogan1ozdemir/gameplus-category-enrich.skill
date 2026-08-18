@@ -133,6 +133,9 @@ Gameplus master package page (not GFN-specific). Distinct from `/gfn/paketler`.
 
 ### `https://gameplus.com.tr/firsatlar`
 
+> **v11: BU SAYFAYA LİNK VERİLMEZ.** Marka kararıyla fırsatlar yönlendirmesi kaldırıldı;
+> yerine GAME+ paketleri (`https://gameplus.com.tr/paketler`) kullanılır. Bölüm referans olarak durur.
+
 Deals and promotions hub.
 
 - **geforce now kampanya**

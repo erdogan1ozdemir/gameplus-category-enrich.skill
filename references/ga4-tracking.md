@@ -4,7 +4,7 @@ Kategori gövdesindeki CTA butonları **sabit `id`** taşır; id'ler her kategor
 
 | `id` | Blok | Hedef |
 |---|---|---|
-| `category-dynamic-cta` | Sayfa ortası dinamik CTA | `/gfn` \| `/geforce-now-nedir` \| `/firsatlar` (kategoriler arası rotasyon) |
+| `category-dynamic-cta` | Sayfa ortası dinamik CTA | `/gfn` \| `/geforce-now-nedir` \| `/paketler` (kategoriler arası rotasyon; **`/firsatlar` kaldırıldı**) |
 | `category-packages-button` | Fix CTA (sayfa sonu) | `/gfn/paketler` |
 
 **Neden önemli:** dinamik CTA rotasyonlu olduğu için hangi hedefin daha çok tıklandığını ancak bu id + `cta_url` kırılımıyla ölçebiliriz.

@@ -1,0 +1,668 @@
+<div class="gp-content">
+<style>
+.gp-content {--gp-surface:#161616;--gp-line:#29292b;--gp-accent:#FFC900;}
+@keyframes gameplus-border-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes gp-rotate-conic {
+  to { --gp-conic-angle: 360deg; }
+}
+@keyframes gp-pulse-plus {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.18); opacity: 0.85; }
+}
+.gp-content .gp-animated-border { position: relative; border-radius: 12px; padding: 1px; background: linear-gradient(110deg, #FFC900 0%, #f59e0b 30%, #FFC900 60%, #f59e0b 100%); background-size: 300% 100%; animation: gameplus-border-shimmer 6s ease-in-out infinite; }
+.gp-content .gp-animated-border > .gp-inner { background: transparent; border-radius: 11px; padding: 22px 24px; }
+.gp-content .gp-conic { position: relative; border-radius: 12px; padding: 1.5px; }
+.gp-content .gp-conic::before {
+  content:''; position:absolute; inset:0; border-radius:12px; padding:1.5px;
+  background: conic-gradient(from var(--gp-conic-angle,0deg), transparent 0deg, var(--gp-glow,#FFC900) 60deg, transparent 120deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: gp-rotate-conic 6s linear infinite;
+  pointer-events: none;
+}
+.gp-content .gp-conic > .gp-conic-inner { background:var(--gp-surface,#161616); border-radius:10.5px; position:relative; }
+.gp-content .gp-layer { position:relative; border-radius:12px; border:1px solid var(--gp-frame,rgba(255,201,0,0.22)); background:var(--gp-surface,#161616); }
+.gp-content .gp-cell { position:relative; background:var(--gp-surface,#161616); border:1px solid var(--gp-line,#29292b); border-radius:10px; padding:14px 16px; }
+.gp-content .gp-layer::before { content:''; position:absolute; inset:5px; border:1px solid #29292b; border-radius:8px; pointer-events:none; }
+.gp-content .faq-item .faq-icon { animation: gp-pulse-plus 2.2s ease-in-out infinite; }
+.gp-content .table-wrap table { border-radius: 12px; }
+.gp-content .table-wrap { margin: 24px 0; border-radius: 16px; overflow: hidden; }
+.gp-content .gp-table-scroll { overflow-x: auto;
+
+  scrollbar-width: none; -ms-overflow-style: none; }
+.gp-content .gp-table-scroll::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.gp-content .gp-table-hint { display: none; font-size: 12px; line-height: 16px; font-weight: 500;
+  color: #B2B2B2; padding: 10px 14px 0; }
+.gp-content .table-wrap table { width: 100%; border-collapse: collapse; background: transparent; }
+.gp-content .table-wrap th { background: #1E1E18; padding: 19px 24px; text-align: left; color: #FFC900;
+  font-weight: 700; font-size: 16px; line-height: 20px; border-bottom: 1px solid rgba(255,201,0,0.3); }
+.gp-content .table-wrap td { padding: 14px 24px; vertical-align: middle; color: #B2B2B2; font-weight: 400;
+  font-size: 16px; line-height: 20px; }
+.gp-content .table-wrap tbody tr + tr td { border-top: 1px solid #29292B; }
+@media (max-width: 700px) {
+
+  .gp-content .table-wrap td .gp-genres { flex-wrap: wrap; }}
+.gp-content .gp-genres { display: inline-flex; flex-wrap: wrap; gap: 6px 8px; align-items: center;
+  vertical-align: middle; }
+.gp-content .gp-genre { display: inline-block; border-radius: 6px; padding: 4px 10px; font-size: 12px;
+  line-height: 16px; font-weight: 700; white-space: nowrap; }
+.gp-content .gp-ct-title { font-family: 'New Science', GreycliffCF, -apple-system, sans-serif;
+  font-weight: 600; color: #fff; margin: 28px 0 14px; text-align: left; }
+.gp-content .gp-meta { color: #B2B2B2; font-size: 0.78em; text-align: right; white-space: nowrap;
+  font-weight: 500; letter-spacing: 0.01em; }
+.gp-content .gp-ext { width: 11px; height: 11px; vertical-align: 1px; margin-left: 3px; opacity: 0.65; }
+.gp-content .gp-gic-badge { display: inline-block; color: #fff; padding: 4px 11px; border-radius: 999px;
+  font-size: 0.62em; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 2px 4px rgba(0,0,0,0.4); }
+.gp-content .gp-gic-name { font-weight: 700; color: #fff; font-size: 1.04em; line-height: 1.3;
+  margin-bottom: 8px; letter-spacing: -0.01em; }
+.gp-content .gp-gic-meta { color: #B2B2B2; font-size: 0.82em; line-height: 1.55; font-weight: 500; }
+.gp-content .faq-block { margin: 24px 0; }
+.gp-content .faq-item { margin-bottom: 10px; border: 1px solid #29292b; border-radius: 10px;
+  overflow: hidden; background: transparent; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+.gp-content .faq-item summary { display: flex; align-items: center; gap: 14px; padding: 16px 20px;
+  cursor: pointer; background: transparent; font-weight: 700; color: #f3f4f6; letter-spacing: -0.005em;
+  list-style: none; }
+.gp-content .faq-item .faq-icon { display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; flex-shrink: 0; color: #FFC900; font-size: 1.5em; font-weight: 300; line-height: 1; }
+.gp-content .faq-item .faq-q { flex: 1; }
+.gp-content .faq-item > div { padding: 14px 20px 18px 56px; border-top: 1px solid #29292b; background: transparent; }
+.gp-content .faq-item > div p { margin: 0; color: #B2B2B2; line-height: 1.55; font-size: 0.94em; }
+.gp-content .gp-list { margin: 14px 0 18px; padding: 0; list-style: none; color: #B2B2B2; }
+.gp-content .gp-list li { display: flex; gap: 11px; margin: 8px 0; align-items: flex-start;
+  line-height: 1.6; list-style: none; }
+.gp-content .gp-list-dot { flex-shrink: 0; margin-top: 10px; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gp-dot,#FFC900); }
+.gp-content .gp-list-check { flex-shrink: 0; margin-top: 2px; }
+.gp-content .faq-item .faq-icon { transition: transform 0.25s ease, color 0.2s; }
+.gp-content .faq-item[open] .faq-icon { transform: rotate(45deg) !important; color: #FFC900; }
+.gp-content .faq-item summary:hover .faq-icon { color: #f59e0b; }
+@media (max-width: 700px) {
+  .gp-content .gp-game-inline > aside { float: none; width: 100%; margin: 0 0 16px 0; }}
+.gp-content .table-wrap.gp-layer::before, .gp-content .card-table.gp-layer::before { display: none; }
+.gp-content .table-wrap { border: 1px solid #29292B; }
+.gp-content ul li::marker { color: #FFC900; }
+.gp-content .table-wrap tbody tr { transition: background 0.15s ease; }
+.gp-content .faq-item summary { padding: 14px 16px; gap: 10px; }
+@media (max-width: 700px) {
+  .gp-content .table-wrap .gp-genre { white-space: normal; }
+
+  .gp-content .faq-item summary { padding: 13px 13px; gap: 9px; font-size: 0.95em; }
+  .gp-content .faq-item > div { padding: 12px 14px 15px 14px; }}
+.gp-content h1, .gp-content h2, .gp-content h3, .gp-content h4 { scroll-margin-top: 28px; }
+.gp-content h1 { font-size: 40px; line-height: 48px; }
+.gp-content h2 { font-size: 28px; line-height: 36px; }
+.gp-content h3 { font-size: 24px; line-height: 32px; }
+.gp-content h4 { font-size: 20px; line-height: 28px; }
+.gp-content p { font-size: 20px; line-height: 24px; }
+@media (max-width: 700px) {
+  .gp-content h1 { font-size: 30px; line-height: 1.15; }
+  .gp-content h2 { font-size: 22px; line-height: 1.2; }
+  .gp-content h3 { font-size: 19px; line-height: 1.25; }
+  .gp-content h4 { font-size: 17px; line-height: 1.3; }
+  .gp-content p { font-size: 16px; line-height: 24px; }}
+@media (max-width: 700px) {  .gp-content .gp-cell > div:last-child { font-size: 13px; line-height: 18px; }}
+@media (max-width: 400px) {  .gp-content .gp-cell > div:last-child { font-size: 12px; line-height: 16px; }}
+@media (max-width: 700px) {
+  .gp-content .table-wrap > div { overflow-x: visible; }
+  .gp-content .table-wrap table { font-size: 12px; table-layout: fixed; width: 100%; }
+  .gp-content .table-wrap thead { display: table-header-group; }
+  .gp-content .table-wrap th, .gp-content .table-wrap td { padding: 10px 6px; vertical-align: middle; line-height: 1.35; overflow-wrap: normal; word-break: normal; hyphens: none; }
+  .gp-content .table-wrap th { font-size: 13px; letter-spacing: 0.02em; text-align: center; padding: 12px 6px; }
+  .gp-content .table-wrap td { text-align: left; }
+  .gp-content .table-wrap td:first-child { color: #fff; }
+  .gp-content .table-wrap td:first-child div { font-size: 10.5px; }
+  .gp-content .table-wrap td .gp-genres { flex-wrap: wrap; gap: 5px 6px; justify-content: center; }
+  .gp-content .table-wrap td .gp-genre { font-size: 10.5px; padding: 3px 7px; }
+  .gp-content .table-wrap td svg { width: 11px; height: 11px; }
+
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) { width: 40%; font-size: 14px; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(2) { width: 26%; text-align: center; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3) { width: 34%; overflow-wrap: anywhere; font-size: 11px; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3) a { white-space: nowrap; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3) a svg { margin-left: 2px; }}
+@media (max-width: 400px) {
+  .gp-content .table-wrap th { font-size: 12px; }
+  .gp-content .table-wrap td .gp-genre { font-size: 10px; padding: 2px 6px; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) { font-size: 13px; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) div { font-size: 10px; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3) { font-size: 10px; }}
+.gp-content .tldr-block .gp-conic-inner, .gp-content .gp-cell, .gp-content .table-wrap, .gp-content .gp-table, .gp-content .card-table, .gp-content .gp-card-table-inner, .gp-content .gp-layer { background: transparent; }
+@media (max-width: 700px) {
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) { width: 30%; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) div { font-size: 12px; font-weight: 600; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(2) { width: 20%; text-align: center; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(3) { width: 24%; font-size: 12px; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(4) { width: 26%; font-size: 12px; overflow-wrap: anywhere; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(4) a { white-space: nowrap; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(4) a svg { margin-left: 2px; }}
+.gp-content .tldr-block { margin: 20px 0; }
+.gp-content .tldr-block .gp-conic-inner { border-radius: 10.5px; padding: 15px 18px; }
+.gp-content .gp-tldr-title { font-family: 'New Science', GreycliffCF, -apple-system, sans-serif;
+  font-size: 22px; line-height: 29px; font-weight: 600; color: #fff; margin: 0 0 8px;
+  display: flex; align-items: center; flex-wrap: wrap; }
+.gp-content .gp-tldr-icon { color: #FFC900; display: inline-flex; }
+.gp-content .gp-tldr-rt { display: inline-flex; align-items: center; gap: 8px; margin-left: 20px;
+  font-family: GreycliffCF, -apple-system, sans-serif; font-size: 14px; line-height: 20px;
+  font-weight: 500; color: #B2B2B2; }
+.gp-content .gp-tldr-rt-dot { width: 4px; height: 4px; border-radius: 50%; background: #B2B2B2; flex-shrink: 0; }
+.gp-content .tldr-block ul { margin: 0; padding: 0; list-style: none; }
+.gp-content .tldr-block ul li { display: flex; gap: 10px; margin: 0 0 8px; list-style: none; align-items: flex-start; }
+.gp-content .tldr-block ul li:last-child { margin-bottom: 0; }
+.gp-content .gp-tldr-bullet { color: #FFC900; font-weight: 700; font-size: 16px; line-height: 24px; flex-shrink: 0; }
+.gp-content .gp-tldr-text { color: #B2B2B2; font-size: 18px; line-height: 27px; }
+@media (max-width: 700px) {
+  .gp-content .tldr-block { padding: 16px; }
+  .gp-content .tldr-block ul li { gap: 9px; }
+  .gp-content .gp-tldr-title { font-size: 18px; line-height: 24px; }
+  .gp-content .gp-tldr-text { font-size: 16px; line-height: 24px; }}
+.gp-content .info-card { margin: 24px 0; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.gp-content .info-card.gp-check { display: block; background: #0D0D0D; border: 1px solid #29292B;
+  border-radius: 12px; padding: 16px 22px; }
+.gp-content .gp-check-row { display: flex; align-items: center; gap: 11px; margin: 8px 0; }
+.gp-content .gp-check-row span { color: #e5e7eb; font-size: 16px; font-weight: 500; }
+.gp-content .gp-cell { border: 1px solid #29292B; border-radius: 12px; padding: 20px; text-align: center; }
+.gp-content .gp-cell-value { font-family: 'New Science', GreycliffCF, -apple-system, sans-serif;
+  font-weight: 600; font-size: 22px; line-height: 29px; color: #FFC900; margin-bottom: 6px; overflow-wrap: break-word; }
+.gp-content .gp-cell-label { color: #B2B2B2; font-size: 16px; line-height: 24px; font-weight: 500; }
+@media (max-width: 700px) {
+  .gp-content .info-card { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .gp-content .gp-cell { padding: 14px 10px; }
+  .gp-content .gp-cell-value { font-size: 19px; line-height: 25px; }
+  .gp-content .gp-cell-label { font-size: 13px; line-height: 18px; }}
+@media (max-width: 400px) {
+  .gp-content .gp-cell-value { font-size: 17px; line-height: 23px; }
+  .gp-content .gp-cell-label { font-size: 12px; line-height: 16px; }}
+.gp-content .editor-note, .gp-content .highlight-box { border-radius: 12px;
+  padding: 18px 24px 18px 20px; margin: 24px 0; display: flex; gap: 16px; align-items: stretch; }
+.gp-content .editor-note { background: rgba(255,201,0,0.06); }
+.gp-content .highlight-box { background: rgba(255,255,255,0.04); }
+.gp-content .gp-note-bar { width: 4px; border-radius: 2px; background: #FFC900; flex-shrink: 0; }
+.gp-content .gp-note-eyebrow { color: #FFC900; font-size: 12px; line-height: 16px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; }
+.gp-content .editor-note p, .gp-content .highlight-box p { margin: 0; color: #fff; font-size: 18px; line-height: 27px; }
+@media (max-width: 700px) {
+  .gp-content .editor-note p, .gp-content .highlight-box p { font-size: 17px; line-height: 26px; }}
+.gp-content .cta-paketler, .gp-content .cta-oyunlar, .gp-content .cta-ubisoft,
+.gp-content .cta-compact { margin: 32px 0; }
+.gp-content .cta-end { margin: 40px 0 24px; }
+.gp-content .cta-paketler .gp-conic-inner, .gp-content .cta-oyunlar .gp-conic-inner,
+.gp-content .cta-ubisoft .gp-conic-inner,
+.gp-content .cta-end .gp-conic-inner, .gp-content .cta-compact .gp-conic-inner {
+  border-radius: 10.5px; padding: 20px; background: transparent; }
+.gp-content .gp-cta-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.gp-content .cta-end .gp-cta-eyebrow { margin-bottom: 24px; }
+.gp-content .gp-cta-eyebrow span { color: var(--gp-accent,#FFC900); font-size: 11px; line-height: 16px; font-weight: 700;
+  letter-spacing: 0.08em; display: inline-flex; align-items: center; }
+.gp-content .gp-cta-title { font-family: 'New Science', GreycliffCF, -apple-system, sans-serif;
+  font-weight: 600; font-size: 22px; line-height: 28px; color: #fff; margin-bottom: 8px; }
+.gp-content .cta-end .gp-cta-title { font-size: 24px; line-height: 30px; }
+.gp-content .gp-cta-desc { color: #B2B2B2; font-size: 16px; line-height: 20px; margin: 0 0 20px; max-width: 760px; }
+.gp-content .cta-end .gp-cta-desc { margin-bottom: 24px; }
+.gp-content .gp-cta-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.gp-content .gp-btn { display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 16px; border-radius: 8px; font-weight: 700; font-size: 16px; line-height: 20px;
+  text-decoration: none; white-space: normal; text-wrap: balance; box-sizing: border-box; }
+.gp-content .gp-btn-solid { background: var(--gp-accent,#FFC900); color: var(--gp-btn-fg,#131313); }
+.gp-content .gp-btn-outline { background: transparent; border: 1px solid var(--gp-accent,#FFC900);
+  color: var(--gp-accent,#FFC900); }
+.gp-content a.gp-btn-solid:hover { color: var(--gp-btn-fg,#131313); }
+.gp-content a.gp-btn-outline:hover { color: var(--gp-accent,#FFC900); }
+.gp-content .gp-btn-lg { padding: 14px 24px; font-weight: 600; }
+@media (max-width: 700px) {
+  .gp-content .cta-paketler .gp-conic-inner, .gp-content .cta-oyunlar .gp-conic-inner,
+  .gp-content .cta-ubisoft .gp-conic-inner,
+  .gp-content .cta-end .gp-conic-inner, .gp-content .cta-compact .gp-conic-inner { padding: 14px; }
+  .gp-content .gp-cta-eyebrow, .gp-content .cta-end .gp-cta-eyebrow { margin-bottom: 8px; }
+  .gp-content .gp-cta-title { font-size: 19px; line-height: 25px; margin-bottom: 4px; }
+  .gp-content .cta-end .gp-cta-title { font-size: 20px; line-height: 26px; }
+  .gp-content .gp-cta-desc, .gp-content .cta-end .gp-cta-desc { margin-bottom: 12px; }
+  .gp-content .gp-btn { padding-top: 9px; padding-bottom: 9px; }
+  .gp-content .cta-paketler .gp-btn, .gp-content .cta-oyunlar .gp-btn,
+  .gp-content .cta-ubisoft .gp-btn { flex: 1 1 100%; }
+
+  .gp-content .gp-cta-actions { gap: 8px; flex-wrap: nowrap; }
+  .gp-content .gp-cta-actions .gp-btn { flex: 1 1 0; min-width: 0;
+    padding-left: 8px; padding-right: 8px; font-size: 12.5px; line-height: 1.2; text-align: center; }}
+.gp-content { color: #B2B2B2; font-family: GreycliffCF, -apple-system, 'system-ui', 'Segoe UI', Roboto, sans-serif;
+  font-size: 20px; line-height: 24px; }
+@media (max-width: 700px) { .gp-content { font-size: 16px; line-height: 24px; }}
+.gp-content strong { font-weight: 700; }
+.gp-content p { color: #B2B2B2; }
+.gp-content h1, .gp-content h2, .gp-content h3, .gp-content h4 { color: #fff;
+
+  font-family: 'New Science', GreycliffCF, -apple-system, sans-serif; font-weight: 600; }
+.gp-content a { color: #FFC900; text-decoration: none; }
+.gp-content a:hover { color: #ffd94d; text-decoration: none; }
+.gp-content { font-size: 16px; line-height: 24px; }
+.gp-content p { font-size: 16px; line-height: 24px; color: #B2B2B2; }
+.gp-content h1 { font-size: 40px; line-height: 48px; color: #fff; }
+.gp-content h2 { font-size: 32px; line-height: 40px; color: #fff; }
+.gp-content h3 { font-size: 28px; line-height: 36px; color: #fff; }
+.gp-content h4 { font-size: 24px; line-height: 32px; color: #fff; }
+.gp-content .gp-tldr-title,
+.gp-content .floating-toc > summary { font-size: 24px; line-height: 32px; color: #fff; }
+.gp-content .gp-ct-title { font-size: 28px; line-height: 36px; }
+.gp-content .gp-cta-title, .gp-content .cta-end .gp-cta-title { font-size: 32px; line-height: 40px; }
+.gp-content .gp-cell-value { font-size: 28px; line-height: 36px; color: #FFC900; }
+.gp-content .gp-cell-label { font-size: 16px; line-height: 24px; font-weight: 500; color: #B2B2B2; }
+.gp-content .gp-tldr-text { font-size: 16px; line-height: 24px; color: #B2B2B2; }
+.gp-content .gp-tldr-bullet { font-size: 16px; line-height: 24px; font-weight: 700; color: #FFC900; }
+.gp-content .gp-list li { font-size: 16px; line-height: 24px; }
+.gp-content .editor-note p, .gp-content .highlight-box p { font-size: 16px; line-height: 22px; color: #fff; }
+.gp-content .table-wrap th { font-size: 16px; line-height: 20px; font-weight: 700; color: #FFC900;
+  text-align: left; }
+.gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(2),
+.gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(2) { text-align: left; }
+.gp-content .table-wrap td .gp-genres { justify-content: flex-start; }
+.gp-content .table-wrap td { font-size: 16px; line-height: 20px; color: #B2B2B2; }
+.gp-content .gp-tg-link, .gp-content .table-wrap td:first-child { font-size: 16px; line-height: 20px;
+  font-weight: 400; color: #fff; }
+.gp-content .gp-cta-desc, .gp-content .gp-cta-compact-tagline { font-size: 16px; line-height: 20px; }
+.gp-content .gp-btn { font-size: 16px; line-height: 20px; font-weight: 700; }
+.gp-content .gp-cta-eyebrow span, .gp-content .gp-note-eyebrow, .gp-content .gp-pw-tag
+  { font-size: 12px; line-height: 16px; font-weight: 700; color: var(--gp-accent,#FFC900); }
+.gp-content .gp-genre, .gp-content .gp-badge, .gp-content .gp-game-badge {
+  font-size: 12px; line-height: 16px; font-weight: 700; }
+.gp-content .gp-pw-date, .gp-content .gp-tldr-rt { font-size: 12px; line-height: 16px;
+  font-weight: 500; color: #B2B2B2; }
+.gp-content .gp-tg-meta, .gp-content .gp-meta, .gp-content .gp-game-meta {
+  font-size: 12px; line-height: 16px; color: #B2B2B2; }
+.gp-content .table-wrap tbody tr:hover > td { background: rgba(255,201,0,0.12); }
+.gp-content .table-wrap tbody tr:hover > td:first-child,
+.gp-content .table-wrap tbody tr:hover > td:first-child .gp-tg-link { color: #FFC900; }
+@media (max-width: 700px) {
+  .gp-content h1 { font-size: 24px; line-height: 32px; }
+  .gp-content h2 { font-size: 21px; line-height: 28px; }
+  .gp-content h3 { font-size: 19px; line-height: 26px; }
+  .gp-content h4 { font-size: 17px; line-height: 24px; }
+  .gp-content .gp-ct-title { font-size: 19px; line-height: 26px; }
+
+  .gp-content .gp-tldr-title { font-size: 20px; line-height: 24px; }
+  .gp-content .gp-cta-title, .gp-content .cta-end .gp-cta-title { font-size: 19px; line-height: 25px; }
+  .gp-content .gp-cell-value { font-size: 17px; line-height: 23px; }
+  .gp-content .gp-cell-label { font-size: 13px; line-height: 17px; }
+  .gp-content p, .gp-content .gp-tldr-text, .gp-content .gp-list li { font-size: 16px; line-height: 24px; }
+  .gp-content .editor-note p, .gp-content .highlight-box p { font-size: 15px; line-height: 22px; }
+  .gp-content .table-wrap th, .gp-content .table-wrap td,
+  .gp-content .gp-tg-link, .gp-content .table-wrap td:first-child,
+  .gp-content .gp-cta-desc, .gp-content .gp-cta-compact-tagline,
+  .gp-content .gp-btn, .gp-content .gp-pw-more, .gp-content .gp-name { font-size: 16px; line-height: 20px; }
+  .gp-content .gp-genre, .gp-content .gp-badge, .gp-content .gp-game-badge,
+  .gp-content .gp-toc-num, .gp-content .gp-pw-date, .gp-content .gp-tldr-rt,
+  .gp-content .floating-toc ul li a, .gp-content .gp-tg-meta, .gp-content .gp-meta,
+  .gp-content .gp-game-meta { font-size: 12px; line-height: 16px; }
+
+  .gp-content .table-wrap > div.gp-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain; }
+  .gp-content .table-wrap table { table-layout: auto; width: auto; min-width: 100%; }
+  .gp-content .table-wrap th, .gp-content .table-wrap td { padding: 12px 14px; white-space: nowrap; }
+  .gp-content .table-wrap td:last-child a { white-space: nowrap; }
+  .gp-content .table-wrap .gp-genres { flex-wrap: nowrap; }
+  .gp-content .gp-table-hint { display: block; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(2),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(2),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(3),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(4) { width: auto; }
+
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(2),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(2),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(3),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) ~ :nth-child(4) {
+    font-size: 16px; line-height: 20px; }
+  .gp-content .table-wrap td:first-child div,
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) div,
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) div { font-size: 12px; line-height: 16px; }
+  .gp-content .table-wrap td .gp-genre { font-size: 12px !important; line-height: 16px !important;
+    padding: 4px 10px !important; }
+  .gp-content .gp-cell > div:last-child { font-size: 13px; line-height: 17px; }
+  .gp-content .gp-cell > div:first-child { font-size: 17px; line-height: 23px; }}
+@media (max-width: 400px) {
+  .gp-content .table-wrap th, .gp-content .table-wrap td,
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) ~ :nth-child(3),
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) { font-size: 16px; line-height: 20px; }
+  .gp-content .table-wrap tr > :first-child:nth-last-child(3) div,
+  .gp-content .table-wrap tr > :first-child:nth-last-child(4) div { font-size: 12px; line-height: 16px; }
+  .gp-content .table-wrap td .gp-genre { font-size: 12px !important; padding: 4px 10px !important; }
+  .gp-content .gp-cell > div:last-child { font-size: 13px; line-height: 17px; }
+  .gp-content .gp-cell > div:first-child { font-size: 17px; line-height: 23px; }}
+.gp-content .gp-cell { display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; }
+.gp-content .gp-cell > * { width: 100%; }
+.gp-content .gp-cell-value { font-size: 27px; line-height: 35px; }
+.gp-content .gp-table-hint { display: none; font-size: 12px; line-height: 16px; font-weight: 500;
+  color: #B2B2B2; padding: 0; margin: 24px 0 8px; }
+@media (max-width: 700px) {
+  .gp-content .gp-table-hint { display: block; }
+  .gp-content .gp-table-hint.gp-hint-off { display: none; }
+  .gp-content .gp-table-hint:not(.gp-hint-off) + .table-wrap { margin-top: 0; }}
+
+.gp-content .gp-conic { position: relative; border-radius: 12px; padding: 1px;
+  background: #29292B; animation: none; }
+.gp-content .gp-conic::before { content: none; }
+.gp-content .gp-conic-inner { background: transparent; }
+.gp-content .gp-cta-dynamic .gp-conic-inner { padding: 20px 24px; }
+
+</style>
+
+<h2>En İyi FPS Oyunları: GeForce NOW ile Bulutta Oyna (2026)</h2>
+<p>FPS oyunları, oyuncuya karakterin gözünden bir bakış açısı sunan, refleks ve nişan alma becerisini ön plana çıkaran bir oyun türüdür. Açılımı "First Person Shooter" yani "birinci şahıs nişancı" olan bu tür; rekabetçi taktiksel çatışmalardan hikâye odaklı tek oyunculu maceralara, hızlı tempolu klasik boomer shooter'lardan modern battle royale arenalarına kadar çok geniş bir alt tür yelpazesi barındırır. <a href="https://gameplus.com.tr/gfn">NVIDIA RTX destekli bulut sunucuları</a> üzerinde çalışan GeForce NOW GAME+ kütüphanesinde iki yüzden fazla FPS oyunu yer alıyor.</p>
+<div class="tldr-block gp-conic" style="--gp-glow:#FFC900;">
+<div class="gp-conic-inner">
+  <div class="gp-tldr-title"><span class="gp-tldr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:8px;flex-shrink:0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span>Hızlı Özet</div>
+  <ul>
+    <li><span class="gp-tldr-bullet">&bull;</span><span class="gp-tldr-text"><svg fill="none" height="16" stroke="#76b900" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Kütüphane:</strong> 200+ FPS oyunu; rekabetçi, kampanya odaklı, battle royale dahil.</span></span></li>
+    <li><span class="gp-tldr-bullet">&bull;</span><span class="gp-tldr-text"><svg fill="none" height="16" stroke="#76b900" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Öne Çıkan Yapımlar:</strong> <em>Counter-Strike 2</em>, <em>Apex Legends</em>, <em>Battlefield 2042</em>, <em>Rainbow Six Siege X</em>.</span></span></li>
+    <li><span class="gp-tldr-bullet">&bull;</span><span class="gp-tldr-text"><svg fill="none" height="16" stroke="#76b900" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Alt Türler:</strong> Taktiksel, Battle Royale, Açık Dünya FPS, Kampanya.</span></span></li>
+    <li><span class="gp-tldr-bullet">&bull;</span><span class="gp-tldr-text"><svg fill="none" height="16" stroke="#76b900" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Gecikme:</strong> Türkiye sunucularıyla 40 ms civarı; rekabetçi maçlar için kritik.</span></span></li>
+  </ul>
+</div>
+</div>
+
+<p>Türkiye'deki GAME+ sunucuları, FPS türünün en kritik teknik gereksinimi olan düşük girdi gecikmesini coğrafi yakınlık sayesinde minimumda tutar. Counter-Strike 2 ve Apex Legends gibi rekabetçi yapımlarda milisaniye düzeyindeki gecikme farkı doğrudan karşılaşma sonucunu belirler; bulut altyapısı bu farkı kapatır ve seni güçlü bir bilgisayara sahip olmadan üst düzey deneyime taşır.</p>
+<div class="info-card">
+  <div class="gp-cell">
+    <div class="gp-cell-value">200+ Oyun</div>
+    <div class="gp-cell-label">Kütüphane Boyutu</div>
+  </div>
+  <div class="gp-cell">
+    <div class="gp-cell-value">Counter-Strike 2</div>
+    <div class="gp-cell-label">Öne Çıkan Yapım</div>
+  </div>
+  <div class="gp-cell">
+    <div class="gp-cell-value">4 Tip</div>
+    <div class="gp-cell-label">Alt Tür Sayısı</div>
+  </div>
+  <div class="gp-cell">
+    <div class="gp-cell-value">40 ms</div>
+    <div class="gp-cell-label">Düşük Gecikme</div>
+  </div>
+</div>
+
+<h3>GeForce NOW Türkiye'deki En Popüler FPS Oyunları</h3>
+<p>Aşağıdaki tablo, GAME+ kütüphanesindeki en çok tercih edilen FPS oyunlarını alt türlerine göre listeliyor. Tablodaki oyunların tamamı Steam, Epic Games Store, EA App veya Xbox kütüphanendeki mevcut lisanslarla doğrudan oynanabilir; GeForce NOW oyunları sağlamaz, yalnızca bulut sunucularında çalıştırır.</p>
+<div class="gp-table-hint">Tabloyu yana kaydır &rarr;</div>
+<div class="table-wrap gp-table">
+  <div class="gp-table-scroll">
+    <table>
+      <thead><tr><th>Oyun</th><th>Alt Tür</th><th>Erişim Modeli</th><th>Öne Çıkan Özellik</th></tr></thead>
+      <tbody>
+<tr><td><strong>Counter-Strike 2</strong></td><td>Taktiksel FPS</td><td>Oynaması ücretsiz</td><td>Source 2 motoru, sis bulutu fiziği ve aktif e-spor sahnesi</td></tr>
+<tr><td><strong>Call of Duty: Modern Warfare III</strong></td><td>Aksiyon FPS</td><td>Ücretli kütüphane</td><td>Yüksek tempolu kampanya ve modüler çok oyunculu sistem</td></tr>
+<tr><td><strong>Battlefield 6</strong></td><td>Büyük Ölçekli Savaş FPS</td><td>Ücretli kütüphane</td><td>128 oyuncuya kadar muharebeler, yıkılabilir harita unsurları</td></tr>
+<tr><td><strong>Apex Legends</strong></td><td>Battle Royale FPS</td><td>Oynaması ücretsiz</td><td>Karakter yetenekleri, hızlı hareket sistemi ve sezonluk meta güncellemeleri</td></tr>
+<tr><td><strong>Tom Clancy's Rainbow Six Siege X</strong></td><td>Taktiksel FPS</td><td>Ücretli kütüphane</td><td>Yıkılabilir çevre, operatör yetenek sistemi ve yüksek koordinasyon talebi</td></tr>
+<tr><td><strong>DOOM Eternal</strong></td><td>Klasik Hızlı FPS</td><td>Ücretli kütüphane</td><td>Saldırgan oynanış mekaniği ve "Glory Kill" ödül sistemi</td></tr>
+<tr><td><strong>DOOM: The Dark Ages</strong></td><td>Klasik Hızlı FPS</td><td>Ücretli kütüphane</td><td>Serinin orta çağ atmosferli yeni bölümü, kalkan mekaniği</td></tr>
+<tr><td><strong>Destiny 2</strong></td><td>FPS / MMO</td><td>Oynaması ücretsiz (temel)</td><td>PvE ve PvP modları, sezonluk içerik ve uzay temalı evren</td></tr>
+<tr><td><strong>THE FINALS</strong></td><td>FPS / Takım Savaşı</td><td>Oynaması ücretsiz</td><td>Tamamen yıkılabilir harita, gösteri programı formatı</td></tr>
+<tr><td><strong>Halo Infinite</strong></td><td>Hikâye + Çok Oyunculu FPS</td><td>Ücretli kampanya, ücretsiz multiplayer</td><td>Klasik Halo formülü ve açık dünya kampanya</td></tr>
+<tr><td><strong>Hunt: Showdown 1896</strong></td><td>Extraction FPS</td><td>Ücretli kütüphane</td><td>Gotik atmosfer, PvE+PvP karışımı ve dönem silahları</td></tr>
+<tr><td><strong>S.T.A.L.K.E.R. 2: Heart of Chornobyl</strong></td><td>Hikâye Odaklı FPS</td><td>Ücretli kütüphane</td><td>Çernobil sonrası açık dünya, hayatta kalma mekaniği</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<p>Listedeki oyunlara ek olarak Far Cry 6, Borderlands 4, Wolfenstein: The New Order, Atomic Heart, Alan Wake 2, Half-Life 2, ULTRAKILL, ARC Raiders ve Sniper Elite 5 gibi türün önde gelen yapımları da kütüphanede yer alıyor. Liste düzenli güncelleniyor.</p>
+<div class="editor-note">
+  <div class="gp-note-bar"></div>
+  <div>
+    <div class="gp-note-eyebrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:8px;flex-shrink:0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>GAME+ EDİTÖR NOTU</div>
+    <p>Counter-Strike 2 ranked maçlarında her milisaniye önemli. Türkiye sunucusu olduğu için yurt dışı sunucularla oynayan rakiplere göre net bir avantaj sağlar.</p>
+  </div>
+</div>
+
+<h3>FPS Oyunlarını Bulutta Oynamanın Avantajları</h3>
+<p>FPS türü, oyun dünyasının teknik açıdan en talepkar kategorisidir. Kare hızı, girdi gecikmesi ve görsel netlik bu türde doğrudan oyuncu performansını etkiler. Counter-Strike 2'de bir saniyede 240 kare, Apex Legends'ta düşük gecikme, DOOM Eternal'da yüksek çözünürlüklü hızlı sahne geçişleri talep edilir. GeForce NOW GAME+ bu gereksinimlerin tamamını bulut tarafında karşılar:</p>
+<ul class="gp-list">
+<li><span class="gp-list-dot"></span><span><strong>Donanım sınırı yok.</strong> Battlefield 6'yı en yüksek ayarlarla, S.T.A.L.K.E.R. 2'yi ray tracing açıkken 60 FPS'te oynamak normalde üst segment bir ekran kartı gerektirir. Ultimate paketteki GeForce RTX 4080 seviyesi donanım, DLSS 3 ve NVIDIA Reflex teknolojileriyle birlikte tüm bu performansı bulut üzerinden sağlar.</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Düşük girdi gecikmesi.</strong> Rekabetçi FPS oyunlarında milisaniye düzeyindeki girdi gecikmesi atış sonucunu doğrudan değiştirir. GAME+ Türkiye sunucuları coğrafi yakınlık sayesinde gecikmeyi minimumda tutar; Ultimate paketin NVIDIA Reflex desteği bu avantajı daha da artırır.</span></li>
+<li><span class="gp-list-dot"></span><span><strong>240 FPS'e kadar destek.</strong> Counter-Strike 2 ve Apex Legends gibi rekabetçi yapımlarda yüksek kare hızı görüş netliği ve tepki süresi açısından doğrudan avantaj sağlar. Ultimate paketin 240 FPS'e kadar destek sunması, kendi 60 Hz ekranınla bile bulut tarafında daha akıcı bir oyun deneyimi anlamına gelir.</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Türkiye sunucularıyla coğrafi avantaj.</strong> GAME+ Türkiye sunucuları, Avrupa veya Amerika sunucularına bağlı uluslararası GeForce NOW kullanıcılarına göre yerel oyuncular için çok daha düşük ping sağlar.</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Anında oynama, indirme beklentisi yok.</strong> Battlefield 6 yaklaşık 80 GB, Call of Duty: Modern Warfare III 100 GB üzeri yer kaplar. GeForce NOW'da oyun sunucuda zaten yüklü olduğu için saatlerce indirme beklemen gerekmez.</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Kütüphane senkronizasyonu.</strong> Steam, Epic Games Store, EA App ve Xbox kütüphanelerindeki FPS oyunlarını yeniden satın almana gerek yok. Hesabını GeForce NOW'a bağladığında uyumlu oyunların tamamına anında erişebilirsin.</span></li>
+</ul>
+<div class="cta-paketler gp-cta-dynamic gp-conic">
+<div class="gp-conic-inner">
+  <div class="gp-cta-eyebrow"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;margin-right:6px;vertical-align:-2px;"><path d="M12 1.5c.3 4.6 2.4 7.4 6.9 8.2.7.1.7 1.1 0 1.2-4.5.8-6.6 3.6-6.9 8.2 0 .8-1.1.8-1.2 0-.3-4.6-2.4-7.4-6.9-8.2-.7-.1-.7-1.1 0-1.2 4.5-.8 6.6-3.6 6.9-8.2.1-.8 1.2-.8 1.2 0z"/></svg>GAME+ &bull; BULUT OYUN</span></div>
+  <div class="gp-cta-title">Counter-Strike 2 ranked maçlarında zamanı yakala.</div>
+  <p class="gp-cta-desc"></p>
+  <a class="gp-btn gp-btn-solid" id="category-dynamic-cta" href="https://gameplus.com.tr/geforce-now-nedir">GeForce NOW Nasıl Çalışır? &rarr;</a>
+</div>
+</div>
+
+<div class="highlight-box">
+  <div class="gp-note-bar"></div>
+  <div>
+    <div class="gp-note-eyebrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;margin-right:8px;flex-shrink:0;"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14a5 5 0 1 0-6.18 0c.66.49 1.09 1.27 1.09 2.1V17h4v-.9c0-.83.43-1.61 1.09-2.1z"/></svg>Hatırlatma</div>
+    <p>Hatırlatma GeForce NOW oyun satmaz; mevcut Steam, Epic Games Store, Xbox, EA App veya Ubisoft Connect kütüphanendeki lisansları bulut üzerinden çalıştırır. Bu kategoride yer alan bir yapımı oynamak için ilgili platformda oyuna sahip olman gerekir.</p>
+  </div>
+</div>
+
+<h3>GeForce NOW'da FPS Oyunları Nasıl Oynanır?</h3>
+<p>FPS türüne GeForce NOW üzerinden başlamak birkaç basit adımdan oluşur:</p>
+<ol>
+  <li><strong>Uygulamayı indir.</strong> GeForce NOW uygulamasını bilgisayarına, telefonuna, tabletine veya akıllı TV'ne yükle.</li>
+  <li><strong>Oyun platformunu bağla.</strong> Steam, Epic Games Store, EA App veya Xbox hesabını GeForce NOW hesabına bağla.</li>
+  <li><strong><a href="https://gameplus.com.tr/gfn/oyunlar">GeForce NOW oyunlar</a> listesinden seçim yap.</strong> İki yüzden fazla FPS oyunu arasından istediğini bul ve "Oyna" düğmesine tıkla.</li>
+  <li><strong>Oynamaya başla.</strong> Oyun NVIDIA'nın bulut sunucularında başlatılır ve cihazına gerçek zamanlı aktarılır. Bilgisayarına hiçbir şey indirmene gerek yok.</li>
+</ol>
+<p>Bulut kayıt senkronizasyonu sayesinde bir cihazda bıraktığın yerden başka bir cihazda devam edebilirsin. Sezon güncellemeleri ve yamaları sunucuda otomatik uygulanır; oyun her zaman güncel sürümde başlatılır.</p>
+<h3>Hangi FPS Alt Türü Sana Uygun?</h3>
+<p>FPS oyunları altı temel alt tür altında toplanır. Her biri farklı bir beceri seti ve farklı bir tempo gerektirir.</p>
+<h4>Rekabetçi ve Taktiksel FPS Oyunları</h4>
+<p>Bu alt tür hassas nişan, takım koordinasyonu ve harita bilgisini ön plana çıkarır. Genellikle 5v5 formatında oynanır; her tur kısa ama yüksek yoğunlukludur. Yetenek bazlı eşleştirme sistemleri ve aktif e-spor sahnesi bu türün belirleyici özellikleri arasında yer alır.</p>
+<p>Counter-Strike 2, Valve'ın Source 2 motoruyla yenilediği serinin son halkasıdır ve dünyanın en geniş rekabetçi FPS topluluğuna sahiptir. Tom Clancy's Rainbow Six Siege X, yıkılabilir çevre ve operatör yetenekleriyle taktiksel derinliği zirveye taşır. Insurgency: Sandstorm ise gerçekçi silah mekaniği ve düşük TTK (time to kill) değeriyle hardcore oyunculara hitap eder.</p>
+<p><strong>Öne çıkan rekabetçi ve taktiksel FPS oyunları:</strong></p>
+<ul class="gp-list">
+<li><span class="gp-list-dot"></span><span>Counter-Strike 2 (5v5 taktiksel, oynaması ücretsiz)</span></li>
+<li><span class="gp-list-dot"></span><span>Tom Clancy's Rainbow Six Siege X (yıkılabilir çevre, operatör yetenekleri)</span></li>
+<li><span class="gp-list-dot"></span><span>Insurgency: Sandstorm (gerçekçi silah mekaniği)</span></li>
+<li><span class="gp-list-dot"></span><span>Squad (askeri simülasyon temelli takım oynanışı)</span></li>
+</ul>
+<h4>Battle Royale FPS Oyunları</h4>
+<p>Battle royale alt türünde büyük bir haritada onlarca veya yüzlerce oyuncuyla son kalan kişi ya da takım olmaya çalışırsın. Harita zamanla daralır ve karşılaşmalar yoğunlaşır. Refleksin yanı sıra pozisyon alma, kaynak yönetimi ve harita bilgisi belirleyici rol oynar. Aksiyon ağırlıklı oyun türlerine ilgi duyuyorsan <a href="https://gameplus.com.tr/gfn/oyunlar/aksiyon">aksiyon oyunları</a> kategorisinde benzer tempoda yapımlar da bulabilirsin.</p>
+<p>Apex Legends karakter yetenekleri ve hızlı hareket sistemiyle battle royale formülüne taktiksel bir derinlik katar. Call of Duty Warzone serinin hızlı silah mekaniğini büyük ölçekli haritalarla birleştirir. THE FINALS ise yıkılabilir harita unsurlarıyla türün sınırlarını yeniden çizer.</p>
+<p><strong>Öne çıkan battle royale FPS oyunları:</strong></p>
+<ul class="gp-list">
+<li><span class="gp-list-dot"></span><span>Apex Legends (karakter odaklı battle royale, oynaması ücretsiz)</span></li>
+<li><span class="gp-list-dot"></span><span>THE FINALS (yıkılabilir harita, takım savaşı)</span></li>
+<li><span class="gp-list-dot"></span><span>ARC Raiders (extraction shooter / battle royale hibrit)</span></li>
+</ul>
+<h4>Hikâye Odaklı Tek Oyunculu FPS</h4>
+<p>Hikâye odaklı FPS oyunları sinematik anlatımı yüksek tempolu çatışmayla birleştirir. Bu alt türde oyun süresi 15-40 saat aralığında değişir ve karakter gelişimi, dünya inşası ile bulmaca çözme aksiyon mekanikleri kadar önemlidir.</p>
+<p>S.T.A.L.K.E.R. 2: Heart of Chornobyl, Çernobil sonrası açık dünya temasıyla hayatta kalma ve nişancılığı birleştirir. Far Cry 6 geniş açık dünyada gerilla mücadelesini ön plana çıkarır. Wolfenstein: The New Order ve devam yapımları alternatif tarih anlatımıyla klasik tek oyunculu deneyimi sürdürür. Atomic Heart Sovyet ütopyası temasında benzersiz bir atmosfer sunar.</p>
+<p><strong>Öne çıkan hikâye odaklı FPS oyunları:</strong></p>
+<ul class="gp-list">
+<li><span class="gp-list-dot"></span><span>S.T.A.L.K.E.R. 2: Heart of Chornobyl (açık dünya hayatta kalma)</span></li>
+<li><span class="gp-list-dot"></span><span>Far Cry 6 (gerilla teması, geniş açık dünya)</span></li>
+<li><span class="gp-list-dot"></span><span>Wolfenstein: The New Order (alternatif tarih anlatımı)</span></li>
+<li><span class="gp-list-dot"></span><span>Atomic Heart (Sovyet ütopyası, alternatif atmosfer)</span></li>
+<li><span class="gp-list-dot"></span><span>Metro Exodus (post-apokaliptik metro hikâyesi)</span></li>
+<li><span class="gp-list-dot"></span><span>Half-Life 2 (türün modern temelini atan klasik)</span></li>
+</ul>
+<h4>Klasik Hızlı ve Eski FPS Oyunları</h4>
+<p>"Boomer shooter" olarak da bilinen bu alt tür, 1990'ların hızlı tempolu FPS formülünü modern grafiklerle yeniden yorumlar. Yüksek hareket hızı, agresif düşman tasarımı ve sürekli silah değişimi türün temelini oluşturur. Eski FPS oyunları arayanlar için bu kategori, hem nostaljik klasikleri hem de onlara saygı duruşunda bulunan modern yapımları bir araya getirir.</p>
+<p>DOOM Eternal ve DOOM: The Dark Ages, id Software'in saldırgan oynanış formülünün en yeni temsilcileridir. ULTRAKILL bağımsız bir yapım olarak boomer shooter ruhunu modern bir motorla yeniden inşa eder. Half-Life ve Quake serileri ise türün kurucu yapımlarıdır ve hâlâ aktif olarak oynanır.</p>
+<p><strong>Öne çıkan klasik ve hızlı tempolu FPS oyunları:</strong></p>
+<ul class="gp-list">
+<li><span class="gp-list-dot"></span><span>DOOM Eternal (modern hızlı FPS referansı)</span></li>
+<li><span class="gp-list-dot"></span><span>DOOM: The Dark Ages (orta çağ atmosferi)</span></li>
+<li><span class="gp-list-dot"></span><span>ULTRAKILL (bağımsız boomer shooter)</span></li>
+<li><span class="gp-list-dot"></span><span>Quake / Quake II (türün kurucu yapımları)</span></li>
+<li><span class="gp-list-dot"></span><span>Half-Life / Half-Life 2 (modern FPS'in atası)</span></li>
+<li><span class="gp-list-dot"></span><span>AMID EVIL / SPRAWL / Selaco (yeni nesil boomer shooter)</span></li>
+</ul>
+<h4>Co-op ve PvE FPS Oyunları</h4>
+<p>Bu alt tür çevrimiçi takım arkadaşlarınla bir araya gelip yapay zekâ kontrolündeki düşmanlara karşı görev yapmaya odaklanır. Looter shooter mekaniklerini, sezonluk içerikleri ve uzun vadeli karakter gelişimini bir araya getirir.</p>
+<p>Destiny 2, Bungie'nin PvE ve PvP modlarını bir arada sunan melez FPS/MMO deneyimidir; temel sürüm oynaması ücretsizdir. Borderlands 4 looter shooter formülünü mizahi anlatımla birleştirir. Hunt: Showdown 1896 ise extraction shooter alt türüyle PvE ve PvP'yi gergin bir gotik atmosferde harmanlar.</p>
+<p>Bu tür çok oyunculu çevrimiçi dünyalarla da kesişir. <a href="https://gameplus.com.tr/gfn/oyunlar/mmo">MMO oyunlar</a> kategorisinde benzer kalıcı evrenler içeren yapımları da bulabilirsin.</p>
+<h4>Çok Oyunculu Online FPS Oyunları</h4>
+<p>Online FPS oyunları kısa karşılaşmaları, hızlı eşleştirmeyi ve sezonluk meta değişiklikleri ön plana çıkarır. Hero shooter ve sınıf tabanlı FPS yapımları bu kategoride yoğunlaşır. Birden fazla genre'ye uyum sağlayan rekabetçi takım oyunlarına ilgi duyuyorsan <a href="https://gameplus.com.tr/gfn/oyunlar/moba">MOBA oyunları</a> kategorisi de benzer takım dinamiklerini farklı bir perspektifle sunar.</p>
+<p>Overwatch rol bazlı 5v5 oynanışıyla hero shooter alt türünün referansıdır. Splitgate portal mekaniklerini klasik FPS oynanışıyla birleştirir. Team Fortress 2 ise dokuz farklı sınıfıyla yıllardır aktif kalan klasik bir çok oyunculu yapımdır.</p>
+<h3>Ücretsiz FPS Oyunları</h3>
+<p>FPS türüne maliyet ayırmadan başlamak istiyorsan GeForce NOW kütüphanesindeki oynaması ücretsiz seçenekler güçlü bir başlangıç noktası sunar:</p>
+<ul class="gp-list">
+<li><span class="gp-list-dot"></span><span><strong>Counter-Strike 2</strong> (Steam) - Türün taktiksel referansı, ücretsiz tam erişim</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Apex Legends</strong> (Steam, EA App) - Battle royale klasiği</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Destiny 2</strong> temel sürüm (Steam) - PvE ve PvP içerik</span></li>
+<li><span class="gp-list-dot"></span><span><strong>THE FINALS</strong> (Steam) - Yıkılabilir harita çok oyunculu</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Overwatch</strong> (Battle.net üzerinden Xbox) - Hero shooter</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Team Fortress 2</strong> (Steam) - Sınıf tabanlı klasik</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Splitgate</strong> (Steam) - Portal mekaniği</span></li>
+<li><span class="gp-list-dot"></span><span><strong>Warframe</strong> (Steam) - Co-op TPS</span></li>
+</ul>
+<p>Bu oyunları oynamak için ilgili platformda ücretsiz lisansı edinmen ve GeForce NOW hesabını o platforma bağlaman yeterlidir. Farklı türlerde ücretsiz seçenekler için <a href="https://gameplus.com.tr/gfn/oyunlar/oynamasi-ucretsiz">oynaması ücretsiz oyunlar</a> kategorisini de inceleyebilirsin.</p>
+<h3>Teknik Ayarlar ve Sistem Önerileri</h3>
+<p>FPS oyunlarında teknik ayarlar doğrudan oyuncu performansını etkiler. Doğru yapılandırma rekabetçi modlarda belirgin bir avantaj sağlar:</p>
+<div class="gp-table-hint">Tabloyu yana kaydır &rarr;</div>
+<div class="table-wrap gp-table">
+  <div class="gp-table-scroll">
+    <table>
+      <thead><tr><th>Konu</th><th>Öneri</th></tr></thead>
+      <tbody>
+<tr><td><strong>İnternet hızı</strong></td><td>720p/60 FPS için en az 15 Mbps, 1080p/60 FPS için en az 25 Mbps. Rekabetçi FPS için 40 Mbps üzeri önerilir. Gecikme 80 ms'nin altında olmalı, 40 ms altı idealdir.</td></tr>
+<tr><td><strong>Bağlantı türü</strong></td><td>Rekabetçi FPS oyunlarında kablolu Ethernet tercih edilmeli. Tek oyunculu hikâye odaklı yapımlarda 5 GHz Wi-Fi yeterlidir.</td></tr>
+<tr><td><strong>Kontrol seçenekleri</strong></td><td>Rekabetçi FPS oyunlarında fare ve klavye hassas nişan avantajı sağlar. Konsol bazlı veya hikâye odaklı yapımlarda gamepad konforlu bir alternatiftir. Xbox, PlayStation DualSense, Logitech, SteelSeries ve Razer gamepad'leri desteklenir.</td></tr>
+<tr><td><strong>Görüntü ayarları</strong></td><td>GeForce NOW ayarlarından "Rekabetçi mod" seçeneği aktifleştirilebilir. Bu mod girdi gecikmesini düşürür ve kare hızını önceliklendirir; Counter-Strike 2 ve Apex Legends gibi yapımlarda belirgin fark yaratır.</td></tr>
+<tr><td><strong>Ses ayarları</strong></td><td>FPS oyunlarında stereo kulaklık kullanımı düşman ayak seslerinin yönünü belirlemeye yardımcı olur. Ultimate pakette 7.1 surround ses desteği mevcuttur.</td></tr>
+<tr><td><strong>NVIDIA Reflex</strong></td><td>Ultimate paketin NVIDIA Reflex desteği, rekabetçi FPS oyunlarında milisaniye düzeyinde gecikme azaltması sağlar. Counter-Strike 2, Apex Legends ve Overwatch bu teknolojiden doğrudan faydalanır.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Performance ve Ultimate Karşılaştırması</h3>
+<p>FPS türünde paket seçimi oynadığın alt türe ve hedefine göre değişir. <a href="https://gameplus.com.tr/gfn/paketler">GeForce NOW fiyat</a> seçeneklerini aşağıdaki karşılaştırmayla inceleyebilirsin:</p>
+<div class="gp-table-hint">Tabloyu yana kaydır &rarr;</div>
+<div class="table-wrap gp-table">
+  <div class="gp-table-scroll">
+    <table>
+      <thead><tr><th>Özellik</th><th>Performance</th><th>Ultimate</th></tr></thead>
+      <tbody>
+<tr><td><strong>Oyun sistemi</strong></td><td>GeForce RTX / 8 vCPU</td><td>GeForce RTX 4080 / 16 vCPU</td></tr>
+<tr><td><strong>Maksimum çözünürlük</strong></td><td>1440p QHD</td><td>5K'ye kadar (4K HDR dahil)</td></tr>
+<tr><td><strong>Maksimum FPS</strong></td><td>60 FPS</td><td>240 FPS'e kadar</td></tr>
+<tr><td><strong>Oturum süresi</strong></td><td>6 saat</td><td>8 saat</td></tr>
+<tr><td><strong>NVIDIA Reflex (düşük gecikme)</strong></td><td>Kapalı</td><td>Açık</td></tr>
+<tr><td><strong>Cloud G-Sync</strong></td><td>Kapalı</td><td>Açık</td></tr>
+<tr><td><strong>Ses</strong></td><td>Surround 5.1</td><td>Surround 5.1 / 7.1</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<p>Hikâye odaklı tek oyunculu FPS oyunları (S.T.A.L.K.E.R. 2, Far Cry 6, Wolfenstein) için Performance paketi 1440p ve 60 FPS ile tatmin edici bir deneyim sunar. Rekabetçi çok oyunculu FPS oyunları (Counter-Strike 2, Apex Legends, Overwatch, THE FINALS) için Ultimate paketin sunduğu 240 FPS, NVIDIA Reflex ve Cloud G-Sync teknolojileri girdi gecikmesini düşürerek belirgin bir performans avantajı sağlar.</p>
+<h3>FPS Dünyasına Hemen Adım At</h3>
+<p>Counter-Strike 2'de taktiksel rekabetin merkezinde yer almak, Apex Legends'ta battle royale heyecanını yaşamak, DOOM Eternal'da hızlı tempolu klasik aksiyona dönmek veya S.T.A.L.K.E.R. 2'nin açık dünyasında hayatta kalmaya çalışmak için güçlü bir bilgisayara ihtiyacın yok. GeForce NOW GAME+ ile Türkiye sunucuları üzerinden düşük gecikmeyle, 240 FPS'e kadar akıcılıkta FPS oyunlarının tadını çıkar. Kütüphaneni bağla, sana uygun paketi seç ve hemen oynamaya başla.</p>
+<div class="cta-end gp-conic">
+<div class="gp-conic-inner">
+  <div class="gp-cta-eyebrow"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;margin-right:6px;vertical-align:-2px;"><path d="M12 1.5c.3 4.6 2.4 7.4 6.9 8.2.7.1.7 1.1 0 1.2-4.5.8-6.6 3.6-6.9 8.2 0 .8-1.1.8-1.2 0-.3-4.6-2.4-7.4-6.9-8.2-.7-.1-.7-1.1 0-1.2 4.5-.8 6.6-3.6 6.9-8.2.1-.8 1.2-.8 1.2 0z"/></svg>GAME+ &bull; BULUT OYUN</span></div>
+  <div class="gp-cta-title">Tek üyelik, hazır kütüphane.</div>
+  <p class="gp-cta-desc">Performance ve Ultimate paketleri kütüphanendeki tüm oyunları çalıştırır. Steam, Epic Games, EA App, Xbox ve Ubisoft Connect hesapları bağlanabilir.</p>
+  <a class="gp-btn gp-btn-solid" id="category-packages-button" href="https://gameplus.com.tr/gfn/paketler">GeForce NOW Paketlerini İncele &rarr;</a>
+</div>
+</div>
+
+<h3>FPS Oyunları Hakkında Sık Sorulan Sorular</h3>
+<div class="faq-block">
+  <details class="faq-item">
+    <summary>
+      <span class="faq-icon">+</span>
+      <span class="faq-q">FPS oyunları nedir?</span>
+    </summary>
+    <div><p>FPS, "First Person Shooter" yani "birinci şahıs nişancı" ifadesinin kısaltmasıdır. Bu türdeki oyunlarda dünyayı karakterin gözünden görür, silahla nişan alırsın. Counter-Strike 2, Call of Duty, Battlefield 6, DOOM Eternal ve Apex Legends türün önde gelen örneklerindendir. FPS oyunları rekabetçi taktiksel çatışma, hikâye odaklı macera, battle royale ve hızlı tempolu klasik shooter gibi birçok alt türe ayrılır.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      <span class="faq-icon">+</span>
+      <span class="faq-q">En iyi FPS oyunları hangileridir?</span>
+    </summary>
+    <div><p>GeForce NOW kütüphanesindeki en popüler FPS oyunları arasında Counter-Strike 2, Call of Duty: Modern Warfare III, Battlefield 6, Apex Legends, Tom Clancy's Rainbow Six Siege X, DOOM Eternal, Halo Infinite, Destiny 2 ve THE FINALS yer alır. Tek oyunculu deneyim arıyorsan S.T.A.L.K.E.R. 2 ve Far Cry 6 öne çıkar; rekabetçi oyun istiyorsan Counter-Strike 2 ve Apex Legends ideal başlangıç noktalarıdır.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      <span class="faq-icon">+</span>
+      <span class="faq-q">GeForce NOW'da kaç tane FPS oyunu var?</span>
+    </summary>
+    <div><p>GAME+ kütüphanesinde iki yüzden fazla FPS oyunu bulunuyor. Counter-Strike, Call of Duty, Battlefield, Far Cry, Wolfenstein, DOOM, Borderlands, Halo, Destiny ve Rainbow Six gibi türün önde gelen serilerinin güncel ve klasik tüm yapımları kütüphanede yer alır. Liste düzenli olarak güncelleniyor.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      <span class="faq-icon">+</span>
+      <span class="faq-q">Rekabetçi FPS oyunları için internet hızım ne olmalı?</span>
+    </summary>
+    <div><p>Counter-Strike 2, Apex Legends gibi rekabetçi FPS oyunları için en az 25 Mbps internet hızı ve 40 ms altında gecikme önerilir. Daha yüksek kare hızlarında (120 veya 240 FPS) oynamak istiyorsan 40 Mbps üzeri bir bağlantı ve mümkünse kablolu Ethernet kullanmalısın. GAME+ Türkiye sunucularına bağlanmak, uluslararası GeForce NOW kullanıcılarına göre belirgin bir gecikme avantajı sağlar.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      <span class="faq-icon">+</span>
+      <span class="faq-q">Klavye-fare mı, gamepad mi tercih edilmeli?</span>
+    </summary>
+    <div><p>Counter-Strike 2, Valorant tarzı taktiksel FPS ve Apex Legends gibi hızlı tempolu battle royale yapımlarında klavye ve fare hassas nişan açısından belirgin avantaj sağlar. Halo Infinite, Far Cry 6 veya DOOM Eternal gibi konsol kökenli ve hikâye odaklı yapımlarda gamepad rahat bir alternatif olabilir. GeForce NOW her iki kontrol yöntemini de tam destekler; oyun içinde istediğin zaman geçiş yapabilirsin.</p></div>
+  </details>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "FPS oyunları nedir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FPS, \"First Person Shooter\" yani \"birinci şahıs nişancı\" ifadesinin kısaltmasıdır. Bu türdeki oyunlarda dünyayı karakterin gözünden görür, silahla nişan alırsın. Counter-Strike 2, Call of Duty, Battlefield 6, DOOM Eternal ve Apex Legends türün önde gelen örneklerindendir. FPS oyunları rekabetçi taktiksel çatışma, hikâye odaklı macera, battle royale ve hızlı tempolu klasik shooter gibi birçok alt türe ayrılır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "En iyi FPS oyunları hangileridir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GeForce NOW kütüphanesindeki en popüler FPS oyunları arasında Counter-Strike 2, Call of Duty: Modern Warfare III, Battlefield 6, Apex Legends, Tom Clancy's Rainbow Six Siege X, DOOM Eternal, Halo Infinite, Destiny 2 ve THE FINALS yer alır. Tek oyunculu deneyim arıyorsan S.T.A.L.K.E.R. 2 ve Far Cry 6 öne çıkar; rekabetçi oyun istiyorsan Counter-Strike 2 ve Apex Legends ideal başlangıç noktalarıdır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "GeForce NOW'da kaç tane FPS oyunu var?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GAME+ kütüphanesinde iki yüzden fazla FPS oyunu bulunuyor. Counter-Strike, Call of Duty, Battlefield, Far Cry, Wolfenstein, DOOM, Borderlands, Halo, Destiny ve Rainbow Six gibi türün önde gelen serilerinin güncel ve klasik tüm yapımları kütüphanede yer alır. Liste düzenli olarak güncelleniyor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rekabetçi FPS oyunları için internet hızım ne olmalı?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Counter-Strike 2, Apex Legends gibi rekabetçi FPS oyunları için en az 25 Mbps internet hızı ve 40 ms altında gecikme önerilir. Daha yüksek kare hızlarında (120 veya 240 FPS) oynamak istiyorsan 40 Mbps üzeri bir bağlantı ve mümkünse kablolu Ethernet kullanmalısın. GAME+ Türkiye sunucularına bağlanmak, uluslararası GeForce NOW kullanıcılarına göre belirgin bir gecikme avantajı sağlar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Klavye-fare mı, gamepad mi tercih edilmeli?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Counter-Strike 2, Valorant tarzı taktiksel FPS ve Apex Legends gibi hızlı tempolu battle royale yapımlarında klavye ve fare hassas nişan açısından belirgin avantaj sağlar. Halo Infinite, Far Cry 6 veya DOOM Eternal gibi konsol kökenli ve hikâye odaklı yapımlarda gamepad rahat bir alternatif olabilir. GeForce NOW her iki kontrol yöntemini de tam destekler; oyun içinde istediğin zaman geçiş yapabilirsin."
+      }
+    }
+  ]
+}
+</script>
+
+</div>

@@ -51,7 +51,7 @@ Use `references/structure-template.md` for the section skeleton. Confirm:
 - **H2 main heading**: includes primary keyword + "GeForce NOW" + "Bulutta Oyna" + current year. Lead with the keyword.
 - **Verified game count** from Phase 1 — used in TLDR, info-card badge, intro paragraph, and FAQ answer.
 - **Popular games table**: 8-12 games drawn from the live grid, prioritizing ones AI Overview / ChatGPT cite.
-- **Internal link plan**: list URLs you'll link to. Always include `/gfn`, `/gfn/oyunlar`. Add 3-4 contextually relevant category URLs from `references/category-pages.md`. Pick anchors from `references/url-anchor-mapping.md`. **CTA link kuralı:** Sadece **Fix CTA** `/gfn/paketler`'e gider. **Dynamic (sayfa-ortası) CTA paketlere DEĞİL**, şu 3 sayfadan birine gider (kategoriler arasında rotasyon): `/gfn`, `/geforce-now-nedir`, `/firsatlar`. **Hiçbir CTA, içinde bulunduğu kategori sayfasına self-link VERMEZ.** Body içinde `/gfn/paketler` inline link kullanma.
+- **Internal link plan**: list URLs you'll link to. Always include `/gfn`, `/gfn/oyunlar`. Add 3-4 contextually relevant category URLs from `references/category-pages.md`. Pick anchors from `references/url-anchor-mapping.md`. **CTA link kuralı (v11):** **Fix CTA** `/gfn/paketler`'e gider. **Dynamic (sayfa-ortası) CTA GFN paketlerine DEĞİL**, şu 3 sayfadan birine gider (kategoriler arasında rotasyon): `/gfn`, `/geforce-now-nedir`, **`/paketler` (GAME+ paketleri)**. **`/firsatlar` ARTIK KULLANILMAZ** (marka kararı). **Hiçbir CTA, içinde bulunduğu kategori sayfasına self-link VERMEZ.** Body içinde `/gfn/paketler` inline link kullanma.
 - **Info-card 4 badges** — Kütüphane Boyutu (yuvarlanmış "X+", asla exact), Öne Çıkan Yapım, plus 2 category-specific (Alt Tür Sayısı, Çok Oyunculu, RTX Desteği, vb.). Never use Türkiye Sunucusu, PEGI/yaş, Mod Desteği, or prescriptive paket badges.
 - **Dynamic CTA type** — pick C3 (badge + headline), C4 (stat banner), or D2 (dual button). See `references/cta-templates.md`.
 - **2 editor notes** — one after popular games table, one in/before sub-genre rehberi section. Notes add factual depth (GOTY status, dev studio context, surprising mechanic), never age/PEGI/year claims.
@@ -73,7 +73,25 @@ Apply `references/style-guide.md` and `references/cta-templates.md` rigorously. 
 
 ### Phase 5: Apply structure components
 
-> **GÖRSEL STİL — v10.2 "Game+ UI" (güncel):** Tüm bileşenlerin görünümü için **`references/design-system-v10.md`** kullan. Sarı `#FFC900` vurgu, `#161616` kartlar, `#0D0D0D` stat kartları (DEĞER üstte), New Science başlıklar, sarı `•` TLDR, `#1E1E18` tablo başlığı (sarı ORTALI sütun başlıkları). Editör Notu / lisans callout **blog ile birebir** (flex + ayrı 4px yuvarlak uçlu bar; `border-left` KULLANMA). `structure-template.md`'deki snippet'ler SADECE bölüm sırası ve içerik içindir; görünümü design-system-v10.md belirler. **Conic glow KULLANMA, floating ToC EKLEME.** Paylaşılan `<style>` bloğunu body'nin en başına bir kez ekle. **CTA'lara GA4 id'leri zorunlu** (`ga4-tracking.md`).
+> **GÖRSEL STİL — v11: blog skill'i ile TAM HİZALI.** Tipografi, renk, kart, tablo ve mühendislik
+> kuralları blog skill'inden MİRAS ALINIR; kategoride ayrı bir tanım YOKTUR. Farklar ve gerekçeler:
+> **`references/design-system.md`**.
+>
+> Uygulama: **`scripts/category_components.py`**. Elle HTML/CSS yazma, inline stil verme.
+>
+> ```python
+> import sys; sys.path.insert(0, "<kategori-skill>/scripts")
+> from category_components import *
+>
+> body  = "<h2>...</h2>" + render_tldr([...]) + render_info_card([...]) + ...
+> body += render_category_dynamic_cta(baslik, aciklama, "https://gameplus.com.tr/paketler")
+> body += render_category_fix_cta(baslik, aciklama)
+> body += render_faq_accordion(faq) + render_faq_schema(faq)
+> final = wrap_gp_content(CATEGORY_STYLE + "\n" + body)
+> ```
+>
+> **Kategori kuralı:** conic glow YOK, floating ToC YOK, H1 YOK (gövde H2 ile başlar), YouTube YOK.
+> `CATEGORY_STYLE` bu ailelerin CSS'ini zaten süzer.
 
 Section order (sabit):
 
@@ -91,13 +109,30 @@ Section order (sabit):
 12. **Editor Note #2** — placed in or before sub-genre section
 13. **H3 Teknik Ayarlar** + styled table (5 rows, no mod desteği row)
 14. **H3 Performance ve Ultimate Karşılaştırması** (neutral) + styled table + factual closing
-15. **H3 [Kategori] Hakkında Sık Sorulan Sorular** + FAQ accordion (4-6 `<details>` items, summary direct text, no nested H4)
-16. **Fix CTA** — dark mode card with GeForce NOW + Performance/Ultimate badges
-17. **H3 Final CTA paragraph heading** + closing paragraph
+15. **H3 Kapanış başlığı** + kapanış paragrafı
+16. **Fix CTA** — `render_category_fix_cta`, id `category-packages-button` -> `/gfn/paketler`
+17. **H3 [Kategori] Hakkında Sık Sorulan Sorular** + FAQ accordion (4-7 `<details>`, summary düz metin, iç içe H4 yok)
+18. **FAQ Schema** — `render_faq_schema(pairs)`, görünen FAQ ile BİREBİR aynı içerik
+
+> **v11 sıra değişikliği:** eskiden SSS -> Fix CTA -> kapanış paragrafı sırası vardı.
+> Artık **kapanış -> CTA -> SSS**: sayfa SSS ile biter, kapanış paragrafı yukarı taşınır.
 
 ### Phase 6: QA against the checklist
 
-Walk through `references/checklist.md` before finalizing. Critical:
+**Önce otomatik kontrol, sonra elle checklist.**
+
+```python
+from category_components import verify_category_output, print_report, verify_source_preserved
+ok = print_report(verify_category_output(final, oyun_sayisi_metni="200+ Oyun"))   # FAIL varsa TESLİM ETME
+```
+
+Otomatik doğrulananlar: tek stil bloğu, `.gp-content` sarmalayıcı, CSS scope, **H1 YOK + ilk başlık
+H2**, floating ToC yok, YouTube yok, TLDR 3-6 madde, info-card, Editör Notu, lisans callout, madde
+listesi, FAQ 4-7 + FAQPage JSON-LD, **sıra (kapanış -> CTA -> SSS)**, `/firsatlar` yok, dynamic CTA
+hedefi izinli listede, Fix CTA tek, em dash yok, PEGI/yaş yok, Steam Workshop yok, çıktıda yorum yok,
+gömülü font yok, inline onclick yok, yuvarlanmış oyun sayısı, etiket dengesi.
+
+Ardından `references/checklist.md`'deki yargı gerektiren maddeler:
 - 0 em dash
 - 0 "başlık" in body text
 - 0 "Steam Workshop" / "mod desteği" claims
@@ -107,7 +142,7 @@ Walk through `references/checklist.md` before finalizing. Critical:
 - 0 paket recommendation sentences
 - **0 exact kütüphane sayısı** — badge/TLDR/gövde/FAQ/C4 stat hepsi yuvarlanmış "X+" (örn. 400+, 60+); ham tam sayı (434, 69) YOK
 - **0 CTA self-link** — hiçbir CTA içinde bulunduğu kategori sayfasına link vermiyor
-- **Dynamic CTA paketlere gitmiyor** — sadece Fix CTA `/gfn/paketler`; sayfa-ortası CTA `/gfn` | `/geforce-now-nedir` | `/firsatlar`
+- **Dynamic CTA GFN paketlerine gitmiyor** — Fix CTA `/gfn/paketler`; sayfa-ortası CTA `/gfn` | `/geforce-now-nedir` | `/paketler`. **`/firsatlar` hiçbir yerde yok.**
 - **0 yapışık cümle** — cümle sonu noktadan sonra boşluk var (`kelime.Kelime` gibi birleşme YOK)
 - Game count (rounded) matches Playwright verification
 - All required components present (TLDR, info-card, 2 CTAs, license callout, FAQ accordion)
@@ -163,7 +198,7 @@ Save the content in **two formats**:
 - "buraya tıkla" / "linke tıklayarak" yazma. Anchor'lar keyword-rich phrase.
 - Steam Workshop, PEGI yaş etiketleri, spesifik TV model yılları veya Performance vs Ultimate önerisi yazma.
 - `/gfn/paketler` body inline link olarak koyma; sadece Fix CTA paketlere gider.
-- Dynamic (sayfa-ortası) CTA'yı paketlere yönlendirme — `/gfn`, `/geforce-now-nedir` veya `/firsatlar` kullan.
+- Dynamic (sayfa-ortası) CTA'yı GFN paketlerine yönlendirme — `/gfn`, `/geforce-now-nedir` veya `/paketler` kullan. `/firsatlar` yasak.
 - Hiçbir CTA'da içinde bulunduğun kategori sayfasına self-link verme (xbox içeriğinde `/gfn/oyunlar/xbox`'a link gibi).
 - Kütüphane oyun sayısını exact tam sayı yazma (434 değil 400+); her zaman aşağı yuvarlanmış "X+".
 - Yeşil `#76b900` veya türevlerini kullanma (v9 kalıntısı); tek vurgu sarı `#FFC900`.

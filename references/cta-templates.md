@@ -10,7 +10,7 @@ Two CTAs appear in every category content:
 
 **CTA link kuralı (GÜNCEL — Gameplus revizyonu):**
 - **Fix CTA (alt)** → `https://gameplus.com.tr/gfn/paketler`. Bu, dönüşümün gerçekleştiği TEK paketler linkidir.
-- **Dynamic CTA (sayfa ortası)** → paketlere DEĞİL, şu 3 sayfadan birine yönlendirir (çeşitlilik için kategoriler arasında rotasyon yap): `https://gameplus.com.tr/gfn` (GFN ana sayfa), `https://gameplus.com.tr/geforce-now-nedir` (Nasıl Çalışır / GFN nedir), `https://gameplus.com.tr/firsatlar` (Fırsatlar).
+- **Dynamic CTA (sayfa ortası)** → GFN paketlerine DEĞİL, şu 3 sayfadan birine yönlendirir (çeşitlilik için kategoriler arasında rotasyon yap): `https://gameplus.com.tr/gfn` (GFN ana sayfa), `https://gameplus.com.tr/geforce-now-nedir` (Nasıl Çalışır / GFN nedir), `https://gameplus.com.tr/paketler` (**GAME+ paketleri**). **`https://gameplus.com.tr/firsatlar` v11'de KALDIRILDI.**
 - **Hiçbir CTA, içinde bulunduğu kategori sayfasının kendisine link VERMEZ** (self-link yasak). Örn. xbox içeriğinin CTA'sı `/gfn/oyunlar/xbox`'a link vermez.
 - **No `/gfn/paketler` inline link in body** — sadece Fix CTA paketlere gider.
 
@@ -20,7 +20,7 @@ Two CTAs appear in every category content:
 |---|---|
 | `https://gameplus.com.tr/gfn` | `GeForce NOW'u Keşfet →` |
 | `https://gameplus.com.tr/geforce-now-nedir` | `GeForce NOW Nasıl Çalışır? →` |
-| `https://gameplus.com.tr/firsatlar` | `GeForce NOW Fırsatları →` |
+| `https://gameplus.com.tr/paketler` | `GAME+ Paketleri →` |
 
 D2 (çift buton) kullanılıyorsa iki buton, bu 3 hedeften **birbirinden farklı** ikisine gider (biri paketlere veya kategorinin kendisine DEĞİL).
 
@@ -137,14 +137,14 @@ Placeholders:
 - HEADLINE: `Steam hesabını bağla, oyunlarına anında eriş.`
 - DESC: `Sahip olduğun 1.500+ Steam yapımı hesabı bağladığın an kütüphanende görünür.`
 - BTN1_URL: `https://gameplus.com.tr/gfn` / BTN1_LABEL: `GeForce NOW'u Keşfet`
-- BTN2_URL: `https://gameplus.com.tr/firsatlar` / BTN2_LABEL: `GeForce NOW Fırsatları`
+- BTN2_URL: `https://gameplus.com.tr/paketler` / BTN2_LABEL: `GAME+ Paketleri`
 
 ## Yazım kuralı (CTA copy)
 
 - Kısa, somut, oyun ismi geçen cümleler kur.
 - "Buluta taşı", "anında erişim sağlar" gibi yapay/translated cümlelerden kaçın.
 - Mümkünse spesifik bir stat veya gerçek bilgi (40 ms gecikme, 600+ oyun, ücretsiz) ekle.
-- Buton metni: Fix CTA'da "GeForce NOW Paketlerini İncele →" (paketlere gider). Dynamic CTA'da hedefe uygun metin: "GeForce NOW'u Keşfet →" (/gfn), "GeForce NOW Nasıl Çalışır? →" (/geforce-now-nedir) veya "GeForce NOW Fırsatları →" (/firsatlar). Dynamic CTA ASLA paketlere veya kategorinin kendisine gitmez.
+- Buton metni: Fix CTA'da "GeForce NOW Paketlerini İncele →" (GFN paketlerine gider). Dynamic CTA'da hedefe uygun metin: "GeForce NOW'u Keşfet →" (/gfn), "GeForce NOW Nasıl Çalışır? →" (/geforce-now-nedir) veya "GAME+ Paketleri →" (/paketler). Dynamic CTA ASLA GFN paketlerine veya kategorinin kendisine gitmez.
 
 ## Konum
 

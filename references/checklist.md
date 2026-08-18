@@ -124,3 +124,15 @@ Herhangi biri "hayır" ise yapı kullanıcıyı yetersiz hizmet ediyor.
 - [ ] **Tablo sütun başlıkları sarı ve ORTALI** (mobilde de).
 - [ ] **CTA GA4 id'leri var:** `category-dynamic-cta` + `category-packages-button`.
 - [ ] Çıktıda `{{` / `}}` yok (f-string kaçış hatası CSS'i geçersiz kılar).
+
+## v11 otomatik kontroller (elle bakmadan önce çalıştır)
+
+`verify_category_output(final, oyun_sayisi_metni=...)` + `print_report` build kapısıdır; FAIL varsa
+teslim edilmez. Kapsadıkları için bu listedeki şu maddeleri artık ELLE kontrol etmeye gerek yok:
+em dash, PEGI/yaş, Steam Workshop, çıktıda yorum, gömülü font, inline onclick, yuvarlanmış oyun
+sayısı, CTA hedefleri, `/firsatlar`, bölüm sırası, H1 yokluğu, FAQ sayısı ve schema, etiket dengesi.
+
+**Elle kalan (yargı gerektiren) maddeler:** oyun sayısının Playwright doğrulamasıyla uyumu, tablo
+satır sayısı (8-12), kelime aralığı (1800-2400), CTA self-link yokluğu, paket tavsiyesi cümlesi
+olmaması, TV model yılı, yapışık cümle, tür taksonomisinin tutarlılığı, Editör Notu'nun gerçek bir
+bilgi taşıması.

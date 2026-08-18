@@ -296,6 +296,6 @@ Template `cta-templates.md` içinde. Kısaca:
 - `/gfn` → intro (1 kere) + ayrıca bir Dynamic CTA hedefi olabilir
 - `/gfn/oyunlar` → 1 kere (Nasıl Oynanır step 3)
 - `/gfn/paketler` → SADECE **Fix CTA** (1 kere). Body inline'da YOK, Dynamic CTA'da YOK.
-- **Dynamic (sayfa-ortası) CTA** → `/gfn` | `/geforce-now-nedir` | `/firsatlar` (paketler DEĞİL, kategori self-link DEĞİL)
+- **Dynamic (sayfa-ortası) CTA** → `/gfn` | `/geforce-now-nedir` | `/paketler` (GFN paketleri DEĞİL, kategori self-link DEĞİL, `/firsatlar` YASAK)
 - 3-4 ilgili kategori URL'i → her biri 1 kere
 - Toplam unique internal link: 6-8

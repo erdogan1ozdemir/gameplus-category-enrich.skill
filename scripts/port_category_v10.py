@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Kategori içeriğini v9 (yeşil, layered frame) -> v10.2 "Game+ UI" (sarı, Figma kart) taşır.
+"""DEPRECATED (v11). v9 -> v10.2 taşıma scripti; artık kullanilmiyor.
+
+Guncel yol: scripts/category_components.py ile icerigi YENIDEN kurmak. Bu dosya yalniz
+eski v10.2 ciktilarini anlamak icin referans olarak duruyor.
+
+Kategori içeriğini v9 (yeşil, layered frame) -> v10.2 "Game+ UI" (sarı, Figma kart) taşır.
 
 Kural: METNE DOKUNMAZ. Sadece görsel katman + GA4 id'leri. Kategori kuralı gereği
 conic glow ve floating ToC EKLENMEZ.
