@@ -65,3 +65,26 @@ bilinçle ezer.
 - Office/Tailwind artığı renkler (`#CBD5E1`, `#0f172a` vb.).
 - `em` bazlı punto (host sayfanın puntosuna göre kayar) — her ölçü `px`.
 - Inline stil (dinamik değerler hariç), `!important`, gövdeye gömülü font.
+
+## Port sırasında yakalanan kaynak tuzakları (v11 saha notları)
+
+Eski içerik iki farklı nesilden geliyor ve yapıları ayrışıyor. `port_category_v11.py` bunları
+otomatik ele alır; yeni bir kaynak eklerken aynı tuzaklara dikkat et:
+
+| Tuzak | Belirti | Çözüm |
+|---|---|---|
+| **info-card sırası nesle göre ters** | v9'da ETİKET üstte, v10.2'de DEĞER üstte | Hücrenin ilk çocuğunun stiline bakılır: `#FFC900` / `font-size:24px` / `1.7em` varsa değer üstte, `text-transform:uppercase` varsa etiket üstte |
+| **CTA'lar href'e göre ayrılamaz** | Eski içerikte HER İKİ CTA da `/gfn/paketler`e gidiyor | Sıraya göre: SON kart Fix CTA, ilk kart dynamic CTA |
+| **C4 "stat banner" CTA'sında kopya yok** | Kartta yalnız sayı + etiket çiftleri ve buton var | Yaprak div'lerden istatistik şeridi elenir (`font-size:1.7em`, `font-weight:800`, `text-transform:uppercase`); kopya çıkmazsa `DYN_CTA_METNI` yedeği kullanılır |
+| **Etiket metne gömülü** | Paragraf `ℹ Hatırlatma ...` / `📝 Game+ Editör Notu ...` ile başlıyor, bileşen etiketi zaten basıyor | `onek_temizle()` ile önek atılır |
+| **`<details>` sarmalayıcısız** | v10.2 kaynağında SSS öğeleri üst düzeyde | `el.name == "details"` dalı |
+| **Lisans callout'u `.highlight-box`** | v10.2 sınıf adı farklı | İki sınıf da callout sayılır |
+| **Zorunlu bileşen kaynakta yok** | Lisans hatırlatması ya da sayfa-ortası CTA hiç yok | `LISANS_METNI` ve `DYN_CTA_METNI` yedekleri devreye girer |
+| **Ham oyun sayısı** | "434 Oyun", "921 yapım" | `sayilari_yuvarla()`: >=100 en yakın 100 aşağı, <100 en yakın 10 aşağı; gövdedeki aynı sayı da güncellenir |
+| **Kaynaktan gelen dizgi hatası** | Nokta sonrası boşluk yok, yarım cümle | `dizgi_duzelt()` |
+
+**FAQ sorularında kategori bağlamı (v11 kuralı):** soru tek başına okunduğunda hangi kategoriye ait
+olduğu anlaşılmalı. "Klavye-fare mı, gamepad mi tercih edilmeli?" yerine "**FPS oyunlarında**
+klavye-fare mı, gamepad mi tercih edilmeli?". Oyun adı geçen ya da kategorinin kendi terimini taşıyan
+sorulara DOKUNULMAZ. Revizeler `FAQ_SORU_REVIZE` haritasında tutulur; FAQ Schema **görünen soruyla**
+birebir üretilir.
