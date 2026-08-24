@@ -124,10 +124,10 @@ def _kategori_stili():
 
 # Kategoriye ozgu ekler. Blok EN SONDA durur, onceki kurallari bilincli ezer.
 _KATEGORI_EK = """
-.gp-content .gp-conic { position: relative; border-radius: 12px; padding: 1px;
-  background: #29292B; animation: none; }
+.gp-content .gp-conic { position: relative; border-radius: 12px; padding: 0;
+  border: 1px solid #29292B; background: transparent; animation: none; }
 .gp-content .gp-conic::before { content: none; }
-.gp-content .gp-conic-inner { background: transparent; }
+.gp-content .gp-conic-inner { background: transparent; border-radius: 11px; }
 .gp-content .gp-cta-dynamic .gp-conic-inner { padding: 20px 24px; }
 """
 
@@ -191,6 +191,47 @@ def _duz_metin(html):
           .replace("&lt;", "<").replace("&gt;", ">").replace("&bull;", "-")
           .replace("&quot;", '"').replace("&#39;", "'"))
     return re.sub(r"\s+", " ", t).strip()
+
+
+def render_kategori_schema(kategori_url, ad, aciklama, guncelleme=None, kirinti=None):
+    """Kategori sayfasi icin BreadcrumbList + CollectionPage JSON-LD.
+
+    FAQPage tek basina kaliyordu; bu blok sayfa hiyerarsisini (kirinti) ve sayfanin bir
+    KOLEKSIYON oldugunu makine tarafinda okunur hale getirir. `guncelleme` ISO tarih
+    (YYYY-MM-DD) - tazelik sinyali icin; uydurma tarih VERILMEZ, uretim tarihi kullanilir."""
+    import json
+    kirinti = kirinti or [
+        ("Ana Sayfa", "https://gameplus.com.tr/"),
+        ("GeForce NOW", "https://gameplus.com.tr/gfn"),
+        ("Oyunlar", "https://gameplus.com.tr/gfn/oyunlar"),
+        (ad, kategori_url),
+    ]
+    koleksiyon = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": ad,
+        "description": _duz_metin(aciklama),
+        "url": kategori_url,
+        "isPartOf": {"@type": "WebSite", "name": "GAME+",
+                     "url": "https://gameplus.com.tr/"},
+        "publisher": {"@type": "Organization", "name": "GAME+",
+                      "url": "https://gameplus.com.tr/"},
+    }
+    if guncelleme:
+        koleksiyon["dateModified"] = guncelleme
+    ekmek = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": n, "item": u}
+            for i, (n, u) in enumerate(kirinti)
+        ],
+    }
+    cikti = []
+    for veri in (ekmek, koleksiyon):
+        govde = json.dumps(veri, ensure_ascii=False, indent=2).replace("</", "<\\/")
+        cikti.append(f'<script type="application/ld+json">\n{govde}\n</script>')
+    return "\n".join(cikti) + "\n"
 
 
 def render_faq_schema(pairs):
@@ -273,9 +314,12 @@ def verify_category_output(final_html, expect_faq=True, oyun_sayisi_metni=None):
     add('class="gp-list"' in govde, "Madde listesi", "var", "hiç bullet listesi yok", warn=True)
     if expect_faq:
         n_faq = govde.count("<details")
-        add(4 <= n_faq <= 7, "FAQ 4-7 madde", f"{n_faq} soru", f"{n_faq} soru (4-7 olmalı)")
+        add(4 <= n_faq <= 12, "FAQ 4-12 madde", f"{n_faq} soru",
+            f"{n_faq} soru (4-12 olmalı; alt tür soruları eklendikten sonra üst sınır 12)")
         add("application/ld+json" in govde and "FAQPage" in govde, "FAQ Schema", "var",
             "FAQPage JSON-LD yok - render_faq_schema ekle")
+    add("BreadcrumbList" in govde and "CollectionPage" in govde, "Kategori şeması", "var",
+        "BreadcrumbList + CollectionPage JSON-LD yok - render_kategori_schema ekle", warn=True)
 
     # --- sira: kapanis -> CTA -> FAQ ---
     i_fix = govde.find('id="category-packages-button"')

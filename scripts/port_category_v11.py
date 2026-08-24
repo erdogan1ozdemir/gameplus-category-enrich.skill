@@ -12,7 +12,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from category_components import *  # noqa: F401,F403
+from category_components import render_kategori_schema
 from gameplus_blog_components import auto_link_categories
+from icerik_gelistirme import ALT_TUR_TANIM, EK_FAQ, KATEGORI_TANIM
 from bs4 import BeautifulSoup
 from docx import Document
 from docx.shared import Pt, RGBColor
@@ -99,6 +101,9 @@ FAQ_SORU_REVIZE = {
     ("yaris", "Dünyanın en gerçekçi araba oyunu nedir?"):
         "Dünyanın en gerçekçi araba yarışı oyunu nedir?",
 }
+
+# Tazelik sinyali: uretim tarihi. Uydurma tarih verilmez; icerik yenilendiginde guncellenir.
+URETIM_TARIHI = "2026-08-18"
 
 BASE = "https://gameplus.com.tr/gfn/oyunlar"
 
@@ -270,6 +275,17 @@ def kur(v, slug):
             continue
         if t in ("h2", "h3", "h4"):
             parcalar.append(f"<{t}>{d}</{t}>"); kaynak.append(d)
+            if t == "h2":
+                _kt = KATEGORI_TANIM.get(slug)
+                if _kt:
+                    parcalar.append(f"<p><strong>{_kt[0]}</strong> {_kt[1]}</p>")
+            if t == "h4":
+                # Alt turun hemen altina "tanim-once" cumlesi: AI Overview ve "X nedir"
+                # sorgulari bu kalibi dogrudan cekiyor.
+                _ad = re.sub(r"<[^>]+>", "", d).strip()
+                _tanim = ALT_TUR_TANIM.get((slug, _ad))
+                if _tanim:
+                    parcalar.append(f"<p><strong>{_ad} nedir?</strong> {_tanim}</p>")
         elif t == "p":
             parcalar.append(f"<p>{d}</p>"); kaynak.append(d)
         elif t == "ul":
@@ -306,10 +322,16 @@ def kur(v, slug):
         parcalar.append(render_category_fix_cta(*v["fix"]))
     if v["faq"]:
         faq = [(FAQ_SORU_REVIZE.get((slug, q), q), a) for q, a in v["faq"]]
+        faq += EK_FAQ.get(slug, [])          # alt tur ve arama niyeti odakli yeni sorular
         v["faq_revize"] = [(q, y) for (q, _), (y, _) in zip(v["faq"], faq) if q != y]
         parcalar.append(f"<h3>{sss_basligi or 'Sık Sorulan Sorular'}</h3>")
         parcalar.append(render_faq_accordion(faq))
         parcalar.append(render_faq_schema(faq))   # schema GORUNEN soruyla birebir
+    _h2 = next((d for t, d in v["akis"] if t == "h2"), slug)
+    _ad = re.sub(r"<[^>]+>", "", _h2).strip()
+    _kt = KATEGORI_TANIM.get(slug)
+    parcalar.append(render_kategori_schema(
+        kategori_url(slug), _ad, _kt[1] if _kt else _ad, guncelleme=URETIM_TARIHI))
     return "\n".join(parcalar), kaynak
 
 
@@ -351,7 +373,9 @@ def sayilari_yuvarla(html):
     ham, yeni = m.group(1), _yuvarla(m.group(1))
     degisim = [(f"{ham}{m.group(2)}", f"{yeni}{m.group(2)}", "info-card")]
     govde = govde[:m.start(1)] + yeni + govde[m.end(1):]
-    desen = re.compile(r"(?<![\d.,+])" + ham + r"(?![\d.+])(\s+)" + _SAYAC)
+    # Sayi ile sayilan sozcuk arasinda sifat olabilir: "110 aile dostu oyun", "14 MOBA oyunu"
+    desen = re.compile(r"(?<![\d.,+])" + ham + r"(?![\d.+])"
+                       r"(\s+(?:[A-Za-zÇĞİÖŞÜçğıöşü+.-]+\s+){0,3})" + _SAYAC)
     for mm in desen.finditer(govde):
         degisim.append((f"{ham}{mm.group(1)}{mm.group(2)}", f"{yeni}{mm.group(1)}{mm.group(2)}", "gövde"))
     govde = desen.sub(yeni + r"\1\2", govde)
@@ -372,6 +396,13 @@ def dizgi_duzelt(html):
     if n:
         govde = yeni
         duzeltme.append(f"nokta sonrası boşluk: {n} yer")
+    # "Öne Çıkan Yapımlar:</strong><em>Cyberpunk" -> iki etiket arasinda bosluk yok, ekranda
+    # "Yapımlar:Cyberpunk" gibi yapisik goruluyor.
+    yeni, n2 = re.subn(r"([:.])</(strong|b|em|i)><(strong|b|em|i|span)(\s|>)",
+                       r"\1</\2> <\3\4", govde)
+    if n2:
+        govde = yeni
+        duzeltme.append(f"etiketler arası boşluk: {n2} yer")
     return bas + govde, duzeltme
 
 

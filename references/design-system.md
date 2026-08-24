@@ -88,3 +88,33 @@ olduğu anlaşılmalı. "Klavye-fare mı, gamepad mi tercih edilmeli?" yerine "*
 klavye-fare mı, gamepad mi tercih edilmeli?". Oyun adı geçen ya da kategorinin kendi terimini taşıyan
 sorulara DOKUNULMAZ. Revizeler `FAQ_SORU_REVIZE` haritasında tutulur; FAQ Schema **görünen soruyla**
 birebir üretilir.
+
+## v12 - İçerik geliştirme katmanı ve şema genişletmesi
+
+Denetimde (28 kategori, Ateşman + anahtar kelime + GEO ölçümü) çıkan açıklara göre eklendi.
+Katman **tamamen EKLEMELİ**: yazarın cümlelerine dokunulmaz, `verify_source_preserved` %100 kalır.
+
+| Ek | Nerede | Neden |
+|---|---|---|
+| **Kategori tanımı** (`KATEGORI_TANIM`) | H2'nin hemen altı | AI Overview kategori düzeyinde tanım-önce cümlesi çekiyor. Ayrıca slug terimini ilk 100 kelimeye sokar. |
+| **Alt tür tanımı** (`ALT_TUR_TANIM`) | Her H4'ün hemen altı | "X nedir" sorgusu ve AI Overview. 150 alt tür için yazıldı. |
+| **Ek SSS** (`EK_FAQ`) | Mevcut SSS'lerin sonuna | Alt tür karşılaştırması, hesap bağlama, süre ve donanım soruları. FAQ Schema'ya da girer. |
+| **`render_kategori_schema`** | Gövdenin sonu | BreadcrumbList + CollectionPage (+ `dateModified`). Önceden yalnız FAQPage vardı. |
+
+**Slug ile içerik terimi ayrışması (v12'de kapatıldı).** Beş kategoride slug'dan türeyen terim
+metinde HİÇ geçmiyordu; içerik piyasa terimini kullanıyordu:
+
+| slug | metindeki terim | çözüm |
+|---|---|---|
+| canlandirma | RPG | Kategori tanımı "Canlandırma (RPG) oyunları nedir?" ile ikisini aynı cümlede buluşturur |
+| basit-eglence | casual | "Basit eğlence (casual) oyunları nedir?" |
+| bagimsiz | indie | "Bağımsız (indie) oyunlar nedir?" |
+| diger | bağımsız yayıncı | "Diğer yayıncı oyunları nedir?" |
+| ea-app | EA Play | "EA App oyunları nedir?" |
+
+Piyasa terimi ANA terim olarak kalır; slug terimi eş anlamlı olarak eklenir. Yoğunluğu zorla
+yükseltmek için tekrar EKLENMEZ - stuffing riski, exact-phrase yoğunluğundan daha büyük bir
+sorundur. Terimin H2/ilk 100 kelime/tanım cümlesi üçlüsünde bulunması yeterlidir.
+
+**`dateModified`:** üretim tarihi kullanılır (`URETIM_TARIHI`), uydurma tarih verilmez. İçerik
+yenilendiğinde bu sabit güncellenir.
