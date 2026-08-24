@@ -256,6 +256,68 @@ def cikar(soup):
     return v
 
 
+
+# =============================================================================
+# MOD IDDIALARI KALDIRILDI (kullanici karari)
+# Bulut oturumunda dosya sistemine erisim yok ve mod destegi oyundan oyuna
+# degisiyor; ozellikle "sonraki oturumlarda korunur" bir kaliCILIK VAADI.
+# NOT: Turkcede "mod" hem game mode hem modification demek. Burada YALNIZ
+# modification iddialari kaldirilir; "rekabetci modlar", "cok oyunculu modlar"
+# gibi OYUN MODU cumlelerine DOKUNULMAZ.
+# =============================================================================
+
+MOD_CUMLE = {
+    "steam": [
+        ("Achievement, Workshop ve oyun süresi takip eder.",
+         "Achievement ve oyun süresi takip eder."),
+        ("Modlar oturum içinde yüklenir, sonraki oturumlarda korunur.", ""),
+        ("Cities: Skylines II, Civilization VII, Crusader Kings III, Farming Simulator 25 ve "
+         "benzeri Workshop destekli Steam oyunlarında topluluk modları doğrudan çalışır.", ""),
+        ("Modlar oturum içinde Steam üzerinden yüklenir ve sonraki oturumlarda korunur.", ""),
+        ("Yerel dosya sistemiyle doğrudan etkileşim gerektiren bazı modlar bulut ortamında "
+         "sınırlı olabilir.", ""),
+    ],
+    "canlandirma": [
+        ("Skyrim ve Pathfinder gibi mod ağırlıklı yapımlarda topluluk modları bulutta çalışır.", ""),
+    ],
+    "simulasyon": [
+        ("Cities: Skylines II, Farming Simulator 25 ve Anno 117 gibi yapımlarda topluluk modları "
+         "aktif olarak çalışır.", ""),
+    ],
+    "bagimsiz": [
+        ("Mod desteği bulutta.", ""),
+        ("Mod kuruluşu oturum içinde gerçekleşir ve sonraki oturumlarda korunur.", ""),
+    ],
+    "strateji": [
+        ("Crusader Kings III ve Civilization serisi gibi oyunlarda topluluk modları aktif olarak "
+         "çalışır.", ""),
+        ("Modlar oturum içinde yüklenir ve sonraki oturumlarda da korunur.", ""),
+    ],
+}
+
+# Tamami mod iddiasi olan SSS maddeleri: soru + cevap birlikte dusurulur,
+# boylece FAQ Schema'dan da cikar.
+FAQ_KALDIR = {
+    "strateji": ["Strateji oyunlarına GeForce NOW'da mod yüklenebilir mi?"],
+}
+
+
+def mod_iddialarini_kaldir(html, slug):
+    """Govdeden modification iddialarini cikarir. Bosalan <li>/<p> ogeleri de atilir."""
+    degisim = []
+    for eski, yeni in MOD_CUMLE.get(slug, []):
+        if eski in html:
+            html = html.replace(eski, yeni)
+            degisim.append((eski[:60] + ("…" if len(eski) > 60 else ""), yeni or "(kaldırıldı)"))
+    # bosalan ogeler
+    html = re.sub(r"<li>\s*(?:<span[^>]*></span>)?\s*<span>\s*</span>\s*</li>\s*", "", html)
+    html = re.sub(r"<li>\s*</li>\s*", "", html)
+    html = re.sub(r"<p>\s*</p>\s*", "", html)
+    html = re.sub(r"(<td[^>]*>)\s+", r"\1", html)
+    html = re.sub(r"[ \t]{2,}", " ", html)
+    return html, degisim
+
+
 def kur(v, slug):
     dyn_url = CTA_HEDEF.get(slug, PAKETLER)
     parcalar, kaynak = [], []
@@ -323,6 +385,8 @@ def kur(v, slug):
     if v["faq"]:
         faq = [(FAQ_SORU_REVIZE.get((slug, q), q), a) for q, a in v["faq"]]
         faq += EK_FAQ.get(slug, [])          # alt tur ve arama niyeti odakli yeni sorular
+        _kaldir = FAQ_KALDIR.get(slug, [])
+        faq = [(q, a) for q, a in faq if q not in _kaldir]
         v["faq_revize"] = [(q, y) for (q, _), (y, _) in zip(v["faq"], faq) if q != y]
         parcalar.append(f"<h3>{sss_basligi or 'Sık Sorulan Sorular'}</h3>")
         parcalar.append(render_faq_accordion(faq))
@@ -417,6 +481,7 @@ def isle(slug):
     mevcut = set(re.findall(r'href="(https://gameplus\.com\.tr/gfn/oyunlar/[a-z-]+)"', body))
     body, kat_linkler = auto_link_categories(
         body, max_links=2, haric=tuple(mevcut | {kategori_url(slug)}))
+    body, mod_degisim = mod_iddialarini_kaldir(body, slug)
     final = wrap_gp_content(CATEGORY_STYLE + "\n" + body)
     final, sayi_degisim = sayilari_yuvarla(final)
     final, dizgi = dizgi_duzelt(final)
@@ -425,6 +490,7 @@ def isle(slug):
     sonuc = verify_category_output(final, oyun_sayisi_metni=oyun_sayisi)
     hatalar = [x for x in sonuc if x[0] == "FAIL"]
     orij = "".join(f"<p>{x}</p>" for x in kaynak)
+    orij, _ = mod_iddialarini_kaldir(orij, slug)
     ok_kaynak, eksik, oran = verify_source_preserved(orij, final)
 
     os.makedirs(CIKTI, exist_ok=True)
@@ -439,7 +505,7 @@ def isle(slug):
         "tablo": len(v["tablolar"]), "faq": len(v["faq"]),
         "cta": CTA_HEDEF.get(slug, PAKETLER).rsplit("/", 1)[-1],
         "linkler": [i for i, _ in kat_linkler],
-        "oyun_sayisi": oyun_sayisi, "firsatlar_cozuldu": firsat_sayisi, "faq_revize": v.get("faq_revize", []), "sayi": sayi_degisim, "dizgi": dizgi,
+        "oyun_sayisi": oyun_sayisi, "firsatlar_cozuldu": firsat_sayisi, "faq_revize": v.get("faq_revize", []), "sayi": sayi_degisim, "dizgi": dizgi, "mod": mod_degisim,
     }
 
 
