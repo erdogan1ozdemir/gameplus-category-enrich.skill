@@ -130,7 +130,13 @@ Herhangi biri "hayır" ise yapı kullanıcıyı yetersiz hizmet ediyor.
 `verify_category_output(final, oyun_sayisi_metni=...)` + `print_report` build kapısıdır; FAIL varsa
 teslim edilmez. Kapsadıkları için bu listedeki şu maddeleri artık ELLE kontrol etmeye gerek yok:
 em dash, PEGI/yaş, Steam Workshop, çıktıda yorum, gömülü font, inline onclick, yuvarlanmış oyun
-sayısı, CTA hedefleri, `/firsatlar`, bölüm sırası, H1 yokluğu, FAQ sayısı ve schema, etiket dengesi.
+sayısı, CTA hedefleri, `/firsatlar`, bölüm sırası, H1 yokluğu, FAQ sayısı ve schema, etiket dengesi,
+**DOM genişliği (Kural 22)**.
+
+**Kural 22 - DOM genişliği.** Build'de `wrap_gp_content`ten hemen önce `group_into_sections(body)`
+çağrılır. Sitebulb "Avoid excessive DOM width" bir ebeveynde 60'tan fazla çocuk düğüm olduğunda
+uyarıyor; kategori gövdesinde tek H2 bulunduğu için bölme kendiliğinden H3'e iner. Kontrol UYARI
+verirse çağrı atlanmış demektir.
 
 **Elle kalan (yargı gerektiren) maddeler:** oyun sayısının Playwright doğrulamasıyla uyumu, tablo
 satır sayısı (8-12), kelime aralığı (1800-2400), CTA self-link yokluğu, paket tavsiyesi cümlesi

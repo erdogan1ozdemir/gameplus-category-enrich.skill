@@ -482,7 +482,7 @@ def isle(slug):
     body, kat_linkler = auto_link_categories(
         body, max_links=2, haric=tuple(mevcut | {kategori_url(slug)}))
     body, mod_degisim = mod_iddialarini_kaldir(body, slug)
-    final = wrap_gp_content(CATEGORY_STYLE + "\n" + body)
+    final = wrap_gp_content(CATEGORY_STYLE + "\n" + group_into_sections(body))  # Kural 22
     final, sayi_degisim = sayilari_yuvarla(final)
     final, dizgi = dizgi_duzelt(final)
 

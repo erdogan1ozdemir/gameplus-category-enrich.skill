@@ -87,11 +87,21 @@ Apply `references/style-guide.md` and `references/cta-templates.md` rigorously. 
 > body += render_category_dynamic_cta(baslik, aciklama, "https://gameplus.com.tr/paketler")
 > body += render_category_fix_cta(baslik, aciklama)
 > body += render_faq_accordion(faq) + render_faq_schema(faq)
-> final = wrap_gp_content(CATEGORY_STYLE + "\n" + body)
+> final = wrap_gp_content(CATEGORY_STYLE + "\n" + group_into_sections(body))   # Kural 22
 > ```
 >
 > **Kategori kuralı:** conic glow YOK, floating ToC YOK, H1 YOK (gövde H2 ile başlar), YouTube YOK.
 > `CATEGORY_STYLE` bu ailelerin CSS'ini zaten süzer.
+>
+> **Kural 22 - DOM genişliği.** `group_into_sections(body)` sarmalamadan hemen önce çağrılır ve
+> `.gp-content` doğrudan çocuklarını `<section class="gp-sec">` altında gruplar. Gerekçe: Sitebulb
+> "Avoid excessive DOM width" bir ebeveynde **60'tan fazla çocuk düğüm** olduğunda uyarıyor ve
+> `.gp-content` sayfadaki en geniş ebeveyndi (kategori sayfalarında ortalama 141 çocuk düğüm).
+> Bölme uyarlanabilir: önce `<h2>`, eşiği (varsayılan 50) aşan bölüm kalırsa `<h3>`, gerekirse `<h4>`.
+> **Kategori gövdesinde tek H2 bulunduğu için bölme kendiliğinden H3'e iner.** `<style>` ve en üst
+> seviye `<script>` (FAQ + kategori şeması) bölüm dışında kalır. Metne ve işaretlemeye dokunmaz;
+> `verify_category_output` "DOM genişliği (Kural 22)" ile denetler. Ölçüm: 28 kategoride
+> `.gp-content` ortalama 141 -> 35 çocuk düğüm, 1280 px ve 390 px'te 88 öğede yerleşim farkı sıfır.
 
 Section order (sabit):
 

@@ -45,6 +45,7 @@ from gameplus_blog_components import (  # noqa: E402
     render_table, render_genre_tags, render_game_cell, render_faq_accordion,
     verify_source_preserved, print_source_report, print_report,
     PAGE_HEAD, PAGE_FOOT, embed_fonts,
+    group_into_sections, gp_content_dom_genisligi,   # Kural 22 - DOM genisligi
 )
 
 # ============================================================================
@@ -361,5 +362,12 @@ def verify_category_output(final_html, expect_faq=True, oyun_sayisi_metni=None):
         if ac != kap:
             dengesiz.append(f"{t}: {ac}/{kap}")
     add(not dengesiz, "Etiket dengesi", "tüm etiketler dengeli", f"dengesiz: {dengesiz}")
+
+    # --- Kural 22: DOM genisligi (Sitebulb "Avoid excessive DOM width", esik 60 cocuk dugum) ---
+    _dw_dugum, _dw_el = gp_content_dom_genisligi(final_html)
+    add(_dw_dugum <= 60, "DOM genişliği (Kural 22)",
+        f"{_dw_dugum} çocuk düğüm / {_dw_el} element",
+        f"{_dw_dugum} çocuk düğüm / {_dw_el} element — Sitebulb eşiği 60 çocuk düğüm; "
+        f"build'de wrap_gp_content'ten ÖNCE group_into_sections(body) çağır", warn=True)
 
     return r
