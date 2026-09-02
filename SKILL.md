@@ -103,6 +103,13 @@ Apply `references/style-guide.md` and `references/cta-templates.md` rigorously. 
 > `verify_category_output` "DOM genişliği (Kural 22)" ile denetler. Ölçüm: 28 kategoride
 > `.gp-content` ortalama 141 -> 35 çocuk düğüm, 1280 px ve 390 px'te 88 öğede yerleşim farkı sıfır.
 
+**Kural 23 - Yazım ve CTA başlığı (v12.3).** "İndie" değil "Indie"; "Arcade"/"Indie" tür adı olarak
+büyük harf (`yazim_normalize`, URL'lere dokunmaz). Fix CTA başlığı her zaman gerçek başlık
+("Tek üyelik, hazır kütüphane."), rozet satırı (`PERFORMANCE ULTIMATE`) asla başlık olmaz.
+Yazar başlığındaki dilbilgisi düzeltmeleri yalnız kullanıcı onayıyla `BASLIK_REVIZE`'ye girer.
+Teslim öncesi `python3 scripts/denetim.py <çıktı-klasörü>` çalıştırılır (tablo, TLDR, CTA, SSS,
+schema, yazım, Kural 21, DOM genişliği); SORUN 0 değilse teslim edilmez.
+
 Section order (sabit):
 
 1. **H2 main heading + intro paragraph** (with `/gfn` link)

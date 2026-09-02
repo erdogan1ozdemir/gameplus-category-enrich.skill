@@ -8,10 +8,14 @@ Kullanım: python3 kategori_batch_v11.py [slug ...]   (argümansız: hepsi)
 """
 import os
 import re
+import json
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+SKILLDIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, SKILLDIR)
 from category_components import *  # noqa: F401,F403
+sys.path.insert(0, os.path.join(SKILLDIR, "..", "..", "gameplus-blog-enrich-v2", "scripts"))
+from gameplus_blog_components import apply_link_policy   # Kural 21
 from category_components import render_kategori_schema
 from gameplus_blog_components import auto_link_categories
 from icerik_gelistirme import ALT_TUR_TANIM, EK_FAQ, KATEGORI_TANIM
@@ -103,7 +107,53 @@ FAQ_SORU_REVIZE = {
 }
 
 # Tazelik sinyali: uretim tarihi. Uydurma tarih verilmez; icerik yenilendiginde guncellenir.
-URETIM_TARIHI = "2026-08-18"
+URETIM_TARIHI = "2026-09-02"
+
+# Kullanici onayli baslik dilbilgisi duzeltmeleri (yazarin basligi; "-ini nasil ...nir" edilgen
+# kalibinda belirtme eki fazlaydi). Anahtar: (slug, duz baslik metni).
+BASLIK_REVIZE = {
+    ("epic-games", "GeForce NOW'da Epic Games Hesabını Nasıl Bağlanır?"):
+        "GeForce NOW'a Epic Games Hesabı Nasıl Bağlanır?",
+    ("gog", "GeForce NOW'da GOG Oyunlarını Nasıl Oynanır?"):
+        "GeForce NOW'da GOG Oyunları Nasıl Oynanır?",
+    ("steam", "GeForce NOW'da Steam Oyunlarını Nasıl Oynanır?"):
+        "GeForce NOW'da Steam Oyunları Nasıl Oynanır?",
+}
+
+
+def yazim_normalize(html):
+    """Kullanici karari: 'Indie' Ingilizce sozcuk, Turkce buyuk I ile yazilmaz; 'Arcade' ve
+    'Indie' tur adlari buyuk harfle baslar. Yalniz metin dugumlerinde calisir (URL/slug/etiket
+    icine dokunmaz). Donus: (html, sayac)."""
+    sayac = {"İndie>Indie": 0, "arcade>Arcade": 0, "indie>Indie": 0}
+    def _metin(m):
+        t = m.group(0)
+        n = t.count("İndie"); t = t.replace("İndie", "Indie"); sayac["İndie>Indie"] += n
+        t, k = re.subn(r"(?<![\w/.\-])arcade(?!\w)", "Arcade", t); sayac["arcade>Arcade"] += k
+        t, k = re.subn(r"(?<![\w/.\-])indie(?!\w)", "Indie", t); sayac["indie>Indie"] += k
+        return t
+    # etiketler ve script/style blogu disindaki metin: ">...<" araliklari
+    parcalar = re.split(r"(<script.*?</script>|<style.*?</style>|<[^>]+>)", html, flags=re.S)
+    for i in range(0, len(parcalar), 2):
+        parcalar[i] = _metin(re.match(r".*", parcalar[i], re.S))
+    # schema JSON icindeki metin alanlari: JSON olarak cozulur, URL disi string degerler duzeltilir
+    def _json_yuru(o):
+        if isinstance(o, dict):
+            return {k: _json_yuru(x) for k, x in o.items()}
+        if isinstance(o, list):
+            return [_json_yuru(x) for x in o]
+        if isinstance(o, str) and not o.startswith("http"):
+            return _metin(re.match(r".*", o, re.S))
+        return o
+    for i in range(1, len(parcalar), 2):
+        if parcalar[i].startswith("<script") and "ld+json" in parcalar[i][:80]:
+            m = re.match(r"(<script[^>]*>)(.*)(</script>)", parcalar[i], re.S)
+            try:
+                veri = json.loads(m.group(2))
+            except ValueError:
+                continue
+            parcalar[i] = m.group(1) + "\n" + json.dumps(_json_yuru(veri), ensure_ascii=False, indent=1) + "\n" + m.group(3)
+    return "".join(parcalar), sayac
 
 BASE = "https://gameplus.com.tr/gfn/oyunlar"
 
@@ -175,8 +225,8 @@ def cikar(soup):
                 else:
                     v["info"].append((duz(gor[0]), duz(gor[1])))
             v["akis"].append(("info", None))
-        elif "table-wrap" in cls or el.find("table"):
-            t = el.find("table")
+        elif "table-wrap" in cls or el.name == "table" or el.find("table"):
+            t = el if el.name == "table" else el.find("table")   # sarmalayicisiz <table> da alinir
             v["tablolar"].append(([ic_html(th) for th in t.find_all("th")],
                                   [[ic_html(td) for td in tr.find_all("td")]
                                    for tr in t.find_all("tr") if tr.find("td")]))
@@ -220,16 +270,22 @@ def cikar(soup):
                 st_onceki = ((onceki.get("style") or "").replace(" ", "").lower()
                              if onceki is not None else "")
                 # C4 "stat banner" seridi: buyuk puntolu sayi + uppercase etiket ciftleri
-                if "font-size:1.7em" in st or "font-weight:800" in st:
+                # NOT: "font-weight:800" olcutu kullanilmaz; v10.2 kaynaginda CTA basligi da 800.
+                if "font-size:1.7em" in st:
                     continue                                   # istatistik degeri
                 if "text-transform:uppercase" in st:
-                    continue                                   # istatistik etiketi
-                if "font-size:1.7em" in st_onceki or "font-weight:800" in st_onceki:
+                    continue                                   # istatistik etiketi / rozet
+                if "font-size:1.7em" in st_onceki:
+                    continue                                   # istatistik etiketi (deger altinda)
+                if re.fullmatch(r"[\d.,+%\s]+", t):
                     continue
-                if re.fullmatch(r"[\d.,+]+", t):
-                    continue
-                if t.isupper() and len(t) <= 16:
-                    continue                                   # PERFORMANCE / ULTIMATE rozeti
+                if t.isupper():
+                    continue                                   # PERFORMANCE / ULTIMATE rozet satiri
+                if d.find("span") and not d.find(string=lambda x: isinstance(x, str) and x.strip()
+                                                  and x.parent is d):
+                    continue                                   # yalniz rozet span'lari iceren div
+                if not re.search(r"[.!?:,]", t) and len(adaylar) == 0 and len(t.split()) <= 2:
+                    continue                                   # 1-2 kelimelik etiket, baslik degil
                 adaylar.append(t)
             p = el.find("p")
             baslik = adaylar[0] if adaylar else ""
@@ -336,6 +392,7 @@ def kur(v, slug):
         if i in atla:
             continue
         if t in ("h2", "h3", "h4"):
+            d = BASLIK_REVIZE.get((slug, re.sub(r"<[^>]+>", "", d).strip()), d)
             parcalar.append(f"<{t}>{d}</{t}>"); kaynak.append(d)
             if t == "h2":
                 _kt = KATEGORI_TANIM.get(slug)
@@ -482,7 +539,9 @@ def isle(slug):
     body, kat_linkler = auto_link_categories(
         body, max_links=2, haric=tuple(mevcut | {kategori_url(slug)}))
     body, mod_degisim = mod_iddialarini_kaldir(body, slug)
+    body, link_sayac = apply_link_policy(body)          # Kural 21: dis nofollow, hepsi yeni sekme
     final = wrap_gp_content(CATEGORY_STYLE + "\n" + group_into_sections(body))  # Kural 22
+    final, yazim = yazim_normalize(final)
     final, sayi_degisim = sayilari_yuvarla(final)
     final, dizgi = dizgi_duzelt(final)
 
@@ -491,6 +550,7 @@ def isle(slug):
     hatalar = [x for x in sonuc if x[0] == "FAIL"]
     orij = "".join(f"<p>{x}</p>" for x in kaynak)
     orij, _ = mod_iddialarini_kaldir(orij, slug)
+    orij, _ = yazim_normalize(orij)
     ok_kaynak, eksik, oran = verify_source_preserved(orij, final)
 
     os.makedirs(CIKTI, exist_ok=True)
@@ -505,7 +565,8 @@ def isle(slug):
         "tablo": len(v["tablolar"]), "faq": len(v["faq"]),
         "cta": CTA_HEDEF.get(slug, PAKETLER).rsplit("/", 1)[-1],
         "linkler": [i for i, _ in kat_linkler],
-        "oyun_sayisi": oyun_sayisi, "firsatlar_cozuldu": firsat_sayisi, "faq_revize": v.get("faq_revize", []), "sayi": sayi_degisim, "dizgi": dizgi, "mod": mod_degisim,
+        "oyun_sayisi": oyun_sayisi, "firsatlar_cozuldu": firsat_sayisi, "faq_revize": v.get("faq_revize", []), "sayi": sayi_degisim, "dizgi": dizgi, "mod": mod_degisim, "yazim": yazim, "link": link_sayac,
+        "fix_baslik": (v["fix"] or ("", ""))[0], "dyn_baslik": (v["dyn"] or ("", ""))[0],
     }
 
 

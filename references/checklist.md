@@ -138,6 +138,21 @@ sayısı, CTA hedefleri, `/firsatlar`, bölüm sırası, H1 yokluğu, FAQ sayıs
 uyarıyor; kategori gövdesinde tek H2 bulunduğu için bölme kendiliğinden H3'e iner. Kontrol UYARI
 verirse çağrı atlanmış demektir.
 
+**v12.3 - CTA başlık çıkarımı, yazım ve link politikası.**
+- Port'ta CTA başlığı yaprak div'lerden seçilirken `PERFORMANCE`/`ULTIMATE` rozet satırı (tamamı
+  büyük harf ya da yalnız `<span>` rozetleri içeren div) ve 1-2 kelimelik etiketler elenir;
+  `font-weight:800` ölçütü kullanılmaz (v10.2 kaynağında gerçek başlık da 800). Kontrol:
+  `scripts/denetim.py` Fix CTA başlığı "Tek üyelik, hazır kütüphane." değilse FAIL verir.
+- Sarmalayıcısız üst düzey `<table>` da tablo olarak alınır; kaynakta kapanmamış `<td>` varsa
+  (bulmaca örneği) önce kaynak onarılır, tablo hücre sayıları `denetim.py` ile doğrulanır.
+- Yazım: "İndie" yazılmaz, "Indie" (İngilizce sözcük); "Arcade" ve "Indie" tür adı olarak büyük
+  harfle başlar. `yazim_normalize()` yalnız metin düğümlerinde ve schema JSON string'lerinde
+  çalışır, URL/slug'a dokunmaz.
+- Yazar başlıklarındaki "-ını nasıl ...nır" edilgen kalıbı (`Hesabını Nasıl Bağlanır`) kullanıcı
+  onayıyla `BASLIK_REVIZE` üzerinden düzeltilir: "GeForce NOW'a Epic Games Hesabı Nasıl Bağlanır?".
+- Kural 21 kategoride de uygulanır: `apply_link_policy(body)` (dış link nofollow, tüm linkler yeni
+  sekme, `#çapa` dokunulmaz). `denetim.py` tüm `<a>`'ları tarar.
+
 **Elle kalan (yargı gerektiren) maddeler:** oyun sayısının Playwright doğrulamasıyla uyumu, tablo
 satır sayısı (8-12), kelime aralığı (1800-2400), CTA self-link yokluğu, paket tavsiyesi cümlesi
 olmaması, TV model yılı, yapışık cümle, tür taksonomisinin tutarlılığı, Editör Notu'nun gerçek bir
